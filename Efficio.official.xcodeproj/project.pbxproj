@@ -14,6 +14,12 @@
 		BA3B64692C64041900E5EBA6 /* Efficio_officialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B64682C64041900E5EBA6 /* Efficio_officialTests.swift */; };
 		BA3B64732C64041900E5EBA6 /* Efficio_officialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B64722C64041900E5EBA6 /* Efficio_officialUITests.swift */; };
 		BA3B64752C64041900E5EBA6 /* Efficio_officialUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B64742C64041900E5EBA6 /* Efficio_officialUITestsLaunchTests.swift */; };
+		BA3B64832C64047600E5EBA6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BA3B64822C64047600E5EBA6 /* FirebaseAuth */; };
+		BA3B64852C64047600E5EBA6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BA3B64842C64047600E5EBA6 /* FirebaseFirestore */; };
+		BA3B64892C64059100E5EBA6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA3B64882C64059000E5EBA6 /* GoogleService-Info.plist */; };
+		BABED5DA2C640A9500482C6F /* GettingStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED5D92C640A9500482C6F /* GettingStartedView.swift */; };
+		BABED5DC2C640A9D00482C6F /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED5DB2C640A9D00482C6F /* LogInView.swift */; };
+		BABED5DE2C640AA800482C6F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED5DD2C640AA800482C6F /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,10 @@
 		BA3B646E2C64041900E5EBA6 /* Efficio.officialUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Efficio.officialUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3B64722C64041900E5EBA6 /* Efficio_officialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Efficio_officialUITests.swift; sourceTree = "<group>"; };
 		BA3B64742C64041900E5EBA6 /* Efficio_officialUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Efficio_officialUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BA3B64882C64059000E5EBA6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BABED5D92C640A9500482C6F /* GettingStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStartedView.swift; sourceTree = "<group>"; };
+		BABED5DB2C640A9D00482C6F /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		BABED5DD2C640AA800482C6F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA3B64832C64047600E5EBA6 /* FirebaseAuth in Frameworks */,
+				BA3B64852C64047600E5EBA6 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +86,7 @@
 		BA3B644B2C64041600E5EBA6 = {
 			isa = PBXGroup;
 			children = (
+				BA3B64882C64059000E5EBA6 /* GoogleService-Info.plist */,
 				BA3B64562C64041600E5EBA6 /* Efficio.official */,
 				BA3B64672C64041900E5EBA6 /* Efficio.officialTests */,
 				BA3B64712C64041900E5EBA6 /* Efficio.officialUITests */,
@@ -96,6 +109,9 @@
 			children = (
 				BA3B64572C64041600E5EBA6 /* Efficio_officialApp.swift */,
 				BA3B64592C64041600E5EBA6 /* ContentView.swift */,
+				BABED5D92C640A9500482C6F /* GettingStartedView.swift */,
+				BABED5DB2C640A9D00482C6F /* LogInView.swift */,
+				BABED5DD2C640AA800482C6F /* SignUpView.swift */,
 				BA3B645B2C64041800E5EBA6 /* Assets.xcassets */,
 				BA3B645D2C64041800E5EBA6 /* Preview Content */,
 			);
@@ -143,6 +159,10 @@
 			dependencies = (
 			);
 			name = Efficio.official;
+			packageProductDependencies = (
+				BA3B64822C64047600E5EBA6 /* FirebaseAuth */,
+				BA3B64842C64047600E5EBA6 /* FirebaseFirestore */,
+			);
 			productName = Efficio.official;
 			productReference = BA3B64542C64041600E5EBA6 /* Efficio.official.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +235,9 @@
 				Base,
 			);
 			mainGroup = BA3B644B2C64041600E5EBA6;
+			packageReferences = (
+				BA3B64812C64047600E5EBA6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = BA3B64552C64041600E5EBA6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -247,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA3B64892C64059100E5EBA6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +282,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA3B645A2C64041600E5EBA6 /* ContentView.swift in Sources */,
+				BABED5DE2C640AA800482C6F /* SignUpView.swift in Sources */,
+				BABED5DA2C640A9500482C6F /* GettingStartedView.swift in Sources */,
+				BABED5DC2C640A9D00482C6F /* LogInView.swift in Sources */,
 				BA3B64582C64041600E5EBA6 /* Efficio_officialApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,11 +451,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Efficio.official/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EFFICIO;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,11 +479,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Efficio.official/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EFFICIO;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -582,6 +609,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BA3B64812C64047600E5EBA6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BA3B64822C64047600E5EBA6 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA3B64812C64047600E5EBA6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		BA3B64842C64047600E5EBA6 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA3B64812C64047600E5EBA6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BA3B644C2C64041600E5EBA6 /* Project object */;
 }
