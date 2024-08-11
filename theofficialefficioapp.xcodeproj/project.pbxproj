@@ -13,9 +13,15 @@
 		BABED6352C67A2F300482C6F /* theofficialefficioappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6342C67A2F300482C6F /* theofficialefficioappTests.swift */; };
 		BABED63F2C67A2F300482C6F /* theofficialefficioappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED63E2C67A2F300482C6F /* theofficialefficioappUITests.swift */; };
 		BABED6412C67A2F300482C6F /* theofficialefficioappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6402C67A2F300482C6F /* theofficialefficioappUITestsLaunchTests.swift */; };
-		BABED64E2C67A32F00482C6F /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED64D2C67A32F00482C6F /* SignInView.swift */; };
-		BABED6502C67A33700482C6F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED64F2C67A33700482C6F /* SignUpView.swift */; };
+		BABED64E2C67A32F00482C6F /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED64D2C67A32F00482C6F /* LogInView.swift */; };
 		BABED6542C67A34C00482C6F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6532C67A34B00482C6F /* SplashScreenView.swift */; };
+		BABED65C2C68C8EF00482C6F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED65B2C68C8EF00482C6F /* SignUpView.swift */; };
+		BABED65E2C68EC2600482C6F /* BottomNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED65D2C68EC2600482C6F /* BottomNavBarView.swift */; };
+		BABED6602C68EFC400482C6F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED65F2C68EFC400482C6F /* HomeView.swift */; };
+		BABED6622C68EFCA00482C6F /* ToDoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6612C68EFCA00482C6F /* ToDoView.swift */; };
+		BABED6642C68EFD400482C6F /* ProductivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6632C68EFD400482C6F /* ProductivityView.swift */; };
+		BABED6662C68EFDF00482C6F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6652C68EFDF00482C6F /* CalendarView.swift */; };
+		BABED6682C68F1ED00482C6F /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6672C68F1ED00482C6F /* LogInViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,9 +51,15 @@
 		BABED63A2C67A2F300482C6F /* theofficialefficioappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = theofficialefficioappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABED63E2C67A2F300482C6F /* theofficialefficioappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theofficialefficioappUITests.swift; sourceTree = "<group>"; };
 		BABED6402C67A2F300482C6F /* theofficialefficioappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theofficialefficioappUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BABED64D2C67A32F00482C6F /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
-		BABED64F2C67A33700482C6F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BABED64D2C67A32F00482C6F /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		BABED6532C67A34B00482C6F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		BABED65B2C68C8EF00482C6F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BABED65D2C68EC2600482C6F /* BottomNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavBarView.swift; sourceTree = "<group>"; };
+		BABED65F2C68EFC400482C6F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BABED6612C68EFCA00482C6F /* ToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoView.swift; sourceTree = "<group>"; };
+		BABED6632C68EFD400482C6F /* ProductivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityView.swift; sourceTree = "<group>"; };
+		BABED6652C68EFDF00482C6F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		BABED6672C68F1ED00482C6F /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +111,15 @@
 			isa = PBXGroup;
 			children = (
 				BABED6232C67A2F100482C6F /* theofficialefficioappApp.swift */,
-				BABED64D2C67A32F00482C6F /* SignInView.swift */,
-				BABED64F2C67A33700482C6F /* SignUpView.swift */,
+				BABED64D2C67A32F00482C6F /* LogInView.swift */,
 				BABED6532C67A34B00482C6F /* SplashScreenView.swift */,
+				BABED65B2C68C8EF00482C6F /* SignUpView.swift */,
+				BABED65D2C68EC2600482C6F /* BottomNavBarView.swift */,
+				BABED6672C68F1ED00482C6F /* LogInViewModel.swift */,
+				BABED65F2C68EFC400482C6F /* HomeView.swift */,
+				BABED6612C68EFCA00482C6F /* ToDoView.swift */,
+				BABED6632C68EFD400482C6F /* ProductivityView.swift */,
+				BABED6652C68EFDF00482C6F /* CalendarView.swift */,
 				BABED6272C67A2F300482C6F /* Assets.xcassets */,
 				BABED6292C67A2F300482C6F /* Preview Content */,
 			);
@@ -263,9 +281,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BABED6502C67A33700482C6F /* SignUpView.swift in Sources */,
+				BABED65E2C68EC2600482C6F /* BottomNavBarView.swift in Sources */,
+				BABED65C2C68C8EF00482C6F /* SignUpView.swift in Sources */,
+				BABED6642C68EFD400482C6F /* ProductivityView.swift in Sources */,
 				BABED6542C67A34C00482C6F /* SplashScreenView.swift in Sources */,
-				BABED64E2C67A32F00482C6F /* SignInView.swift in Sources */,
+				BABED6602C68EFC400482C6F /* HomeView.swift in Sources */,
+				BABED6662C68EFDF00482C6F /* CalendarView.swift in Sources */,
+				BABED6682C68F1ED00482C6F /* LogInViewModel.swift in Sources */,
+				BABED6622C68EFCA00482C6F /* ToDoView.swift in Sources */,
+				BABED64E2C67A32F00482C6F /* LogInView.swift in Sources */,
 				BABED6242C67A2F100482C6F /* theofficialefficioappApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
