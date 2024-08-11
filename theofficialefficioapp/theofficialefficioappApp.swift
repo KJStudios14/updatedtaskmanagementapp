@@ -11,7 +11,7 @@ import SwiftUI
 struct theofficialefficioappApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
         }
     }
 }

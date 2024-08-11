@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BABED6242C67A2F100482C6F /* theofficialefficioappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6232C67A2F100482C6F /* theofficialefficioappApp.swift */; };
-		BABED6262C67A2F100482C6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6252C67A2F100482C6F /* ContentView.swift */; };
 		BABED6282C67A2F300482C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BABED6272C67A2F300482C6F /* Assets.xcassets */; };
 		BABED62B2C67A2F300482C6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BABED62A2C67A2F300482C6F /* Preview Assets.xcassets */; };
 		BABED6352C67A2F300482C6F /* theofficialefficioappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6342C67A2F300482C6F /* theofficialefficioappTests.swift */; };
@@ -16,8 +15,7 @@
 		BABED6412C67A2F300482C6F /* theofficialefficioappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6402C67A2F300482C6F /* theofficialefficioappUITestsLaunchTests.swift */; };
 		BABED64E2C67A32F00482C6F /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED64D2C67A32F00482C6F /* SignInView.swift */; };
 		BABED6502C67A33700482C6F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED64F2C67A33700482C6F /* SignUpView.swift */; };
-		BABED6522C67A33F00482C6F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6512C67A33F00482C6F /* SplashScreenView.swift */; };
-		BABED6542C67A34C00482C6F /* GettingStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6532C67A34B00482C6F /* GettingStartedView.swift */; };
+		BABED6542C67A34C00482C6F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6532C67A34B00482C6F /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +38,6 @@
 /* Begin PBXFileReference section */
 		BABED6202C67A2F000482C6F /* theofficialefficioapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theofficialefficioapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABED6232C67A2F100482C6F /* theofficialefficioappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theofficialefficioappApp.swift; sourceTree = "<group>"; };
-		BABED6252C67A2F100482C6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BABED6272C67A2F300482C6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BABED62A2C67A2F300482C6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BABED6302C67A2F300482C6F /* theofficialefficioappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = theofficialefficioappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,8 +47,7 @@
 		BABED6402C67A2F300482C6F /* theofficialefficioappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theofficialefficioappUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BABED64D2C67A32F00482C6F /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		BABED64F2C67A33700482C6F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		BABED6512C67A33F00482C6F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		BABED6532C67A34B00482C6F /* GettingStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStartedView.swift; sourceTree = "<group>"; };
+		BABED6532C67A34B00482C6F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				BABED6232C67A2F100482C6F /* theofficialefficioappApp.swift */,
-				BABED6252C67A2F100482C6F /* ContentView.swift */,
 				BABED64D2C67A32F00482C6F /* SignInView.swift */,
 				BABED64F2C67A33700482C6F /* SignUpView.swift */,
-				BABED6512C67A33F00482C6F /* SplashScreenView.swift */,
-				BABED6532C67A34B00482C6F /* GettingStartedView.swift */,
+				BABED6532C67A34B00482C6F /* SplashScreenView.swift */,
 				BABED6272C67A2F300482C6F /* Assets.xcassets */,
 				BABED6292C67A2F300482C6F /* Preview Content */,
 			);
@@ -270,10 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BABED6502C67A33700482C6F /* SignUpView.swift in Sources */,
-				BABED6542C67A34C00482C6F /* GettingStartedView.swift in Sources */,
+				BABED6542C67A34C00482C6F /* SplashScreenView.swift in Sources */,
 				BABED64E2C67A32F00482C6F /* SignInView.swift in Sources */,
-				BABED6522C67A33F00482C6F /* SplashScreenView.swift in Sources */,
-				BABED6262C67A2F100482C6F /* ContentView.swift in Sources */,
 				BABED6242C67A2F100482C6F /* theofficialefficioappApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
