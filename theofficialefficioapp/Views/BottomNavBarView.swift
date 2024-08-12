@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BottomNavBarView: View {
     @State private var selectedTab = 0
+    @StateObject var viewModel = MainViewModel()
     
     var body: some View {
         TabView(selection: $selectedTab){
@@ -20,7 +21,7 @@ struct BottomNavBarView: View {
                 .onAppear{ selectedTab = 0}
                 .tag(0)
             
-            ToDoView()
+            ToDoView(userId: viewModel.currentUserId)
                 .tabItem {
                     Image(systemName: "list.bullet")
                 }

@@ -1,20 +1,21 @@
 //
-//  SignInView.swift
+//  SignUpView.swift
 //  theofficialefficioapp
 //
-//  Created by KJemide on 10/08/2024.
+//  Created by KJemide on 11/08/2024.
 //
 
 import SwiftUI
 
-struct LogInView: View {
-    @StateObject var viewModel = LogInViewModel()
+struct SignUpView: View {
+    @StateObject var viewModel = SignUpViewModel()
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationStack {
             VStack{
                 Spacer()
-                Text("Welcome Back!")
+                
+                Text("Hello There!")
                     .font(.title)
                     .fontWeight(.bold)
                 
@@ -29,8 +30,25 @@ struct LogInView: View {
                         Text(viewModel.errorMessage)
                             .foregroundColor(Color.red)
                     }
+                    TextField("Enter your full name", text: $viewModel.fullname)
+                        .font(.subheadline)
+                        .padding(12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.horizontal, 30)
+                    
+                    TextField("Enter your username", text: $viewModel.username)
+                        .font(.subheadline)
+                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                        .autocorrectionDisabled(true)
+                        .padding(12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .padding(.horizontal, 30)
+                    
                     TextField("Enter your email", text: $viewModel.email)
                         .font(.subheadline)
+                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                         .padding(12)
                         .background(Color(.systemGray6))
                         .cornerRadius(10)
@@ -44,59 +62,44 @@ struct LogInView: View {
                         .padding(.horizontal, 30)
                 }
                 
-                NavigationLink {
-                    Text("Forgot password")
-                } label: {
-                    Text("Forgot password?")
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                        .padding(.vertical)
-                        .padding(.trailing, 20)
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-                
-                
                 Button {
-                    viewModel.login()  
-                } label: {
-                    Text("Log In")
+                    viewModel.register()
+                    dismiss()
+                }label: {
+                    Text("Create Account")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(width: 225, height: 44)
-                        .background(Color.efficioblue)
+                        .background(.efficioblue)
                         .cornerRadius(15)
                 }
+                .padding(.vertical)
                 
                 Spacer()
                 
                 Divider()
                 
                 NavigationLink {
-                    SignUpView()
+                    LogInView()
                         .navigationBarBackButtonHidden(true)
                 } label: {
                     HStack(spacing: 3) {
-                        Text("Don't have a account?")
+                        Text("Already have an account?")
                         
-                        Text("Sign Up")
+                        Text("Log In")
                             .fontWeight(.semibold)
                     }
                     .foregroundColor(.black)
                     .font(.footnote)
                 }
                 .padding(.vertical, 16)
-                
                 }
             }
         }
+    
+    
+    #Preview {
+        SignUpView()
     }
-
-
-struct LogInView_Previews: PreviewProvider {
-    static var previews: some View {
-        LogInView()
-    }
-}
 
