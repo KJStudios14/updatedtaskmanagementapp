@@ -33,12 +33,12 @@
 		BABED67E2C69022C00482C6F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED67D2C69022C00482C6F /* MainViewModel.swift */; };
 		BABED6832C69320600482C6F /* ToDoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6822C69320600482C6F /* ToDoViewModel.swift */; };
 		BABED6872C69326200482C6F /* ToDoListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6862C69326200482C6F /* ToDoListItemView.swift */; };
-		BABED68B2C6932AB00482C6F /* ToDoListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED68A2C6932AB00482C6F /* ToDoListItemViewModel.swift */; };
 		BABED68D2C69333100482C6F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED68C2C69333100482C6F /* HomeViewModel.swift */; };
 		BABED68F2C69352D00482C6F /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED68E2C69352D00482C6F /* NewItemView.swift */; };
 		BABED6912C69357B00482C6F /* NewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6902C69357B00482C6F /* NewItemViewModel.swift */; };
 		BABED6942C6945C600482C6F /* ToDoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6932C6945C600482C6F /* ToDoListItem.swift */; };
-		BAEDA6562C6AA147004F13B2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDA6552C6AA147004F13B2 /* ProfileViewModel.swift */; };
+		BAEDA6562C6AA147004F13B2 /* ToDoListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDA6552C6AA147004F13B2 /* ToDoListItemModel.swift */; };
+		BAEDA65A2C6ABE5B004F13B2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAEDA6592C6ABE5B004F13B2 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,12 +85,12 @@
 		BABED67D2C69022C00482C6F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		BABED6822C69320600482C6F /* ToDoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewModel.swift; sourceTree = "<group>"; };
 		BABED6862C69326200482C6F /* ToDoListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemView.swift; sourceTree = "<group>"; };
-		BABED68A2C6932AB00482C6F /* ToDoListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemViewModel.swift; sourceTree = "<group>"; };
 		BABED68C2C69333100482C6F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BABED68E2C69352D00482C6F /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
 		BABED6902C69357B00482C6F /* NewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewModel.swift; sourceTree = "<group>"; };
 		BABED6932C6945C600482C6F /* ToDoListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItem.swift; sourceTree = "<group>"; };
-		BAEDA6552C6AA147004F13B2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		BAEDA6552C6AA147004F13B2 /* ToDoListItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemModel.swift; sourceTree = "<group>"; };
+		BAEDA6592C6ABE5B004F13B2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +148,7 @@
 				BABED6232C67A2F100482C6F /* theofficialefficioappApp.swift */,
 				BABED6792C68FF6F00482C6F /* Extensions.swift */,
 				BABED6772C68FE4800482C6F /* User.swift */,
+				BAEDA6592C6ABE5B004F13B2 /* Launch Screen.storyboard */,
 				BABED6952C694E5F00482C6F /* Views */,
 				BABED6272C67A2F300482C6F /* Assets.xcassets */,
 				BABED6292C67A2F300482C6F /* Preview Content */,
@@ -186,7 +187,6 @@
 				BABED67D2C69022C00482C6F /* MainViewModel.swift */,
 				BABED6752C68FC2500482C6F /* SignUpViewModel.swift */,
 				BABED6672C68F1ED00482C6F /* LogInViewModel.swift */,
-				BABED68A2C6932AB00482C6F /* ToDoListItemViewModel.swift */,
 				BABED6822C69320600482C6F /* ToDoViewModel.swift */,
 				BABED68C2C69333100482C6F /* HomeViewModel.swift */,
 				BABED6902C69357B00482C6F /* NewItemViewModel.swift */,
@@ -209,7 +209,7 @@
 				BABED64D2C67A32F00482C6F /* LogInView.swift */,
 				BABED6532C67A34B00482C6F /* SplashScreenView.swift */,
 				BABED6932C6945C600482C6F /* ToDoListItem.swift */,
-				BAEDA6552C6AA147004F13B2 /* ProfileViewModel.swift */,
+				BAEDA6552C6AA147004F13B2 /* ToDoListItemModel.swift */,
 				BABED6922C693CB700482C6F /* ViewModels */,
 			);
 			path = Views;
@@ -329,6 +329,7 @@
 			files = (
 				BABED62B2C67A2F300482C6F /* Preview Assets.xcassets in Resources */,
 				BABED6712C68F8D500482C6F /* GoogleService-Info.plist in Resources */,
+				BAEDA65A2C6ABE5B004F13B2 /* Launch Screen.storyboard in Resources */,
 				BABED6282C67A2F300482C6F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,10 +370,9 @@
 				BABED6602C68EFC400482C6F /* HomeView.swift in Sources */,
 				BABED6662C68EFDF00482C6F /* CalendarView.swift in Sources */,
 				BABED6682C68F1ED00482C6F /* LogInViewModel.swift in Sources */,
-				BAEDA6562C6AA147004F13B2 /* ProfileViewModel.swift in Sources */,
+				BAEDA6562C6AA147004F13B2 /* ToDoListItemModel.swift in Sources */,
 				BABED6622C68EFCA00482C6F /* ToDoView.swift in Sources */,
 				BABED67A2C68FF6F00482C6F /* Extensions.swift in Sources */,
-				BABED68B2C6932AB00482C6F /* ToDoListItemViewModel.swift in Sources */,
 				BABED6782C68FE4800482C6F /* User.swift in Sources */,
 				BABED64E2C67A32F00482C6F /* LogInView.swift in Sources */,
 				BABED6762C68FC2500482C6F /* SignUpViewModel.swift in Sources */,
@@ -545,6 +545,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -572,6 +573,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
