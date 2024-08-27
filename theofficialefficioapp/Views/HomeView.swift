@@ -9,6 +9,15 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 if let user = viewModel.user {
+                    HStack {
+                        Text(Date().formatted(.dateTime.weekday(.wide).month().day().year()))
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding([.leading, .top])
+                        Spacer()
+                    }
+
+                    
                     Image(systemName: "person.circle")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
