@@ -30,6 +30,7 @@ struct MyProfileView: View {
                         HStack {
                             Text("Full Name: ")
                                 .mitrFont(.headline, weight: .semibold)
+                            Spacer()
                             Text(user.fullname)
                                 .mitrFont(.headline, weight: .light)
                         }
@@ -37,6 +38,7 @@ struct MyProfileView: View {
                         HStack {
                             Text("Username: ")
                                 .mitrFont(.headline, weight: .semibold)
+                            Spacer()
                             Text(user.username)
                                 .mitrFont(.headline, weight: .light)
                         }
@@ -44,6 +46,7 @@ struct MyProfileView: View {
                         HStack {
                             Text("Email: ")
                                 .mitrFont(.headline, weight: .semibold)
+                            Spacer()
                             Text(user.email)
                                 .mitrFont(.headline, weight: .light)
                         }
@@ -51,7 +54,7 @@ struct MyProfileView: View {
                         HStack {
                             Text("Member Since: ")
                                 .mitrFont(.headline, weight: .semibold)
-                            
+                            Spacer()
                             Text(Date(timeIntervalSince1970: user.joined)
                                 .formatted(.dateTime.year().month().day()))
                                 .mitrFont(.headline, weight: .light)

@@ -11,6 +11,7 @@ struct CalendarView: View {
     
     @State private var currentDay: Date = .init()
     var body: some View {
+        
         ScrollView(.vertical, showsIndicators: false) {
             TimeLineView()
                 .padding(15)
@@ -138,41 +139,37 @@ extension Date{
 }
 
 //etension for the calendar
-extension Calendar{
-    //24 hours
-    var hours: [Date]{
-        let startofDay = self.startOfDay(for: Date())
+extension Calendar {
+    // 24 hours
+    var hours: [Date] {
+        let startOfDay = self.startOfDay(for: Date())
         var hours: [Date] = []
-        for index in 0..<24{
-            if let date = self.date(byAdding: .hour, value: index, to: startOfDay){
+        for index in 0..<24 {
+            if let date = self.date(byAdding: .hour, value: index, to: startOfDay) {
                 hours.append(date)
             }
         }
         return hours
     }
-    
-    
-    //Current Week
-    var currentWeek: [WeekDay]{
-        guard let firstWeekDay = self.dateInterval(of: .weekOfMonth, for: Date())?.start
-            else{return []}
+
+    // Current Week
+    var currentWeek: [WeekDay] {
+        guard let firstWeekDay = self.dateInterval(of: .weekOfMonth, for: Date())?.start else { return [] }
         var week: [WeekDay] = []
-        for index in 0..<7{
-            if let day = self.date(byAdding: .day, value: index, to: firstWeekDay){
+        for index in 0..<7 {
+            if let day = self.date(byAdding: .day, value: index, to: firstWeekDay) {
                 let weekDaySymbol: String = day.toString("EEEE")
                 let isToday = self.isDateInToday(day)
                 week.append(.init(string: weekDaySymbol, date: day, isToday: isToday))
             }
         }
-        
         return week
     }
-    
-    struct WeekDay: Identifiable{
+
+    struct WeekDay: Identifiable {
         var id: UUID = .init()
         var string: String
         var date: Date
         var isToday: Bool = false
     }
-    
 }

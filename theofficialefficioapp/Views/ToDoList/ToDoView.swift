@@ -1,4 +1,3 @@
-
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 import SwiftUI
@@ -20,6 +19,22 @@ struct ToDoView: View {
         NavigationView {
         
             VStack {
+                HStack {
+                    Text("My Tasks")
+                        .mitrFont(.largeTitle, weight: .medium)
+                    Spacer()
+                    Button {
+                        viewModel.showingNewItemView = true
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(.efficioblue)
+                            .font(.largeTitle)
+                    }
+                }
+                .padding(.horizontal, 25)
+                .padding(.top, 10)
+                .padding(.bottom)
+                
                 Picker("Sort By", selection: $viewModel.sortBy) {
                     Text("Sort by Due Date")
                         .tag(ToDoViewModel.SortCriterion.dueDate)
@@ -59,14 +74,7 @@ struct ToDoView: View {
                     .listStyle(PlainListStyle())
                 }
             }
-            .toolbar {
-                Button {
-                    viewModel.showingNewItemView = true
-                } label: {
-                    Image(systemName: "plus")
-                        .foregroundColor(.efficioblue)
-                }
-            }
+            
             .sheet(isPresented: $viewModel.showingNewItemView) {
                 NewItemView(newItemPresented: $viewModel.showingNewItemView)
             }
