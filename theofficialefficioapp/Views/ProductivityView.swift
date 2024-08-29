@@ -10,13 +10,36 @@ import SwiftUI
 struct ProductivityView: View {
     var body: some View {
         NavigationView{
-            VStack{
-                
+            
+            HStack{
+                NavigationLink {
+                    ChooseTimerView()
+                } label: {
+                    Text("Timer")
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .frame(width: 150, height: 44)
+                        .background(Color.efficioblue)
+                        .cornerRadius(15)
+                }
+                NavigationLink {
+                    StopWatchView()
+                } label: {
+                    Text("Stopwatch")
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                        .frame(width: 150, height: 44)
+                        .background(Color.efficioblue)
+                        .cornerRadius(15)
+                }
             }
-            .navigationTitle("Productivity")
+            
+            
+            }
+            .navigationTitle("My Productivity")
         }
     }
-}
+
 
 #Preview {
     ProductivityView()

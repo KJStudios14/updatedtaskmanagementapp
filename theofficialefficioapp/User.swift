@@ -7,15 +7,14 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
     let id: String
     let fullname: String
     let username: String
     let email: String
     let joined: TimeInterval
+
     
-    
-//CHATGPT CODE
     func asDictionary() -> [String: Any] {
            return [
                "id": id,

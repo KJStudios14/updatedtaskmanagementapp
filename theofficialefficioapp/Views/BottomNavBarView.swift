@@ -35,13 +35,23 @@ struct BottomNavBarView: View {
                 .onAppear{ selectedTab = 2}
                 .tag(2)
             
-            ProductivityView()
+            NotesView()
                 .tabItem {
-                    Image(systemName: selectedTab == 3 ? "chart.pie.fill" : "chart.pie")
-                        .environment(\.symbolVariants, selectedTab == 3 ? .fill : .none)
+                    Image(systemName: "square.and.pencil")
                 }
                 .onAppear{ selectedTab = 3}
                 .tag(3)
+            
+            
+            ProductivityView()
+                .tabItem {
+                    Image(systemName: selectedTab == 4 ? "chart.pie.fill" : "chart.pie")
+                        .environment(\.symbolVariants, selectedTab == 4 ? .fill : .none)
+                }
+                .onAppear{ selectedTab = 4}
+                .tag(4)
+            
+            
         }
         .tint(.efficioblue)
     }

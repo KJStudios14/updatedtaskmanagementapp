@@ -1,12 +1,6 @@
-//
-//  SignUpViewModel.swift
-//  theofficialefficioapp
-//
-//  Created by KJemide on 11/08/2024.
-//
 
-import FirebaseFirestore
 import FirebaseAuth
+import FirebaseFirestore
 import Foundation
 
 class SignUpViewModel: ObservableObject {
@@ -22,35 +16,40 @@ class SignUpViewModel: ObservableObject {
         guard validate() else {
             return
         }
-        
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
-            guard let userId = result?.user.uid else {
+
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+            if let error = error {
+                print("Error creating user: \(error.localizedDescription)")
+                self?.errorMessage = "Error creating user: \(error.localizedDescription)"
                 return
             }
-            self?.insertUserRecord(id: userId)
-        }
-    }
-    
-    private func insertUserRecord(id: String) {
-        let newUser = User(
-            id: id,
-            fullname: fullname,
-            username: username,
-            email: email,
-            joined: Date().timeIntervalSince1970
-        )
-        
-        let db = Firestore.firestore()
-        
-        db.collection("users")
-            .document(id)
-            .setData(newUser.asDictionary()) { error in
+
+            guard let user = authResult?.user else {
+                print("Failed to get the user after registration.")
+                self?.errorMessage = "Failed to get user after registration."
+                return
+            }
+
+            let db = Firestore.firestore()
+            guard let self = self else { return }
+            let userData: [String: Any] = [
+                "id": user.uid,
+                "fullname": self.fullname,
+                "username": self.username,
+                "email": self.email,
+                "joined": Date().timeIntervalSince1970
+            ]
+
+            db.collection("users").document(user.uid).setData(userData) { error in
                 if let error = error {
-                    print("Error writing document: \(error)")
+                    print("Error saving user data: \(error.localizedDescription)")
+                    self.errorMessage = "Error saving user data: \(error.localizedDescription)"
                 } else {
-                    print("Document successfully written!")
+                    print("User data saved successfully.")
+                    self.errorMessage = ""
                 }
             }
+        }
     }
     
     private func validate() -> Bool {
@@ -77,7 +76,7 @@ class SignUpViewModel: ObservableObject {
             errorMessage = "Please enter a valid email address."
             return false
         }
-    
+        
         guard password.count >= 8 else {
             errorMessage = "Password must be a minimum of 8 characters."
             return false

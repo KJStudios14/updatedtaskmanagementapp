@@ -14,11 +14,13 @@ struct ToDoListItem: Codable, Identifiable {
     let dueDate: TimeInterval
     let createdDate: TimeInterval
     var isDone: Bool
+    var priority: Priority // Ensure this property exists
     
-    
-    mutating func setDone(_ state: Bool) {
-        isDone = state
+    enum Priority: String, Codable {
+        case none
+        case low
+        case medium
+        case high
     }
 }
-
 

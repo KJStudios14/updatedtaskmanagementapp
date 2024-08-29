@@ -1,9 +1,4 @@
-//
-//  SignUpView.swift
-//  theofficialefficioapp
-//
-//  Created by KJemide on 11/08/2024.
-//
+
 
 import SwiftUI
 
@@ -64,7 +59,10 @@ struct SignUpView: View {
                 
                 Button {
                     viewModel.register()
-                    dismiss()
+                    // Optional delay before dismiss to ensure data is saved
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                dismiss()
+                            }
                 }label: {
                     Text("Create Account")
                         .font(.subheadline)

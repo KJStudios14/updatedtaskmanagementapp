@@ -13,8 +13,7 @@ class MainViewModel: ObservableObject {
     private var handler : AuthStateDidChangeListenerHandle?
     
     init() {
-        let handler = Auth.auth().addStateDidChangeListener{ [weak self] _, user in
-            self?.currentUserId = user?.uid ?? ""
+        self.handler = Auth.auth().addStateDidChangeListener{ [weak self] _, user in
             DispatchQueue.main.async {
                 self?.currentUserId = user?.uid ?? ""
             }

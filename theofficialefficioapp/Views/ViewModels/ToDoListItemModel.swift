@@ -13,26 +13,29 @@ class ToDoListItemViewModel: ObservableObject {
     init() {}
     
     func toggleIsDone(item: ToDoListItem) {
-        var itemCopy = item
-        itemCopy.setDone(!item.isDone) // Toggle the isDone state
+        // Create a reference to the Firestore database
+        let db = Firestore.firestore()
         
+        // Create a reference to the specific document for the ToDoListItem
         guard let uid = Auth.auth().currentUser?.uid else {
+            print("User is not authenticated")
             return
         }
         
-        let db = Firestore.firestore()
-        do {
-            try db.collection("users")
-                .document(uid)
-                .collection("todos")
-                .document(itemCopy.id)
-                .setData(from: itemCopy)
-        } catch {
-            print("Error setting document: \(error)")
-        }
+        // Update the 'isDone' field of the specific ToDoListItem document
+        db.collection("users")
+            .document(uid)
+            .collection("todos")
+            .document(item.id)
+            .updateData(["isDone": !item.isDone]) { error in
+                if let error = error {
+                    print("Error updating document: \(error)")
+                } else {
+                    print("Document successfully updated!")
+                }
+            }
     }
 }
-
 
 /* class ProfileViewModel: ObservableObject {
     init() {}

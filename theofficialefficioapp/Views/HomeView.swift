@@ -9,52 +9,40 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 if let user = viewModel.user {
-                    HStack {
-                        Text(Date().formatted(.dateTime.weekday(.wide).month().day().year()))
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding([.leading, .top])
-                        Spacer()
-                    }
-
-                    
+                    //Avatar
                     Image(systemName: "person.circle")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .foregroundColor(.efficioblue)
+                        .foregroundColor(Color.blue)
                         .frame(width: 125, height: 125)
-                        .padding()
                     
-                    VStack(alignment: .leading) {
+                    
+                    //Info: Name, Email, Member Since
+                    VStack(alignment: .leading){
                         HStack {
-                            Text("Name: ")
-                                .bold()
+                            Text("Full Name: ")
                             Text(user.fullname)
                         }
-                        .padding(3)
+                        
                         HStack {
                             Text("Username: ")
-                                .bold()
                             Text(user.username)
                         }
-                        .padding(3)
+                        
                         HStack {
                             Text("Email: ")
-                                .bold()
                             Text(user.email)
                         }
-                        .padding(3)
+                        
                         HStack {
                             Text("Member Since: ")
-                                .bold()
+                            
                             Text(Date(timeIntervalSince1970: user.joined)
-                                .formatted(date: .abbreviated, time: .shortened)
-                            )
+                                    .formatted(date: .abbreviated, time: .shortened))
                         }
-                        .padding(3)
                     }
-                    .padding()
                     
+                    //Sign out
                     Button {
                         viewModel.logOut()
                     } label: {
@@ -62,23 +50,23 @@ struct HomeView: View {
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
-                            .frame(width: 150, height: 44)
+                            .frame(width: 225, height: 44)
                             .background(Color.efficioblue)
                             .cornerRadius(15)
                     }
-                    Spacer()
-                
                 } else {
-                    Text("Loading Home Page...")
+                    Text("Loading Profile...")
                 }
+                
             }
             .navigationTitle("Home")
         }
-        .onAppear {
+        .onAppear{
             viewModel.fetchUser()
         }
     }
 }
+
 
 #Preview {
     HomeView()

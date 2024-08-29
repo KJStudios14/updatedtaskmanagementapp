@@ -13,11 +13,12 @@ class NewItemViewModel: ObservableObject {
     @Published var title = ""
     @Published var description = ""
     @Published var dueDate = Date()
+    @Published var priority: ToDoListItem.Priority = .none
     @Published var showAlert = false
     
     init() {}
     
-    func addtask() {
+    func addTask() {
         guard canSave else {
             return
         }
@@ -35,7 +36,8 @@ class NewItemViewModel: ObservableObject {
             description: description,
             dueDate: dueDate.timeIntervalSince1970,
             createdDate: Date().timeIntervalSince1970,
-            isDone: false
+            isDone: false,
+            priority: priority
         )
         
         // Save model
