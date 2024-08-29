@@ -2,16 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ATSApplicationFontsPath</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Mitr-Bold</string>
-		<string>Mitr-ExtraLight</string>
-		<string>Mitr-Light</string>
-		<string>Mitr-Medium</string>
-		<string>Mitr-Regular</string>
-		<string>Mitr-SemiBold</string>
+		<string>Mitr-Bold.ttf</string>
+		<string>Mitr-ExtraLight.ttf</string>
+		<string>Mitr-Light.ttf</string>
+		<string>Mitr-Medium.ttf</string>
+		<string>Mitr-Regular.ttf</string>
+		<string>Mitr-SemiBold.ttf</string>
 	</array>
-    <key>UIUserInterfaceStyle</key>
-    <string>Light</string>
 </dict>
 </plist>

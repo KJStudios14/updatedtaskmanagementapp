@@ -1,9 +1,3 @@
-//
-//  ProductivityView.swift
-//  theofficialefficioapp
-//
-//  Created by KJemide on 11/08/2024.
-//
 
 import SwiftUI
 
@@ -17,7 +11,7 @@ struct ProductivityView: View {
                 } label: {
                     Text("Timer")
                         .foregroundColor(.white)
-                        .fontWeight(.bold)
+                        .fontWeight(.semibold)
                         .frame(width: 150, height: 44)
                         .background(Color.efficioblue)
                         .cornerRadius(15)
@@ -27,7 +21,7 @@ struct ProductivityView: View {
                 } label: {
                     Text("Stopwatch")
                         .foregroundColor(.white)
-                        .fontWeight(.bold)
+                        .fontWeight(.semibold)
                         .frame(width: 150, height: 44)
                         .background(Color.efficioblue)
                         .cornerRadius(15)

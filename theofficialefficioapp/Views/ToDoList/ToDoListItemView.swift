@@ -1,9 +1,3 @@
-//
-//  ToDoListItemView.swift
-//  theofficialefficioapp
-//
-//  Created by KJemide on 11/08/2024.
-//
 
 import SwiftUI
 
@@ -20,24 +14,22 @@ struct ToDoListItemView: View {
                 viewModel.toggleIsDone(item: item)
             } label: {
                 Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 24))
                     .foregroundColor(.efficioblue)
             }
             
             VStack(alignment: .leading) {
                 Text(item.title)
-                    .font(.headline)
-                    .bold()
+                    .mitrFont(.headline, weight: .regular)
                     
                 HStack {
                     Image(systemName: "calendar")
                         .foregroundColor(item.dueDate < Date().timeIntervalSince1970 ? .red : .gray)
                     
                     Text(dueDateText(for: item.dueDate))
-                        .font(.footnote)
+                        .mitrFont(.footnote, weight: .light)
                         .foregroundColor(item.dueDate < Date().timeIntervalSince1970 ? .red : Color(.secondaryLabel))
                 }
-                
-                
             }
             
             Spacer()
@@ -49,26 +41,26 @@ struct ToDoListItemView: View {
                 case .low:
                     Image(systemName: "flag.fill")
                         .foregroundColor(.green)
-                        .frame(width: 5, height: 5)
+                        .font(.system(size: 18))
                 case .medium:
                     Image(systemName: "flag.fill")
                         .foregroundColor(.yellow)
+                        .font(.system(size: 18))
                 case .high:
                     Image(systemName: "flag.fill")
                         .foregroundColor(.red)
+                        .font(.system(size: 18))
                 }
             }
             .font(.footnote)
-            
-            
         }
         .onTapGesture(count: 2) {
                 showingDetail = true
                 }
                 .sheet(isPresented: $showingDetail) {
                     ToDoItemDetailView(item: item)
-                        .presentationDetents([.height(400)]) // Adjust height as needed
-                        .presentationDragIndicator(.hidden) // Hide the drag indicator
+                        .presentationDetents([.height(400)]) 
+                        .presentationDragIndicator(.hidden)
                 }
             }
    
@@ -87,38 +79,6 @@ struct ToDoListItemView: View {
     }
     
 
-/*struct ToDoListItemView: View {
-    @StateObject var viewModel = ToDoListItemViewModel()
-    
-    
-    let item: ToDoListItem
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading){
-                Text(item.title)
-                    .font(.headline)
-                    .bold()
-                    
-                Text("\(Date(timeIntervalSince1970: item.dueDate).formatted(date: .abbreviated, time: .shortened))")
-                    .font(.footnote)
-                    .foregroundColor(Color(.secondaryLabel))
-            }
-            
-            Spacer()
-            
-            Button {
-                viewModel.toggleIsDone(item: item)
-            } label: {
-                Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
-            }
-            
-        }
-    }
-}
-
- 
-*/
-
 let newId = UUID().uuidString
 
 #Preview {
@@ -132,9 +92,6 @@ let newId = UUID().uuidString
             isDone: false,
             priority: .high
         ),
-        onItemTapped: { _ in } // Provide a dummy closure for the preview
+        onItemTapped: { _ in }
     )
 }
-
-
-

@@ -14,23 +14,20 @@ struct ToDoItemDetailView: View {
             ZStack {
                 VStack(spacing: 20) {
                     Text(item.title)
-                        .font(.largeTitle)
-                        .bold()
+                        .mitrFont(.title, weight: .semibold)  
                     
                     Text(item.description)
-                        .font(.body)
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
                     
                     HStack {
                         Text("Due Date: ")
-                            .fontWeight(.bold)
+                            .fontWeight(.semibold)
                         Text("\(dueDateText(for: item.dueDate))")
                     }
                     
                     HStack {
                         Text("Priority: ")
-                            .fontWeight(.bold)
+                            .fontWeight(.semibold)
                         switch item.priority {
                         case .none:
                             Text("None")

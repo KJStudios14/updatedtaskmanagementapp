@@ -1,12 +1,20 @@
-
+//
+//  MyProfileView.swift
+//  theofficialefficioapp
+//
+//  Created by KJemide on 29/08/2024.
+//
 
 import SwiftUI
 
-struct HomeView: View {
+struct MyProfileView: View {
     @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
-        NavigationView {
+
+        ZStack {
+            Color.efficioblue
+                .ignoresSafeArea()
             VStack {
                 if let user = viewModel.user {
                     //Avatar
@@ -21,24 +29,33 @@ struct HomeView: View {
                     VStack(alignment: .leading){
                         HStack {
                             Text("Full Name: ")
+                                .mitrFont(.headline, weight: .semibold)
                             Text(user.fullname)
+                                .mitrFont(.headline, weight: .light)
                         }
                         
                         HStack {
                             Text("Username: ")
+                                .mitrFont(.headline, weight: .semibold)
                             Text(user.username)
+                                .mitrFont(.headline, weight: .light)
                         }
                         
                         HStack {
                             Text("Email: ")
+                                .mitrFont(.headline, weight: .semibold)
                             Text(user.email)
+                                .mitrFont(.headline, weight: .light)
                         }
                         
                         HStack {
                             Text("Member Since: ")
+                                .mitrFont(.headline, weight: .semibold)
                             
                             Text(Date(timeIntervalSince1970: user.joined)
-                                    .formatted(date: .abbreviated, time: .shortened))
+                                .formatted(.dateTime.year().month().day()))
+                                .mitrFont(.headline, weight: .light)
+                            
                         }
                     }
                     
@@ -47,8 +64,7 @@ struct HomeView: View {
                         viewModel.logOut()
                     } label: {
                         Text("Log Out")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
+                            .mitrFont(.subheadline, weight: .semibold)
                             .foregroundColor(.white)
                             .frame(width: 225, height: 44)
                             .background(Color.efficioblue)
@@ -59,15 +75,14 @@ struct HomeView: View {
                 }
                 
             }
-            .navigationTitle("Home")
         }
-        .onAppear{
-            viewModel.fetchUser()
-        }
-    }
+        
 }
+}
+
 
 
 #Preview {
-    HomeView()
+    MyProfileView()
 }
+

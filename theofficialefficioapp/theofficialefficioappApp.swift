@@ -15,6 +15,8 @@ struct theofficialefficioappApp: App {
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
+                .environment(\.font, Font.custom("Mitr", size: UIFont.preferredFont(forTextStyle: .body).pointSize))
+                                .modifier(GlobalFontModifier())
         }
     }
 }

@@ -16,8 +16,7 @@ struct MainView: View {
             BottomNavBarView()
         } else{
             LogInView()
-        }
-        
+        } 
     }
 }
 

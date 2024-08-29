@@ -12,7 +12,7 @@ struct NewItemView: View {
             
             VStack {
                 Text("New Task")
-                    .font(.system(size: 32))
+                    .font(.title2)
                     .bold()
                     .padding(.top, 60)
                 
@@ -48,6 +48,7 @@ struct NewItemView: View {
                             }
                         } label: {
                             Text("Add Task")
+                                .mitrFont()
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
@@ -68,6 +69,7 @@ struct NewItemView: View {
             .background(Color.white)
             
         }
+        .mitrFont()
         
     }
 }
