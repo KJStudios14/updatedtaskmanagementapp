@@ -10,6 +10,7 @@ import SwiftUI
 struct CalendarView: View {
     
     @State private var currentDay: Date = .init()
+    @State private var events: [Event] = sampleEvents
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false) {
@@ -23,22 +24,63 @@ struct CalendarView: View {
     
     @ViewBuilder
     func TimeLineView()-> some View{
-        VStack{
+        ScrollViewReader { proxy in
             let hours = Calendar.current.hours
-            ForEach(hours, id: \.self){hour in
-                TimeLineViewRow(hour)
+            let midHour = hours[hours.count / 2]
+            VStack{
+                ForEach(hours, id: \.self){hour in
+                    TimeLineViewRow(hour)
+                        .id(hour)
+                }
+            }
+            .onAppear {
+                proxy.scrollTo(midHour)
             }
         }
     }
     
     @ViewBuilder
-    func TimeLineViewRow(_ hour: Date)-> some View{
+    func TimeLineViewRow(_ date: Date)-> some View{
         HStack(alignment: .top){
-            Text(hour.toString("h a"))
+            Text(date.toString("h a"))
                 .mitrFont(.subheadline, weight: .regular)
+                .frame(width: 45, alignment: .leading)
+            
+            //filtering events based on hour and veifying whether the date is the same as the selected week day
+            let calendar = Calendar.current
+            let filteredEvents = events.filter{
+                if let hour = calendar.dateComponents([.hour], from: date).hour,
+                   let eventHour = calendar.dateComponents([.hour], from: date).hour,
+                   hour == eventHour && calendar.isDate($0.dateAdded, inSameDayAs: date){
+                    return true
+                }
+                return false
+            }
+            
+            if filteredEvents.isEmpty{
+                Rectangle()
+                    .stroke(.gray.opacity(0.5), style: StrokeStyle(lineWidth: 0.5, lineCap:
+                            .butt, lineJoin: .bevel, dash: [5], dashPhase: 5))
+                    .frame(height: 0.5)
+                    .offset(y: 10)
+            } else{
+                VStack{
+                    
+                }
+            }
         }
         .hAlign(.leading)
         .padding(.vertical, 15)
+    }
+    
+    @ViewBuilder
+    func EventRow(_ events: Event)->some View{
+        VStack(alignment: .leading, spacing: 8){
+            Text(events.eventName.uppercased())
+                .mitrFont(.subheadline, weight: .light)
+                .foregroundColor(events.eventCategory.color)
+        }
+        
     }
     
     @ViewBuilder
@@ -79,8 +121,15 @@ struct CalendarView: View {
         }
         .padding(15)
         .background {
-            ZStack(alignment: .bottom){
+            VStack(spacing: 0) {
                 Color.white
+                
+                Rectangle()
+                    .fill(.linearGradient(colors: [
+                        .white,
+                        .clear
+                    ], startPoint: .top, endPoint: .bottom))
+                    .frame(height: 20)
             }
             .ignoresSafeArea()
         }

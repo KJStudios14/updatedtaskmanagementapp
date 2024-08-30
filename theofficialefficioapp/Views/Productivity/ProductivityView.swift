@@ -8,6 +8,7 @@ struct ProductivityView: View {
             HStack{
                 NavigationLink {
                     ChooseTimerView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Timer")
                         .foregroundColor(.white)
@@ -18,6 +19,7 @@ struct ProductivityView: View {
                 }
                 NavigationLink {
                     StopWatchView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     Text("Stopwatch")
                         .foregroundColor(.white)

@@ -13,7 +13,7 @@ struct MyProfileView: View {
     var body: some View {
 
         ZStack {
-            Color.efficioblue
+            Color.white
                 .ignoresSafeArea()
             VStack {
                 if let user = viewModel.user {

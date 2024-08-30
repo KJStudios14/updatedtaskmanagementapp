@@ -7,6 +7,7 @@ struct Note : Identifiable {
     var id : String
     var note : String
     var date : String
+    var time: String
 }
 
 class getNotes : ObservableObject {
@@ -35,17 +36,35 @@ class getNotes : ObservableObject {
                     let notes = i.document.get("notes") as! String
                     let date = i.document.get("date") as! Timestamp
                     let format = DateFormatter()
-                    format.dateFormat = "dd-MM-YY hh:mm a"
+                    
+                    // Split date into date and time components
+                    format.dateFormat = "dd-MM-YY"
                     let dateString = format.string(from: date.dateValue())
-                    self.data.append(Note(id: id, note: notes, date: dateString))
+                    
+                    format.dateFormat = "hh:mm a"
+                    let timeString = format.string(from: date.dateValue())
+                    
+                    self.data.append(Note(id: id, note: notes, date: dateString, time: timeString))
                 }
                 
                 if i.type == .modified {
                     let id = i.document.documentID
                     let notes = i.document.get("notes") as! String
+                    let date = i.document.get("date") as! Timestamp
+                    let format = DateFormatter()
+                    
+                    // Split date into date and time components
+                    format.dateFormat = "dd-MM-YY"
+                    let dateString = format.string(from: date.dateValue())
+                    
+                    format.dateFormat = "hh:mm a"
+                    let timeString = format.string(from: date.dateValue())
+                    
                     for j in 0..<self.data.count {
                         if self.data[j].id == id {
                             self.data[j].note = notes
+                            self.data[j].date = dateString
+                            self.data[j].time = timeString
                         }
                     }
                 }

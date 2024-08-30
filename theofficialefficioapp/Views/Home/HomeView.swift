@@ -8,13 +8,66 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             
-            VStack{
-                if let user = viewModel.user {
-                    Text("Welcome, ")
-                    Text(user.fullname)
+        VStack {
+            if let user = viewModel.user {
+                VStack(alignment: .trailing){
+                    HStack(spacing: 30){
+                        VStack{
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 60, height: 60)
+                            Text(Date(timeIntervalSince1970: user.joined)
+                            .formatted(.dateTime.year().month().day()))
+                            .mitrFont(.caption, weight: .light)
+                        }
+                        
+                        VStack{
+                            VStack(alignment: .leading){
+                                Text("[preferredname]")
+                                    .mitrFont(.footnote, weight: .light)
+                                Text(user.username)
+                                    .mitrFont(.footnote, weight: .light)
+                                Text("[yeargroup]")
+                                    .mitrFont(.footnote, weight: .light)
+                            }
+                            
+                            VStack(alignment: .trailing){
+                                NavigationLink{
+                                    MyProfileView()
+                                } label: {
+                                    Text("Edit Profile")
+                                        .foregroundColor(.white)
+                                        .background(Color.efficioblue)
+                                        .mitrFont(.caption, weight: .light)
+                                        .frame(width: 140, height: 20)
+                                        .cornerRadius(5)
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 10)
+                   
                 }
-                
-            }
+             Spacer()
+             
+             //Sign out
+             Button {
+             viewModel.logOut()
+             } label: {
+             Text("Log Out")
+             .mitrFont(.subheadline, weight: .semibold)
+             .foregroundColor(.white)
+             .frame(width: 225, height: 44)
+             .background(Color.efficioblue)
+             .cornerRadius(15)
+             }
+             } else {
+             Text("Loading Profile...")
+             }
+             
+             }
+             
             .onAppear{
                 viewModel.fetchUser()
             }
@@ -92,3 +145,55 @@ struct HomeView: View {
      }
      */
 }
+
+/*
+VStack{
+    TopNavigationBarView()
+    
+    Spacer()
+    
+    HStack{
+        Text("Welcome")
+        Text(user.fullname)
+    }
+    .padding(.bottom, 10)
+    
+    VStack{
+        HStack{
+            VStack{
+                Image(systemName: "person.circle")
+                    .frame(width: 30, height: 30)
+                Text(Date(timeIntervalSince1970: user.joined)
+                .formatted(.dateTime.year().month().day()))
+                .mitrFont(.caption, weight: .light)
+            }
+            
+            VStack{
+                VStack(alignment: .leading){
+                    Text("[preferredname]")
+                        .mitrFont(.footnote, weight: .light)
+                    Text(user.username)
+                        .mitrFont(.footnote, weight: .light)
+                    Text("[yeargroup]")
+                        .mitrFont(.footnote, weight: .light)
+                }
+                
+                VStack(alignment: .trailing){
+                    NavigationLink{
+                        MyProfileView()
+                    } label: {
+                        Text("Edit Profile")
+                            .foregroundColor(.white)
+                            .background(Color.efficioblue)
+                            .mitrFont(.caption, weight: .light)
+                            .frame(width: 30, height: 4)
+                    }
+                }
+            }
+        }
+    }
+    .background(Color(.purple))
+    
+    Spacer()
+}
+*/

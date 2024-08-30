@@ -5,13 +5,15 @@ import SwiftUI
 import Firebase
 
 struct NotesView: View {
-    @ObservedObject var Notes = getNotes()
+    @ObservedObject var notes = getNotes() // Changed `Notes` to `notes` for clarity and to follow Swift naming conventions
     @State var show = false
     @State var txt = ""
     @State var docID = ""
     @State var remove = false
-    
-    var body : some View{
+    @State private var showDeleteAlert = false
+    @State private var noteToDelete: Note?
+
+    var body: some View {
         
         ZStack(alignment: .bottomTrailing) {
             
@@ -35,8 +37,8 @@ struct NotesView: View {
                 .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(Color.efficioblue)
                 
-                if self.Notes.data.isEmpty {
-                    if self.Notes.noData {
+                if self.notes.data.isEmpty {
+                    if self.notes.noData {
                         Spacer()
                         Text("No Notes !!!")
                         
@@ -49,31 +51,35 @@ struct NotesView: View {
                 } else {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack {
-                            ForEach(self.Notes.data) { i in
+                            ForEach(self.notes.data) { i in
                                 HStack(spacing: 15) {
                                     Button(action: {
                                         self.docID = i.id
                                         self.txt = i.note
                                         self.show.toggle()
                                     }) {
-                                        VStack(alignment: .leading, spacing: 12) {
-                                            Text(i.date)
+                                        VStack(alignment: .leading, spacing: 15) {
                                             Text(i.note).lineLimit(1)
+                                                .mitrFont(.subheadline, weight: .regular)
+                                                .padding(.bottom, -10)
+                                            HStack{
+                                                Text(i.date)
+                                                Spacer()
+                                                Text(i.time)
+                                            }
+                                            
+                                            .mitrFont(.caption, weight: .light)
+                                            
                                             Divider()
                                         }
-                                        .padding(10)
+                                        .padding(.top, 15)
+                                        
                                         .foregroundColor(.black)
                                     }
                                     if self.remove {
                                         Button(action: {
-                                            let db = Firestore.firestore()
-                                            db.collection("notes").document(i.id).delete { error in
-                                                if let error = error {
-                                                    print("Error deleting document: \(error.localizedDescription)")
-                                                } else {
-                                                    print("Document successfully deleted")
-                                                }
-                                            }
+                                            self.noteToDelete = i // Set the note to be deleted
+                                            self.showDeleteAlert = true // Show the delete confirmation alert
                                         }) {
                                             Image(systemName: "minus.circle.fill")
                                                 .resizable()
@@ -84,7 +90,9 @@ struct NotesView: View {
                                 }
                                 .padding(.horizontal)
                             }
+                            .padding(.bottom, -10)
                         }
+                        
                     }
                 }
             }
@@ -107,6 +115,26 @@ struct NotesView: View {
         }
         .sheet(isPresented: self.$show) {
             EditNotesView(txt: self.$txt, docID: self.$docID, show: self.$show)
+        }
+        .alert(isPresented: $showDeleteAlert) { // Add the alert view
+            Alert(
+                title: Text("Confirm Deletion"),
+                message: Text("Are you sure you want to delete this note?"),
+                primaryButton: .destructive(Text("Delete")) {
+                    // Perform the delete action
+                    if let note = self.noteToDelete {
+                        let db = Firestore.firestore()
+                        db.collection("notes").document(note.id).delete { error in
+                            if let error = error {
+                                print("Error deleting document: \(error.localizedDescription)")
+                            } else {
+                                print("Document successfully deleted")
+                            }
+                        }
+                    }
+                },
+                secondaryButton: .cancel()
+            )
         }
         .animation(.default)
     }

@@ -32,7 +32,7 @@ struct ToDoView: View {
                     }
                 }
                 .padding(.horizontal, 25)
-                .padding(.top, 10)
+                .padding(.top, 5)
                 .padding(.bottom)
                 
                 Picker("Sort By", selection: $viewModel.sortBy) {

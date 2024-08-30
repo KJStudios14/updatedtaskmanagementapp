@@ -37,7 +37,9 @@ struct ToDoListItemView: View {
             HStack {
                 switch item.priority {
                 case .none:
-                    EmptyView()
+                    Image(systemName: "flag.slash")
+                        .foregroundColor(.black)
+                        .font(.system(size: 18))
                 case .low:
                     Image(systemName: "flag.fill")
                         .foregroundColor(.green)
