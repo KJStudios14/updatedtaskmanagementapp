@@ -22,7 +22,6 @@ class ToDoListItemViewModel: ObservableObject {
             return
         }
         
-        // Update the 'isDone' field of the specific ToDoListItem document
         db.collection("users")
             .document(uid)
             .collection("todos")

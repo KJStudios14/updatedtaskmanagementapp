@@ -1,34 +1,29 @@
-//
-//  SubjectSelectionView.swift
-//  theofficialefficioapp
-//
-//  Created by KJemide on 28/08/2024.
-//
+
 
 import SwiftUI
 
 struct SubjectSelectionView: View {
-    
     @State private var selectedSubjects: Set<String> = []
-
-        let subjects = [
-            "Maths", "English Language", "English Literature", "Biology", "Chemistry",
-            "Physics", "Geography", "History", "Religious Studies", "Computer Science",
-            "Economics", "Philosophy", "Further Maths", "French",
-            "Spanish", "German", "Latin", "Other"
-        ]
+    @State private var showAlert: Bool = false
+    
+    let subjects = [
+        "Maths", "English Language", "English Literature", "Biology", "Chemistry",
+        "Physics", "Geography", "History", "RS", "Computer Science",
+        "Economics", "Philosophy", "Further Maths", "French",
+        "Spanish", "German", "Latin", "Other"
+    ]
     
     var body: some View {
         VStack {
             Spacer()
-            Text("Please select all the subjects that you are taking.")
-                .font(.title2)
-                .fontWeight(.bold)
+            
+            Text("Please select all your subjects.")
+                .mitrFont(.title2, weight: .medium)
                 .lineLimit(nil)
                 .multilineTextAlignment(.center)
-                .foregroundColor(.efficioblue)
-                .multilineTextAlignment(.center)
-                .padding(.bottom, 20)
+                .foregroundColor(Color.efficioblue)
+                .padding(.top, 30)
+                .padding(.bottom, 30)
                 .padding(.horizontal, 5)
             
             let columns = [GridItem(.adaptive(minimum: 100))]
@@ -42,14 +37,14 @@ struct SubjectSelectionView: View {
                         }
                     }) {
                         Text(subject)
-                            .font(.caption)
-                            .fontWeight(.bold)
+                            .mitrFont(.caption, weight: .regular)
+                            .multilineTextAlignment(.center)
                             .foregroundColor(selectedSubjects.contains(subject) ? Color.white : Color.efficioblue)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .padding(.vertical, 10)
                             .frame(maxWidth: 100)
                             .background(selectedSubjects.contains(subject) ? Color.efficioblue : Color.clear)
-                            .cornerRadius(15) // Apply the corner radius here
+                            .cornerRadius(15)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 15)
                                     .stroke(selectedSubjects.contains(subject) ? Color.efficioblue : Color.efficioblue, lineWidth: 2)
@@ -61,45 +56,47 @@ struct SubjectSelectionView: View {
             }
             .padding(.horizontal, 10)
             
-            
-            
             Spacer()
-        
-        VStack {
-            NavigationLink {
-                GoalSelectionView()
-                    .navigationBarBackButtonHidden(true)
-            } label: {
-                Text("Next")
-                    .foregroundColor(.white)
-                    .frame(width: 225, height: 44)
-                    .background(Color.efficioblue)
-                    .cornerRadius(15)
-            }
             
-            NavigationLink {
-                YearGroupSelectionView()
-                    .navigationBarBackButtonHidden(true)
-            } label: {
-                Text("Back")
-                    .foregroundColor(.efficioblue)
-                    .frame(width: 225, height: 44)
-                    .background(Color.white)
-                    .cornerRadius(15)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.efficioblue, lineWidth: 2)
-                    )
+            VStack {
+                Button(action: {
+                    if selectedSubjects.isEmpty {
+                        showAlert = true
+                    } else {
+                        // Navigate to the next view
+                    }
+                }) {
+                    Text("Next")
+                        .foregroundColor(.white)
+                        .frame(width: 225, height: 44)
+                        .background(Color.efficioblue)
+                        .cornerRadius(15)
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Error"), message: Text("Please select at least one subject."), dismissButton: .default(Text("OK")))
+                }
+                
+                NavigationLink {
+                    YearGroupSelectionView()
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    Text("Back")
+                        .foregroundColor(.efficioblue)
+                        .frame(width: 225, height: 44)
+                        .background(Color.white)
+                        .cornerRadius(15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.efficioblue, lineWidth: 2)
+                        )
+                }
             }
+            .mitrFont(.subheadline, weight: .regular)
+            .fontWeight(.semibold)
+            .padding(.vertical, 50)
         }
-        .font(.subheadline)
-        .fontWeight(.semibold)
-        .padding(.vertical, 50)
-
     }
 }
-    }
-
 
 #Preview {
     SubjectSelectionView()

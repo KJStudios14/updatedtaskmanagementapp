@@ -38,8 +38,7 @@ struct SummaryView: View {
                     )
             }
         }
-        .font(.subheadline)
-        .fontWeight(.semibold)
+        .mitrFont(.subheadline, weight: .regular)
         .padding(.vertical, 50)
 
     }
