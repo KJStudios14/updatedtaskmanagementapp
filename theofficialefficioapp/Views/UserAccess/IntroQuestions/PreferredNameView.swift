@@ -1,14 +1,14 @@
 
 
-
 import SwiftUI
 
 struct PreferredNameView: View {
     @State private var preferredName: String = ""
     @State private var showAlert: Bool = false
-    
+    @State private var navigateToNextView: Bool = false
+
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack {
                 Spacer()
                 
@@ -54,7 +54,7 @@ struct PreferredNameView: View {
                         if preferredName.isEmpty {
                             showAlert = true
                         } else {
-                            // Navigate to the next view
+                            navigateToNextView = true
                         }
                     }) {
                         Text("Next")
@@ -67,10 +67,19 @@ struct PreferredNameView: View {
                     .alert(isPresented: $showAlert) {
                         Alert(title: Text("Error"), message: Text("Please fill in this field."), dismissButton: .default(Text("OK")))
                     }
+                    
+                    NavigationLink(
+                        destination: YearGroupSelectionView()
+                            .navigationBarBackButtonHidden(true),
+                        isActive: $navigateToNextView
+                    ) {
+                        EmptyView()
+                    }
                 }
                 .padding(.vertical, 50)
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle()) // Ensures the NavigationView works correctly
     }
 }
 

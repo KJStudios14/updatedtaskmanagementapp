@@ -59,19 +59,17 @@ struct SubjectSelectionView: View {
             Spacer()
             
             VStack {
-                Button(action: {
-                    if selectedSubjects.isEmpty {
-                        showAlert = true
-                    } else {
-                        // Navigate to the next view
-                    }
-                }) {
+                NavigationLink(
+                    destination: selectedSubjects.contains("Other") ? AnyView(OtherSubjectsView().navigationBarBackButtonHidden(true)) : AnyView(GoalSelectionView().navigationBarBackButtonHidden(true))
+                ) {
                     Text("Next")
                         .foregroundColor(.white)
                         .frame(width: 225, height: 44)
                         .background(Color.efficioblue)
                         .cornerRadius(15)
                 }
+                .disabled(selectedSubjects.isEmpty)
+                .opacity(selectedSubjects.isEmpty ? 0.5 : 1.0)
                 .alert(isPresented: $showAlert) {
                     Alert(title: Text("Error"), message: Text("Please select at least one subject."), dismissButton: .default(Text("OK")))
                 }
@@ -95,6 +93,7 @@ struct SubjectSelectionView: View {
             .fontWeight(.semibold)
             .padding(.vertical, 50)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
