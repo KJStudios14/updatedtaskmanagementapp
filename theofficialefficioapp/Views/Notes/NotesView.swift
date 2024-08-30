@@ -5,13 +5,22 @@ import SwiftUI
 import Firebase
 
 struct NotesView: View {
-    @ObservedObject var notes = getNotes() // Changed `Notes` to `notes` for clarity and to follow Swift naming conventions
+    @ObservedObject var notes = getNotes()
     @State var show = false
     @State var txt = ""
     @State var docID = ""
     @State var remove = false
     @State private var showDeleteAlert = false
     @State private var noteToDelete: Note?
+    @State private var searchText = ""
+    
+    var filteredNotes: [Note] {
+        if searchText.isEmpty {
+            return notes.data
+        } else {
+            return notes.data.filter { $0.note.lowercased().contains(searchText.lowercased()) }
+        }
+    }
 
     var body: some View {
         
@@ -37,11 +46,12 @@ struct NotesView: View {
                 .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(Color.efficioblue)
                 
-                if self.notes.data.isEmpty {
+                SearchBarView(text: $searchText, placeholder: "Search notes...") // Corrected view name
+                
+                if self.filteredNotes.isEmpty {
                     if self.notes.noData {
                         Spacer()
                         Text("No Notes !!!")
-                        
                         Spacer()
                     } else {
                         Spacer()
@@ -51,7 +61,7 @@ struct NotesView: View {
                 } else {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack {
-                            ForEach(self.notes.data) { i in
+                            ForEach(self.filteredNotes) { i in
                                 HStack(spacing: 15) {
                                     Button(action: {
                                         self.docID = i.id
@@ -62,18 +72,15 @@ struct NotesView: View {
                                             Text(i.note).lineLimit(1)
                                                 .mitrFont(.subheadline, weight: .regular)
                                                 .padding(.bottom, -10)
-                                            HStack{
+                                            HStack {
                                                 Text(i.date)
                                                 Spacer()
                                                 Text(i.time)
                                             }
-                                            
                                             .mitrFont(.caption, weight: .light)
-                                            
                                             Divider()
                                         }
                                         .padding(.top, 15)
-                                        
                                         .foregroundColor(.black)
                                     }
                                     if self.remove {
@@ -92,7 +99,6 @@ struct NotesView: View {
                             }
                             .padding(.bottom, -10)
                         }
-                        
                     }
                 }
             }
@@ -118,7 +124,7 @@ struct NotesView: View {
         }
         .alert(isPresented: $showDeleteAlert) { // Add the alert view
             Alert(
-                title: Text("Confirm Deletion"),
+                title: Text("Delete Note"),
                 message: Text("Are you sure you want to delete this note?"),
                 primaryButton: .destructive(Text("Delete")) {
                     // Perform the delete action

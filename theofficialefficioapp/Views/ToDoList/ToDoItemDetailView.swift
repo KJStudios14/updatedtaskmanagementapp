@@ -32,6 +32,7 @@ struct ToDoItemDetailView: View {
                         case .none:
                             Text("None")
                             Image(systemName: "flag.slash")
+                                .foregroundColor(.gray)
                         case .low:
                             Text("Low")
                                 .foregroundColor(.green)

@@ -2,53 +2,77 @@
 import SwiftUI
 import Firebase
 
-struct MultiLineTF : UIViewRepresentable {
+struct MultiLineTF: UIViewRepresentable {
     
-    @Binding var txt : String
+    @Binding var txt: String
     
-    func makeCoordinator() -> MultiLineTF.Coordinator {
-        return MultiLineTF.Coordinator(parent1: self)
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
     }
     
-    func makeUIView(context: UIViewRepresentableContext<MultiLineTF>) -> UITextView{
+    func makeUIView(context: Context) -> UITextView {
         let view = UITextView()
         
-        if self.txt != ""{
-            view.text = self.txt
-            view.textColor = .black
-        } else {
-            view.text = "Type Something"
-            view.textColor = .gray
-        }
+        // Set custom font
+        view.font = UIFont.mitrFont(size: 18, weight: .regular)
         
-        view.font = .systemFont(ofSize: 18)
+        // Set initial placeholder
+        view.textColor = .gray
+        view.text = "Type here..."
+        
         view.isEditable = true
         view.backgroundColor = .clear
         view.delegate = context.coordinator
+        
         return view
     }
     
-    func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<MultiLineTF>) {
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        // Update the UITextView content based on the binding
+        if txt.isEmpty {
+            if uiView.text.isEmpty {
+                // Show placeholder if text is empty
+                uiView.text = "Type here..."
+                uiView.textColor = .gray
+            }
+        } else {
+            uiView.text = txt
+            uiView.textColor = .black
+        }
     }
     
-    class Coordinator : NSObject, UITextViewDelegate {
-        var parent : MultiLineTF
+    class Coordinator: NSObject, UITextViewDelegate {
+        var parent: MultiLineTF
         
-        init(parent1 : MultiLineTF) {
-            parent = parent1
+        init(parent: MultiLineTF) {
+            self.parent = parent
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
-            if self.parent.txt == ""{
+            // Clear placeholder when editing begins
+            if textView.text == "Type here..." {
                 textView.text = ""
                 textView.textColor = .black
             }
         }
         
         func textViewDidChange(_ textView: UITextView) {
-            self.parent.txt = textView.text
+            // Update binding with text view's content
+            parent.txt = textView.text
+            
+            // Manage placeholder visibility
+            if textView.text.isEmpty {
+                textView.text = "Type here..."
+                textView.textColor = .gray
+            }
+        }
+        
+        func textViewDidEndEditing(_ textView: UITextView) {
+            // Restore placeholder if text view is empty
+            if textView.text.isEmpty {
+                textView.text = "Type here..."
+                textView.textColor = .gray
+            }
         }
     }
 }
-
-
