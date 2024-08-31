@@ -13,7 +13,7 @@ extension Font {
         case .title2:
             size = 22
         case .title3:
-            size = 20
+            size = 70
         case .headline:
             size = 17
         case .subheadline:

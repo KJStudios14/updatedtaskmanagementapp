@@ -1,7 +1,6 @@
 
 import SwiftUI
 
-
 struct ToDoListItemView: View {
     @StateObject var viewModel = ToDoListItemViewModel()
     let item: ToDoListItem
@@ -10,6 +9,7 @@ struct ToDoListItemView: View {
 
     var body: some View {
         HStack {
+            // Button to toggle isDone
             Button {
                 viewModel.toggleIsDone(item: item)
             } label: {
@@ -17,69 +17,74 @@ struct ToDoListItemView: View {
                     .font(.system(size: 24))
                     .foregroundColor(.efficioblue)
             }
-            
-            VStack(alignment: .leading) {
-                Text(item.title)
-                    .mitrFont(.headline, weight: .regular)
-                    
-                HStack {
-                    Image(systemName: "calendar")
-                        .foregroundColor(item.dueDate < Date().timeIntervalSince1970 ? .red : .gray)
-                    
-                    Text(dueDateText(for: item.dueDate))
-                        .mitrFont(.footnote, weight: .light)
-                        .foregroundColor(item.dueDate < Date().timeIntervalSince1970 ? .red : Color(.secondaryLabel))
-                }
-            }
-            
-            Spacer()
-            
-            HStack {
-                switch item.priority {
-                case .none:
-                    Image(systemName: "flag.slash")
-                        .foregroundColor(.black)
-                        .font(.system(size: 18))
-                case .low:
-                    Image(systemName: "flag.fill")
-                        .foregroundColor(.green)
-                        .font(.system(size: 18))
-                case .medium:
-                    Image(systemName: "flag.fill")
-                        .foregroundColor(.yellow)
-                        .font(.system(size: 18))
-                case .high:
-                    Image(systemName: "flag.fill")
-                        .foregroundColor(.red)
-                        .font(.system(size: 18))
-                }
-            }
-            .font(.footnote)
-        }
-        .onTapGesture(count: 2) {
+            .buttonStyle(PlainButtonStyle()) // Ensures the button doesn't take up more space than needed
+
+            // Button for the rest of the item, opens the detail view
+            Button(action: {
                 showingDetail = true
-                }
-                .sheet(isPresented: $showingDetail) {
-                    ToDoItemDetailView(item: item)
-                        .presentationDetents([.height(400)]) 
-                        .presentationDragIndicator(.hidden)
+            }) {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(item.title)
+                            .mitrFont(.headline, weight: .regular)
+
+                        HStack {
+                            Image(systemName: "calendar")
+                                .foregroundColor(item.dueDate < Date().timeIntervalSince1970 ? .red : .gray)
+
+                            Text(dueDateText(for: item.dueDate))
+                                .mitrFont(.footnote, weight: .light)
+                                .foregroundColor(item.dueDate < Date().timeIntervalSince1970 ? .red : Color(.secondaryLabel))
+                        }
+                    }
+
+                    Spacer()
+
+                    HStack {
+                        switch item.priority {
+                        case .none:
+                            Image(systemName: "flag.slash")
+                                .foregroundColor(.black)
+                                .font(.system(size: 18))
+                        case .low:
+                            Image(systemName: "flag.fill")
+                                .foregroundColor(.green)
+                                .font(.system(size: 18))
+                        case .medium:
+                            Image(systemName: "flag.fill")
+                                .foregroundColor(.yellow)
+                                .font(.system(size: 18))
+                        case .high:
+                            Image(systemName: "flag.fill")
+                                .foregroundColor(.red)
+                                .font(.system(size: 18))
+                        }
+                    }
+                    .font(.footnote)
                 }
             }
-   
-    func dueDateText(for dueDate: TimeInterval) -> String {
-            let dueDate = Date(timeIntervalSince1970: dueDate)
-            let calendar = Calendar.current
-            
-            if calendar.isDateInToday(dueDate) {
-                return "Today"
-            } else if calendar.isDateInTomorrow(dueDate) {
-                return "Tomorrow"
-            } else {
-                return dueDate.formatted(date: .abbreviated, time: .omitted)
-            }
+            .buttonStyle(PlainButtonStyle()) // Ensures the button looks like regular content
+        }
+        .sheet(isPresented: $showingDetail) {
+            ToDoItemDetailView(item: item)
+                .presentationDetents([.height(400)])
+                .presentationDragIndicator(.hidden)
         }
     }
-    
+
+    func dueDateText(for dueDate: TimeInterval) -> String {
+        let dueDate = Date(timeIntervalSince1970: dueDate)
+        let calendar = Calendar.current
+
+        if calendar.isDateInToday(dueDate) {
+            return "Today"
+        } else if calendar.isDateInTomorrow(dueDate) {
+            return "Tomorrow"
+        } else {
+            return dueDate.formatted(date: .abbreviated, time: .omitted)
+        }
+    }
+}
 
 let newId = UUID().uuidString
 

@@ -1,3 +1,5 @@
+
+
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 import SwiftUI
@@ -17,23 +19,23 @@ struct ToDoView: View {
     
     var body: some View {
         NavigationView {
-        
             VStack {
                 HStack {
                     Text("My Tasks")
-                        .mitrFont(.largeTitle, weight: .medium)
+                        .mitrFont(.title, weight: .semibold)
+                        .foregroundColor(.white)
                     Spacer()
                     Button {
                         viewModel.showingNewItemView = true
                     } label: {
                         Image(systemName: "plus")
-                            .foregroundColor(.efficioblue)
-                            .font(.largeTitle)
+                            .resizable()
+                            .frame(width: 23, height: 23)
+                            .foregroundColor(.white)
                     }
                 }
-                .padding(.horizontal, 25)
-                .padding(.top, 5)
-                .padding(.bottom)
+                .padding()
+                .background(Color.efficioblue)
                 
                 Picker("Sort By", selection: $viewModel.sortBy) {
                     Text("Sort by Due Date")
@@ -61,20 +63,19 @@ struct ToDoView: View {
                 } else {
                     List(viewModel.sortedItems(items)) { item in
                         ToDoListItemView(item: item, onItemTapped: { selectedItem in
-                                                    viewModel.selectedItem = selectedItem // Set the selected item
-                                                })
-                            .swipeActions {
-                                Button("Delete") {
-                                    viewModel.itemToDelete = item
-                                    viewModel.showDeleteConfirmation = true
-                                }
-                                .tint(.efficioblue)
+                            viewModel.selectedItem = selectedItem
+                        })
+                        .swipeActions {
+                            Button("Delete") {
+                                viewModel.itemToDelete = item
+                                viewModel.showDeleteConfirmation = true
                             }
+                            .tint(.efficioblue)
+                        }
                     }
                     .listStyle(PlainListStyle())
                 }
             }
-            
             .sheet(isPresented: $viewModel.showingNewItemView) {
                 NewItemView(newItemPresented: $viewModel.showingNewItemView)
             }
@@ -89,12 +90,12 @@ struct ToDoView: View {
                 )
             }
             .sheet(item: $viewModel.selectedItem) { item in
-                            ToDoItemDetailView(item: item)
-                        }
-                        .mitrFont()
-                    }
-                }
+                ToDoItemDetailView(item: item)
+            }
+            .mitrFont()
         }
+    }
+}
 
 #Preview {
     ToDoView(userId: "afcpUAtW8zT4eiJaQ2xHlR7gWWa2")

@@ -16,74 +16,76 @@ struct StopWatchView: View {
     @State private var showingFinishAlert = false
 
     var body: some View {
-        ZStack {
-            Color.black
-                .ignoresSafeArea()
-            
-            VStack(spacing: 20) {
+        NavigationView{
+            ZStack {
+                Color.black
+                    .ignoresSafeArea()
                 
-                Spacer()
-                
-                Text(timeString(from: timeElapsed))
-                    .font(.system(size: 70))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .cornerRadius(10)
+                VStack(spacing: 20) {
+                    
+                    Spacer()
+                    
+                    Text(timeString(from: timeElapsed))
+                        .mitrFont(.title3, weight: .medium)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(10)
 
-                Spacer()
-                
-                HStack(spacing: 50) {
-                    // Cancel Button
-                    Button(action: {
-                        showingCancelAlert = true
-                    }) {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.white)
-                    }
-                    .alert(isPresented: $showingCancelAlert) {
-                        Alert(
-                            title: Text("Cancel Stopwatch"),
-                            message: Text("Are you sure you want to cancel?"),
-                            primaryButton: .destructive(Text("Yes")) {
-                                resetStopwatch()
-                            },
-                            secondaryButton: .cancel(Text("No"))
-                        )
-                    }
+                    Spacer()
                     
-                    // Play/Pause Button
-                    Button(action: toggleStopwatch) {
-                        Image(systemName: isRunning ? "pause.circle.fill" : "play.circle.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.efficioblue)
+                    HStack(spacing: 50) {
+                        // Cancel Button
+                        Button(action: {
+                            showingCancelAlert = true
+                        }) {
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.white)
+                        }
+                        .alert(isPresented: $showingCancelAlert) {
+                            Alert(
+                                title: Text("Cancel Stopwatch"),
+                                message: Text("Are you sure you want to cancel?"),
+                                primaryButton: .destructive(Text("Yes")) {
+                                    resetStopwatch()
+                                },
+                                secondaryButton: .cancel(Text("No"))
+                            )
+                        }
+                        
+                        // Play/Pause Button
+                        Button(action: toggleStopwatch) {
+                            Image(systemName: isRunning ? "pause.circle.fill" : "play.circle.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(.efficioblue)
+                        }
+                        
+                        // Finish Button
+                        Button(action: {
+                            showingFinishAlert = true
+                        }) {
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.white)
+                        }
+                        .alert(isPresented: $showingFinishAlert) {
+                            Alert(
+                                title: Text("Finish Stopwatch"),
+                                message: Text("Are you sure you want to finish?"),
+                                primaryButton: .destructive(Text("Finish")) {
+                                    finishStopwatch()
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
                     }
-                    
-                    // Finish Button
-                    Button(action: {
-                        showingFinishAlert = true
-                    }) {
-                        Image(systemName: "checkmark")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.white)
-                    }
-                    .alert(isPresented: $showingFinishAlert) {
-                        Alert(
-                            title: Text("Finish Stopwatch"),
-                            message: Text("Are you sure you want to finish?"),
-                            primaryButton: .destructive(Text("Finish")) {
-                                finishStopwatch()
-                            },
-                            secondaryButton: .cancel()
-                        )
-                    }
+                    .padding(.bottom, 80)
                 }
-                .padding(.bottom, 80)
+                .padding()
             }
-            .padding()
         }
     }
     

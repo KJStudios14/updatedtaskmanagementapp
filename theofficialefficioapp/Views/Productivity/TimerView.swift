@@ -34,7 +34,7 @@ struct TimerView: View {
                 Spacer()
                 
                 Text(timeString(from: showElapsedTime ? (TimeInterval(hours * 3600 + minutes * 60) - remainingTime) : remainingTime))
-                    .font(.system(size: 70))
+                    .mitrFont(.title3, weight: .medium)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .cornerRadius(10)
@@ -174,6 +174,7 @@ struct ToggleButton: View {
             showElapsedTime.toggle()
         }) {
             Text(showElapsedTime ? "Time Elapsed" : "Time Left")
+                .mitrFont(.headline, weight: .medium)
                 .foregroundColor(.white)
                 .padding()
                 .background(Color.efficioblue)
