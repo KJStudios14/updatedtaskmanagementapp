@@ -34,5 +34,26 @@ class ToDoListItemViewModel: ObservableObject {
                 }
             }
     }
+    
+    func removeItem(_ item: ToDoListItem) {
+        let db = Firestore.firestore()
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("User is not authenticated")
+            return
+        }
+        
+        db.collection("users")
+            .document(uid)
+            .collection("todos")
+            .document(item.id)
+            .delete { error in
+                if let error = error {
+                    print("Error deleting document: \(error)")
+                } else {
+                    print("Document successfully deleted!")
+                }
+            }
+    }
 }
 

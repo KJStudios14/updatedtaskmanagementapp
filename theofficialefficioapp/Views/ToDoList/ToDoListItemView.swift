@@ -6,20 +6,32 @@ struct ToDoListItemView: View {
     let item: ToDoListItem
     let onItemTapped: (ToDoListItem) -> Void
     @State private var showingDetail = false
+    @State private var isFading = false
+    @State private var shouldRemove = false
 
     var body: some View {
         HStack {
-            // Button to toggle isDone
             Button {
-                viewModel.toggleIsDone(item: item)
+                if !item.isDone {
+                    viewModel.toggleIsDone(item: item)
+                    withAnimation {
+                        isFading = true
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        // Allow strikethrough effect to be visible for 0.5 seconds before removing
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            // Remove the item from the view model
+                            shouldRemove = true
+                        }
+                    }
+                }
             } label: {
                 Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 24))
                     .foregroundColor(.efficioblue)
             }
-            .buttonStyle(PlainButtonStyle()) // Ensures the button doesn't take up more space than needed
-
-            // Button for the rest of the item, opens the detail view
+            .buttonStyle(PlainButtonStyle())
+            
             Button(action: {
                 showingDetail = true
             }) {
@@ -27,6 +39,9 @@ struct ToDoListItemView: View {
                     VStack(alignment: .leading) {
                         Text(item.title)
                             .mitrFont(.headline, weight: .regular)
+                            .strikethrough(item.isDone, color: .gray) // Strike-through effect
+                            .opacity(isFading ? 0 : 1) // Fade out effect
+                            .animation(.easeInOut(duration: 2), value: isFading) // Animation for fade-out
 
                         HStack {
                             Image(systemName: "calendar")
@@ -63,7 +78,14 @@ struct ToDoListItemView: View {
                     .font(.footnote)
                 }
             }
-            .buttonStyle(PlainButtonStyle()) // Ensures the button looks like regular content
+            .buttonStyle(PlainButtonStyle())
+        }
+        .opacity(isFading ? 0 : 1) // Ensure the entire row fades out
+        .animation(.easeInOut(duration: 2), value: isFading) // Animation for fade-out
+        .onChange(of: shouldRemove) { _ in
+            if shouldRemove {
+                viewModel.removeItem(item)
+            }
         }
         .sheet(isPresented: $showingDetail) {
             ToDoItemDetailView(item: item)
@@ -85,8 +107,6 @@ struct ToDoListItemView: View {
         }
     }
 }
-
-let newId = UUID().uuidString
 
 #Preview {
     ToDoListItemView(
