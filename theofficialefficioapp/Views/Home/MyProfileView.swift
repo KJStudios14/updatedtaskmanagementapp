@@ -1,91 +1,157 @@
-//
-//  MyProfileView.swift
-//  theofficialefficioapp
-//
-//  Created by KJemide on 29/08/2024.
-//
+
 
 import SwiftUI
+import UIKit
 
 struct MyProfileView: View {
-    @StateObject var viewModel = HomeViewModel()
-    
-    var body: some View {
+    @State private var showingImagePicker = false
+    @State private var profileImage: UIImage? = nil
 
-        ZStack {
-            Color.white
-                .ignoresSafeArea()
-            VStack {
-                if let user = viewModel.user {
-                    //Avatar
-                    Image(systemName: "person.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(Color.blue)
-                        .frame(width: 125, height: 125)
-                    
-                    
-                    //Info: Name, Email, Member Since
-                    VStack(alignment: .leading){
-                        HStack {
-                            Text("Full Name: ")
-                                .mitrFont(.headline, weight: .semibold)
-                            Spacer()
-                            Text(user.fullname)
-                                .mitrFont(.headline, weight: .light)
-                        }
-                        
-                        HStack {
-                            Text("Username: ")
-                                .mitrFont(.headline, weight: .semibold)
-                            Spacer()
-                            Text(user.username)
-                                .mitrFont(.headline, weight: .light)
-                        }
-                        
-                        HStack {
-                            Text("Email: ")
-                                .mitrFont(.headline, weight: .semibold)
-                            Spacer()
-                            Text(user.email)
-                                .mitrFont(.headline, weight: .light)
-                        }
-                        
-                        HStack {
-                            Text("Member Since: ")
-                                .mitrFont(.headline, weight: .semibold)
-                            Spacer()
-                            Text(Date(timeIntervalSince1970: user.joined)
-                                .formatted(.dateTime.year().month().day()))
-                                .mitrFont(.headline, weight: .light)
+    var body: some View {
+        VStack(spacing: 0) {
+            // Top blue section with profile picture
+            ZStack {
+                Color(.efficioblue)
+                    .frame(height: 150)
+                
+                VStack {
+                    ZStack {
+                        if let image = profileImage {
+                            Image(uiImage: image)
+                                .resizable()
+                                .clipShape(Circle())
+                                .frame(width: 100, height: 100)
+                        } else {
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 100, height: 100)
                             
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                                .foregroundColor(.gray)
                         }
-                    }
-                    
-                    //Sign out
-                    Button {
-                        viewModel.logOut()
-                    } label: {
-                        Text("Log Out")
-                            .mitrFont(.subheadline, weight: .semibold)
+                        
+                        // Camera icon on top of the profile picture
+                        Image(systemName: "camera")
                             .foregroundColor(.white)
-                            .frame(width: 225, height: 44)
+                            .padding(4)
+                            .background(Color.black.opacity(0.4))
+                            .clipShape(Circle())
+                            .offset(x: 35, y: 35)
+                            .onTapGesture {
+                                showingImagePicker = true
+                            }
+                    }
+                    .offset(y: 70)
+                }
+            }
+            .frame(height: 100)
+            .zIndex(1)
+
+            // White section with profile details
+            VStack(alignment: .leading, spacing: 20) {
+                ProfileRow(title: "Full name", value: "{{fullName}}")
+                ProfileRow(title: "Preferred Name", value: "{{preferredName}}")
+                ProfileRow(title: "Username", value: "{{userName}}")
+                ProfileRow(title: "Email Address", value: "{{userEmail}}")
+                ProfileRow(title: "Password", value: "**********")
+                
+                Divider()
+                
+                ProfileRow(title: "Year Group", value: "{{yearGroup}}")
+                ProfileRow(title: "Subjects", value: "{{userSubjects}}")
+                ProfileRow(title: "Academic Goals", value: "{{userAcademicGoals}}")
+                ProfileRow(title: "Daily Goal", value: "{{userDailyGoal}}")
+                
+                Spacer()
+                
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        // Action for Submit button
+                    }) {
+                        Text("Submit")
+                            .foregroundColor(.white)
+                            .mitrFont(.headline, weight: .regular)
+                            .frame(width: 150, height: 15)
+                            .padding()
                             .background(Color.efficioblue)
                             .cornerRadius(15)
+                            .padding(.horizontal)
                     }
-                } else {
-                    Text("Loading Profile...")
+                    .padding(.horizontal)
+                    .padding(.bottom, 25)
+
+                    Spacer()
                 }
-                
             }
+            .padding(.top, 70)
+            .padding(.horizontal)
+            .background(Color.white)
+            .cornerRadius(20)
+            .zIndex(0)
         }
-        
-}
-}
-
-
-
-#Preview {
-    MyProfileView()
+        .edgesIgnoringSafeArea(.top)
+        .sheet(isPresented: $showingImagePicker) {
+            ImagePicker(image: $profileImage)
+        }
+    }
 }
 
+struct ProfileRow: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .mitrFont(.subheadline, weight: .regular)
+            Spacer()
+            Text(value)
+                .mitrFont(.subheadline, weight: .regular)
+                .foregroundColor(.efficioblue)
+            Image(systemName: "chevron.right")
+                .foregroundColor(.gray)
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        MyProfileView()
+    }
+}
+
+// Image Picker for selecting a new profile picture
+struct ImagePicker: UIViewControllerRepresentable {
+    @Binding var image: UIImage?
+
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        let parent: ImagePicker
+
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let uiImage = info[.originalImage] as? UIImage {
+                parent.image = uiImage
+            }
+            picker.dismiss(animated: true)
+        }
+    }
+}

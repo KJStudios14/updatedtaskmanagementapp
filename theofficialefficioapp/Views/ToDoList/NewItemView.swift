@@ -24,6 +24,7 @@ struct NewItemView: View {
                     
                     DatePicker("Due Date", selection: $viewModel.dueDate, displayedComponents: .date)
                         .datePickerStyle(GraphicalDatePickerStyle())
+                        .mitrFont(.headline, weight: .regular)
                         .accentColor(.efficioblue)
                     
                     

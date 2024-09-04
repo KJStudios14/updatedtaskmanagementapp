@@ -43,6 +43,7 @@ struct ToDoView: View {
                     Text("Sort by Priority")
                         .tag(ToDoViewModel.SortCriterion.priority)
                 }
+                .mitrFont(.headline, weight: .regular)
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.horizontal)
                 .padding(.vertical, 2)

@@ -19,11 +19,12 @@ struct HomeView: View {
             Spacer()
 
             if let user = viewModel.user {
-                VStack(alignment: .trailing){
-                    
+                
+                
+                VStack(alignment: .leading){
                     Text("Welcome, [preferredName]")
                         .mitrFont(.title2, weight: .regular)
-                        .padding(.top, 15)
+                        .padding(.top, 5)
                     
                     HStack(spacing: 30){
                         VStack{
@@ -63,34 +64,33 @@ struct HomeView: View {
                 .frame(width: 300, height: 150)
                 .cornerRadius(10)
                 .background(Color(.blue3))
-                .padding(.horizontal, 7)
-                .padding(.top, 40)
-                .padding(.bottom, 15)
+                    
                    
-                Text(currentDateString)
-                    .mitrFont(.headline, weight: .regular)
-                    .padding()
+                VStack(alignment: .leading) {
+                    Text(currentDateString)
+                        .mitrFont(.headline, weight: .regular)
+                    Text("Today's Tasks")
+                            .mitrFont(.title2, weight: .regular)
+                            .padding(.top, 15)
                 }
+                .padding(.top, 10)
+                    
+                Spacer()
+                }
+                
+            
+                
              Spacer()
-             
-             //Sign out
-             Button {
-             viewModel.logOut()
-             } label: {
-             Text("Log Out")
-             .mitrFont(.subheadline, weight: .semibold)
-             .foregroundColor(.white)
-             .frame(width: 225, height: 44)
-             .background(Color.efficioblue)
-             .cornerRadius(15)
-             }
+            
+                
+                
+                
+                
              } else {
              Text("Loading Profile...")
              }
              
              }
-            
-             
             .onAppear{
                 viewModel.fetchUser()
             }

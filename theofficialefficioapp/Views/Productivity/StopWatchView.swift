@@ -1,12 +1,6 @@
-//
-//  StopWatchView.swift
-//  theofficialefficioapp
-//
-//  Created by KJemide on 28/08/2024.
-//
+
 
 import SwiftUI
-
 
 struct StopWatchView: View {
     @State private var isRunning = false
