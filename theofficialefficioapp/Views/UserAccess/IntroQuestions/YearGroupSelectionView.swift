@@ -19,14 +19,14 @@ struct YearGroupSelectionView: View {
             
             HStack(spacing: -1){
                 Text("Year")
-                    .mitrFont(.title3, weight: .regular)
+                    .mitrFont(.headline, weight: .regular)
                     .foregroundColor(Color.efficioblue)
                 
                 Picker(selection: $selectedYear, label: Text("")) {
                     ForEach(7..<14) { year in
                         Text("\(year)")
                             .tag(year)
-                            .mitrFont(.title3, weight: .regular)
+                            .mitrFont(.headline, weight: .regular)
                             .foregroundColor(Color.efficioblue)
                     }
                 }

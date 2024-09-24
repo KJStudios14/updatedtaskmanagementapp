@@ -37,3 +37,4 @@ struct SearchBar_Previews: PreviewProvider {
         SearchBarView(text: .constant("Sample Search Text"), placeholder: "Search notes...")
     }
 }
+

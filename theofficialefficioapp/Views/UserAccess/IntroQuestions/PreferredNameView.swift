@@ -79,7 +79,7 @@ struct PreferredNameView: View {
                 .padding(.vertical, 50)
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle()) // Ensures the NavigationView works correctly
+        .navigationViewStyle(StackNavigationViewStyle()) 
     }
 }
 

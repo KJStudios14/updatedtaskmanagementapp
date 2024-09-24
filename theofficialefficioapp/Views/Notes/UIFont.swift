@@ -7,15 +7,17 @@ extension UIFont {
         
         switch weight {
         case .regular:
-            fontName = "Mitr-Regular" // Replace with your font name
+            fontName = "Mitr-Regular" 
         case .semibold:
-            fontName = "Mitr-SemiBold" // Replace with your font name
+            fontName = "Mitr-SemiBold"
         case .bold:
-            fontName = "Mitr-Bold" // Replace with your font name
+            fontName = "Mitr-Bold"
         default:
-            fontName = "Mitr-Regular" // Default if weight is not recognized
+            fontName = "Mitr-Regular"
         }
         
         return UIFont(name: fontName, size: size)
     }
 }
+
+

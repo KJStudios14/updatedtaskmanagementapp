@@ -28,7 +28,7 @@ struct NotesView: View {
             VStack(spacing: 0){
                 
                 HStack{
-                    Text("Notes")
+                    Text("My Notes")
                         .mitrFont(.title, weight: .semibold)
                         .foregroundColor(.white)
                     Spacer()
@@ -68,9 +68,11 @@ struct NotesView: View {
                                         self.show.toggle()
                                     }) {
                                         VStack(alignment: .leading, spacing: 15) {
-                                            Text(i.note).lineLimit(1)
-                                                .mitrFont(.subheadline, weight: .regular)
-                                                .padding(.bottom, -10)
+                                            HStack{
+                                                Text(i.note).lineLimit(1)
+                                                    .mitrFont(.subheadline, weight: .regular)
+                                                    .padding(.bottom, -10)
+                                            }
                                             HStack {
                                                 Text(i.date)
                                                 Spacer()
@@ -84,8 +86,8 @@ struct NotesView: View {
                                     }
                                     if self.remove {
                                         Button(action: {
-                                            self.noteToDelete = i // Set the note to be deleted
-                                            self.showDeleteAlert = true // Show the delete confirmation alert
+                                            self.noteToDelete = i
+                                            self.showDeleteAlert = true
                                         }) {
                                             Image(systemName: "minus.circle.fill")
                                                 .resizable()
@@ -121,7 +123,7 @@ struct NotesView: View {
         .sheet(isPresented: self.$show) {
             EditNotesView(txt: self.$txt, docID: self.$docID, show: self.$show)
         }
-        .alert(isPresented: $showDeleteAlert) { // Add the alert view
+        .alert(isPresented: $showDeleteAlert) {
             Alert(
                 title: Text("Delete Note"),
                 message: Text("Are you sure you want to delete this note?"),

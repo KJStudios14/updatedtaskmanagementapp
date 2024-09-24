@@ -9,7 +9,6 @@ struct MyProfileView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Top blue section with profile picture
             ZStack {
                 Color(.efficioblue)
                     .frame(height: 150)
@@ -33,7 +32,6 @@ struct MyProfileView: View {
                                 .foregroundColor(.gray)
                         }
                         
-                        // Camera icon on top of the profile picture
                         Image(systemName: "camera")
                             .foregroundColor(.white)
                             .padding(4)
@@ -50,7 +48,6 @@ struct MyProfileView: View {
             .frame(height: 100)
             .zIndex(1)
 
-            // White section with profile details
             VStack(alignment: .leading, spacing: 20) {
                 ProfileRow(title: "Full name", value: "{{fullName}}")
                 ProfileRow(title: "Preferred Name", value: "{{preferredName}}")
@@ -70,7 +67,6 @@ struct MyProfileView: View {
                 HStack{
                     Spacer()
                     Button(action: {
-                        // Action for Submit button
                     }) {
                         Text("Submit")
                             .foregroundColor(.white)
