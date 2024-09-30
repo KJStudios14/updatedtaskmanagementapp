@@ -20,18 +20,23 @@ struct MainView: View {
                 if value == "BottomNavBarView" {
                     BottomNavBarView()
                 }else if value == "LogInView"{
-                    LogInView(path: $path)
+                    LogInView()
                 }
             }
         }.background(Color.gray)
         .navigationBarBackButtonHidden(true)
         .onAppear(perform: {
-            path.removeLast()
             viewModel.onValidated = { isSuccess in
                 if isSuccess {
-                    path.append("BottomNavBarView")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        withAnimation {
+                            path.append("BottomNavBarView")
+                        }}
                 }else{
-                    path.append("LogInView")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        withAnimation {
+                            path.append("LogInView")
+                        }}
                 }
             }
         })

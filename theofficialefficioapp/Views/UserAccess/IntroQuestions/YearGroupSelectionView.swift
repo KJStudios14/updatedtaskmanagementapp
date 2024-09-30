@@ -4,11 +4,10 @@ import SwiftUI
 
 struct YearGroupSelectionView: View {
     @State private var selectedYear: Int = 7
-    @StateObject public var viewModel:SignUpViewModel
-
-    @Binding var path: [String] 
+    @State public var dataModel:SignUpModel
+    @EnvironmentObject var router: Router
     var body: some View {
-        NavigationStack(path: $path) {
+        
             VStack {
                 Spacer()
                 
@@ -34,7 +33,7 @@ struct YearGroupSelectionView: View {
                         }
                     }
                     .onSubmit {
-                        viewModel.selectedYear = selectedYear
+                        dataModel.selectedYear = selectedYear
                     }
                     .pickerStyle(WheelPickerStyle())
                     .frame(width: 100, height: 45)
@@ -50,7 +49,7 @@ struct YearGroupSelectionView: View {
                 
                 VStack {
                     Button {
-                        path.append("SubjectSelection")
+                        router.navigate(to: .SubjectsSelection(dataModel: dataModel))
                         
                     } label: {
                         Text("Next")
@@ -62,7 +61,7 @@ struct YearGroupSelectionView: View {
                     
                     
                     Button {
-                        path.removeLast()
+//                        path.removeLast()
                     } label: {
                         Text("Back")
                             .foregroundColor(.efficioblue)
@@ -77,16 +76,11 @@ struct YearGroupSelectionView: View {
                 }
                 .mitrFont(.subheadline, weight: .regular)
                 .padding(.vertical, 50)
-            }.navigationDestination(for: String.self) { value in
-                if value == "SubjectSelection" {
-                    SubjectSelectionView(path:$path, viewModel: viewModel)
-                }
-            }
         }.navigationBarBackButtonHidden()
     }
 }
 
 
 //#Preview {
-//    YearGroupSelectionView(viewModel: SignUpViewModel())
+//    YearGroupSelectionView(dataModel: SignUpViewModel())
 //}

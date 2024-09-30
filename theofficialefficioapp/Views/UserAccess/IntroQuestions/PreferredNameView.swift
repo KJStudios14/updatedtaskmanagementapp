@@ -3,12 +3,11 @@
 import SwiftUI
 
 struct PreferredNameView: View {
-    @State private var preferredName: String = ""
+    
     @State private var showAlert: Bool = false
-    @StateObject public var viewModel:SignUpViewModel
-    @Binding var path: [String] 
+    @State public var dataModel:SignUpModel
+    @EnvironmentObject var router: Router
     var body: some View {
-        NavigationStack(path: $path) {
             VStack {
                 Spacer()
                 
@@ -24,9 +23,9 @@ struct PreferredNameView: View {
                 
                 ZStack(alignment: .bottomTrailing) {
                     VStack(spacing: 0.01) {
-                        TextField("Type here...", text: $preferredName, onEditingChanged: { _ in
-                            if preferredName.count > 10 {
-                                preferredName = String(preferredName.prefix(10))
+                        TextField("Type here...", text: $dataModel.preferedName, onEditingChanged: { _ in
+                            if dataModel.preferedName.count > 10 {
+                                dataModel.preferedName = String(dataModel.preferedName.prefix(10))
                             }
                         })
                         .mitrFont(.headline, weight: .regular)
@@ -37,7 +36,7 @@ struct PreferredNameView: View {
                             .frame(height: 2)
                             .background(Color.efficioblue)
                         
-                        Text("\(preferredName.count)/10")
+                        Text("\(dataModel.preferedName.count)/10")
                             .mitrFont(.footnote, weight: .regular)
                             .foregroundColor(Color.efficioblue)
                             .padding(.top, 5)
@@ -51,11 +50,11 @@ struct PreferredNameView: View {
                 
                 VStack {
                     Button(action: {
-                        if preferredName.isEmpty {
+                        if dataModel.preferedName.isEmpty {
                             showAlert = true
                         } else {
-                            viewModel.preferedName = preferredName
-                            path.append("YearGroupView")
+                            router.navigate(to: .YearGroupSelection(dataModel:dataModel))
+//                            path.append("YearGroupView")
                         }
                     }) {
                         Text("Next")
@@ -70,15 +69,11 @@ struct PreferredNameView: View {
                     }
                 }
                 .padding(.vertical, 50)
-            }.navigationDestination(for: String.self) { value in
-                if value == "YearGroupView" {
-                    YearGroupSelectionView(viewModel: viewModel,path:$path)
-                }
             }
-        }.navigationBarBackButtonHidden()
+        
     }
 }
 //
 //#Preview {
-//    PreferredNameView(viewModel: SignUpViewModel())
+//    PreferredNameView(dataModel: SignUpViewModel())
 //}

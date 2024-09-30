@@ -11,14 +11,17 @@ struct SplashScreenView: View {
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.5
-    @State private var path: [String] = []
+    @EnvironmentObject var router: Router
+    @StateObject var viewModel = MainViewModel()
+
     var body: some View {
-        NavigationStack(path: $path){
+        NavigationStack(){
                 ZStack {
                     Color(.efficioblue)
                         .edgesIgnoringSafeArea(.all)
                     
                     VStack {
+                                                
                         VStack {
                             Image("logodark")
                                 .resizable()
@@ -36,20 +39,27 @@ struct SplashScreenView: View {
                         }
                     }
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                            withAnimation {
-                                path.append("MainView")
+                        viewModel.onValidated = { isSuccess in
+                            if isSuccess{
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    withAnimation {
+                                        router.navigate(to: .MainView)
+                                    }
+                                }
+                            }else{
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                    withAnimation {
+                                        router.navigate(to: .Login)
+                                    }
+                                }
                             }
-                            
                         }
-                    }
-                }.navigationDestination(for: String.self) { value in
-                    if value == "MainView" {
-                        MainView(path: $path)
+                        
                     }
                 }
             
-        }.navigationBarBackButtonHidden()
+        }.navigationBarBackButtonHidden(true)
+           
     }
 }
             

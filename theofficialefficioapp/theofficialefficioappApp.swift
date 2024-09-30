@@ -9,14 +9,48 @@ import SwiftUI
 
 @main
 struct theofficialefficioappApp: App {
+    
+    @ObservedObject var router = Router()
+    
     init() {
         FirebaseApp.configure()
     }
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
-                .environment(\.font, Font.custom("Mitr", size: UIFont.preferredFont(forTextStyle: .body).pointSize))
-                                .modifier(GlobalFontModifier())
+            NavigationStack(path: $router.navPath){
+                SplashScreenView()
+                    .environment(\.font, Font.custom("Mitr", size: UIFont.preferredFont(forTextStyle: .body).pointSize))
+                                    .modifier(GlobalFontModifier())
+                                    .navigationDestination(for: Router.Destination.self){ destination in
+                                        switch destination {
+                                        case .Login:
+                                            LogInView()
+                                        case .MainView:
+                                            BottomNavBarView()
+                                        case .ForgotPassword:
+                                            EmptyView()
+                                        case .CreateAccount:
+                                            SignUpView()
+                                        case .PreferedName(let model):
+                                            PreferredNameView(dataModel: model)
+                                        case .YearGroupSelection(let model):
+                                            YearGroupSelectionView(dataModel: model)
+                                        case .SubjectsSelection(let model):
+                                            SubjectSelectionView(dataModel: model)
+                                        case .OtherSubjectsSelection(let model):
+                                            OtherSubjectsView(dataModel: model)
+                                        case .GoalSelection(let model):
+                                            GoalSelectionView(dataModel:model)
+                                        case .DailyHours(let model):
+                                            DailyHoursView(dataModel: model)
+                                        case .SummaryView(let model):
+                                            SummaryView(dataModel: model)
+                                        }
+                                        
+                                    }
+            }
+                .environmentObject(router)
+            
         }
     }
 }

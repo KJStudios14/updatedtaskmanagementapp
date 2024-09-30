@@ -16,11 +16,11 @@ class MainViewModel: ObservableObject {
     var onValidated: ((Bool) -> Void)?
     
     init() {
-        do{
-            try Auth.auth().signOut()
-        }catch{
-            print(error)
-        }
+//        do{
+//            try Auth.auth().signOut()
+//        }catch{
+//            print(error)
+//        }
             self.handler = Auth.auth().addStateDidChangeListener{ [weak self] auth, user in
                 if user != nil {
                     self!.user = user

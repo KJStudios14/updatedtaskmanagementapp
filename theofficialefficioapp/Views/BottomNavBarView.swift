@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct BottomNavBarView: View {
+    @EnvironmentObject var router: Router
+
     @State private var selectedTab = 0
     @StateObject var viewModel = MainViewModel()
     var body: some View {

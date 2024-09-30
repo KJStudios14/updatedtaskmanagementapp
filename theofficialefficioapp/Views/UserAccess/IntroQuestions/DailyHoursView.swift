@@ -3,12 +3,11 @@
 import SwiftUI
 
 struct DailyHoursView: View {
-    @Binding var path: [String] 
     @State private var selectedHour = 1
     @State private var selectedMinute = 0
-    @StateObject public var viewModel:SignUpViewModel
+    @State public var dataModel:SignUpModel
+    @EnvironmentObject var router: Router
     var body: some View {
-        NavigationStack(path:$path){
             VStack{
                 
                 VStack(spacing: -100){
@@ -78,7 +77,9 @@ struct DailyHoursView: View {
                 
                 VStack {
                     Button {
-                        path.append("SummeryView")
+                        dataModel.selectedHour = selectedHour
+                        dataModel.selectedMinute = selectedMinute
+                        router.navigate(to: .SummaryView(dataModel: dataModel))
                     } label: {
                         Text("Next")
                             .foregroundColor(.white)
@@ -88,7 +89,7 @@ struct DailyHoursView: View {
                     }
                     
                     Button {
-                        path.removeLast()
+                        router.navigateBack()
                     } label: {
                         Text("Back")
                             .foregroundColor(.efficioblue)
@@ -103,16 +104,8 @@ struct DailyHoursView: View {
                 }
                 .mitrFont(.subheadline, weight: .regular)
                 .padding(.vertical, 50)
-            }.navigationDestination(for: String.self) { value in
-                if value == "SummeryView" {
-                    SummaryView(path: $path, viewModel: viewModel)
-                               .onAppear(perform: {
-                                   viewModel.selectedHour = selectedHour
-                                   viewModel.selectedMinute = selectedMinute
-                               })
-                }
             }
-        }.navigationBarBackButtonHidden()
+        
 
     }
 }

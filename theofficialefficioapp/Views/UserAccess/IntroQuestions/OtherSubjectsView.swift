@@ -4,12 +4,12 @@
 import SwiftUI
 
 struct OtherSubjectsView: View {
-    @Binding var path: [String] 
+    
     @State private var subjects: [String] = [""]
-    @StateObject public var viewModel:SignUpViewModel
+    @State public var dataModel:SignUpModel
+    @EnvironmentObject var router: Router
     
     var body: some View {
-        NavigationStack(path: $path) {
             VStack {
                 Spacer()
                 
@@ -63,7 +63,8 @@ struct OtherSubjectsView: View {
                 
                 VStack {
                     Button {
-                        path.append("GoalSelectionView")
+                        updateViewModelWithSubjects()
+                        router.navigate(to: .GoalSelection(dataModel: dataModel))
                         
                     } label: {
                         Text("Next")
@@ -74,7 +75,7 @@ struct OtherSubjectsView: View {
                     }
                     
                     Button {
-                        path.removeLast()
+                        router.navigateBack()
                     } label: {
                         Text("Back")
                             .foregroundColor(.efficioblue)
@@ -89,21 +90,12 @@ struct OtherSubjectsView: View {
                 }
                 .mitrFont(.subheadline, weight: .regular)
                 .padding(.vertical, 50)
-            }.navigationDestination(for: String.self) { value in
-                if value == "GoalSelectionView" {
-                    GoalSelectionView(path: $path, viewModel: viewModel)
-                        .onAppear {
-                            updateViewModelWithSubjects()
-                        }
-                }
             }
-        }
-        .navigationViewStyle(StackNavigationViewStyle()) // Ensures the NavigationView works correctly
     }
     
     func updateViewModelWithSubjects() {
         let subjectSet = Set(subjects.filter { !$0.isEmpty }) // Remove any empty subjects
-        viewModel.selectedSubjects = subjectSet // Assuming viewModel has an otherSubjects property
+        dataModel.selectedSubjects = subjectSet // Assuming viewModel has an otherSubjects property
     }
 }
 

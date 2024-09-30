@@ -3,11 +3,12 @@
 import SwiftUI
 
 struct SubjectSelectionView: View {
-    @Binding var path: [String] 
-    
+ 
+
     @State private var selectedSubjects: Set<String> = []
     @State private var showAlert: Bool = false
-    @StateObject public var viewModel:SignUpViewModel
+    @State public var dataModel:SignUpModel
+    @EnvironmentObject var router: Router
     
     let subjects = [
         "Maths", "English Language", "English Literature", "Biology", "Chemistry",
@@ -17,7 +18,6 @@ struct SubjectSelectionView: View {
     ]
     
     var body: some View {
-        NavigationStack(path: $path) {
             VStack {
                 Spacer()
                 
@@ -36,10 +36,10 @@ struct SubjectSelectionView: View {
                         Button(action: {
                             if selectedSubjects.contains(subject) {
                                 selectedSubjects.remove(subject)
-                                viewModel.selectedSubjects = selectedSubjects
+                                dataModel.selectedSubjects = selectedSubjects
                             } else {
                                 selectedSubjects.insert(subject)
-                                viewModel.selectedSubjects = selectedSubjects
+                                dataModel.selectedSubjects = selectedSubjects
                             }
                         }) {
                             Text(subject)
@@ -66,11 +66,11 @@ struct SubjectSelectionView: View {
                 
                 VStack {
                     Button{
-                                if selectedSubjects.contains("Other"){
-                                    path.append("OtherSubjectView")
-                                }else{
-                                    path.append("GoalSelectionView")
-                                }
+                        if selectedSubjects.contains("Other"){
+                            router.navigate(to: .OtherSubjectsSelection(dataModel: dataModel))
+                        }else{
+                            router.navigate(to: .GoalSelection(dataModel: dataModel))
+                        }
                         }
                    label:{
                         Text("Next")
@@ -86,7 +86,7 @@ struct SubjectSelectionView: View {
                     }
                     
                     Button {
-                        path.removeLast()
+                        router.navigateBack()
                     } label: {
                         Text("Back")
                             .foregroundColor(.efficioblue)
@@ -103,18 +103,9 @@ struct SubjectSelectionView: View {
                 .fontWeight(.semibold)
                 .padding(.vertical, 50)
             }
-            .navigationDestination(for: String.self) { value in
-                if value == "OtherSubjectView" {
-                    OtherSubjectsView(path: $path, viewModel: viewModel)
-                }else if value == "GoalSelection" {
-                    GoalSelectionView(path: $path, viewModel: viewModel)
-                }
-            }
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 //#Preview {
-//    SubjectSelectionView(viewModel:SignUpViewModel())
+//    SubjectSelectionView(dataModel:SignUpViewModel())
 //}

@@ -3,10 +3,10 @@
 import SwiftUI
 
 struct GoalSelectionView: View {
-    @Binding var path: [String] 
     @State private var selectedGoals: [String] = []
     @State private var showAlert: Bool = false
-    @StateObject public var viewModel:SignUpViewModel
+    @State public var dataModel:SignUpModel
+    @EnvironmentObject var router: Router
     let goals = [
         "Improve my grades in core subjects",
         "Complete all homework on time",
@@ -16,7 +16,6 @@ struct GoalSelectionView: View {
     ]
     
     var body: some View {
-        NavigationStack(path: $path) {
             VStack {
                 Spacer()
                 
@@ -61,7 +60,8 @@ struct GoalSelectionView: View {
                         if selectedGoals.isEmpty {
                             showAlert = true
                         } else {
-                            path.append("DailyHoursView")
+                            dataModel.selectedGoals = selectedGoals
+                            router.navigate(to: .SummaryView(dataModel: dataModel))
                         }
                     }) {
                         Text("Next")
@@ -75,7 +75,7 @@ struct GoalSelectionView: View {
                     }
                     
                     Button {
-                        path.removeLast()
+                        router.navigateBack()
                     } label: {
                         Text("Back")
                             .foregroundColor(.efficioblue)
@@ -92,16 +92,8 @@ struct GoalSelectionView: View {
                 .fontWeight(.semibold)
                 .padding(.vertical, 50) // Ensure there's vertical padding here
             }
-        }
-        .navigationDestination(for: String.self) { value in
-            if value == "DailyHoursView" {
-                DailyHoursView(path: $path, viewModel: viewModel)
-                    .onAppear {
-                        viewModel.selectedGoals = selectedGoals
-                    }
-            }
-        }
-        .navigationViewStyle(StackNavigationViewStyle()) // Ensures the NavigationView works correctly
+        
+        
     }
     
     private func toggleSelection(for goal: String) {

@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct SummaryView: View {
-    @Binding var path: [String] 
-    @StateObject public var viewModel:SignUpViewModel
+     
+    @StateObject public var viewModel:RegisterViewModel = RegisterViewModel()
+    @State public var dataModel:SignUpModel
+    @EnvironmentObject var router: Router
+    
     @State private var isSignedUp = false
     var body: some View {
-        NavigationStack(path: $path) {
                 VStack(alignment: .center, content: {
                     Spacer().frame(height: 32)
                     HStack{
                         Text("Preferd Name:")
                             .foregroundColor(.black)
                             .mitrFont(.title)
-                        Text(viewModel.preferedName)
+                        Text(dataModel.preferedName)
                             .foregroundColor(.black)
                             .mitrFont(.title2)
                     }
@@ -27,7 +29,7 @@ struct SummaryView: View {
                         Text("Current Year Group:")
                             .foregroundColor(.black)
                             .mitrFont(.title)
-                        Text(String(viewModel.selectedYear))
+                        Text(String(dataModel.selectedYear))
                             .foregroundColor(.black)
                             .mitrFont(.title2)
                     }
@@ -35,7 +37,7 @@ struct SummaryView: View {
                         Text("Subjects:")
                             .foregroundColor(.black)
                             .mitrFont(.title)
-                        Text(convertSetToString(viewModel.selectedSubjects))
+                        Text(convertSetToString(dataModel.selectedSubjects))
                             .foregroundColor(.black)
                             .mitrFont(.title2)
                     }
@@ -43,7 +45,7 @@ struct SummaryView: View {
                         Text("Goals:")
                             .foregroundColor(.black)
                             .mitrFont(.title)
-                        Text(convertArrayToString(viewModel.selectedGoals))
+                        Text(convertArrayToString(dataModel.selectedGoals))
                             .foregroundColor(.black)
                             .lineLimit(0)
                             .mitrFont(.title2)
@@ -52,7 +54,7 @@ struct SummaryView: View {
                         Text("Daily Hours:")
                             .foregroundColor(.black)
                             .mitrFont(.title)
-                        Text("\(viewModel.selectedHour)Hrs \(viewModel.selectedMinute)Mins")
+                        Text("\(dataModel.selectedHour)Hrs \(dataModel.selectedMinute)Mins")
                             .foregroundColor(.black)
                             .mitrFont(.title2)
                     }
@@ -61,6 +63,7 @@ struct SummaryView: View {
                 
                 VStack {
                     Button {
+                        viewModel.dataModel = dataModel
                         viewModel.register()
                     }label: {
                         Text("Create Account")
@@ -73,7 +76,7 @@ struct SummaryView: View {
                     }
                     
                     Button {
-                        path.removeLast()
+                        router.navigateBack()
                     } label: {
                         Text("Back")
                             .foregroundColor(.efficioblue)
@@ -88,12 +91,10 @@ struct SummaryView: View {
                     
                 }.mitrFont(.subheadline, weight: .regular)
                         .padding(.vertical, 50)
-            }.navigationDestination(isPresented: $isSignedUp) {
-                BottomNavBarView()
-            }.onAppear {
-                viewModel.onRegister = { isSuccessfull in
-                        isSignedUp = isSuccessfull
-                }
+                        .onAppear {
+                            viewModel.onRegister = { isSuccessfull in
+                                    isSignedUp = isSuccessfull
+                            }
             }
 
     }

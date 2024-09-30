@@ -76,6 +76,9 @@
 		BAEDA6CA2C83C84B004F13B2 /* TaskCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDA6C92C83C84B004F13B2 /* TaskCounterView.swift */; };
 		BAEDA6CC2C83C866004F13B2 /* TaskCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDA6CB2C83C866004F13B2 /* TaskCounterViewModel.swift */; };
 		FC82FADD2CA42207005DD29B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */; };
+		FCA613342CAA9841005337CE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613332CAA9841005337CE /* Router.swift */; };
+		FCA613372CAAA16B005337CE /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613362CAAA16B005337CE /* SignUpModel.swift */; };
+		FCA613392CAAC334005337CE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613382CAAC32B005337CE /* RegisterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +168,9 @@
 		BAEDA6C92C83C84B004F13B2 /* TaskCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCounterView.swift; sourceTree = "<group>"; };
 		BAEDA6CB2C83C866004F13B2 /* TaskCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCounterViewModel.swift; sourceTree = "<group>"; };
 		FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FCA613332CAA9841005337CE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		FCA613362CAAA16B005337CE /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		FCA613382CAAC32B005337CE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +226,7 @@
 		BABED6222C67A2F100482C6F /* theofficialefficioapp */ = {
 			isa = PBXGroup;
 			children = (
+				FCA613352CAAA14F005337CE /* Models */,
 				FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */,
 				BABED6232C67A2F100482C6F /* theofficialefficioappApp.swift */,
 				BAEDA6A32C80E279004F13B2 /* Fonts */,
@@ -228,6 +235,7 @@
 				BABED6792C68FF6F00482C6F /* Extensions.swift */,
 				BABED6772C68FE4800482C6F /* User.swift */,
 				BAEDA66C2C7F8B47004F13B2 /* OFL.txt */,
+				BABED6922C693CB700482C6F /* ViewModels */,
 				BABED6952C694E5F00482C6F /* Views */,
 				BABED6272C67A2F300482C6F /* Assets.xcassets */,
 				BABED6292C67A2F300482C6F /* Preview Content */,
@@ -263,6 +271,8 @@
 		BABED6922C693CB700482C6F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FCA613382CAAC32B005337CE /* RegisterViewModel.swift */,
+				FCA613332CAA9841005337CE /* Router.swift */,
 				BAEDA6552C6AA147004F13B2 /* ToDoListItemModel.swift */,
 				BABED67D2C69022C00482C6F /* MainViewModel.swift */,
 				BABED6752C68FC2500482C6F /* SignUpViewModel.swift */,
@@ -287,7 +297,6 @@
 				BABED6532C67A34B00482C6F /* SplashScreenView.swift */,
 				BABED65D2C68EC2600482C6F /* BottomNavBarView.swift */,
 				BAEDA6B72C8127FB004F13B2 /* TopNavigationBarView.swift */,
-				BABED6922C693CB700482C6F /* ViewModels */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,6 +406,14 @@
 				BABC2EEA2C87E4B400378867 /* LicenseAndLegalView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		FCA613352CAAA14F005337CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FCA613362CAAA16B005337CE /* SignUpModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -556,6 +573,7 @@
 				BABED65E2C68EC2600482C6F /* BottomNavBarView.swift in Sources */,
 				BAEDA6B02C80F004004F13B2 /* GlobalFontModifier.swift in Sources */,
 				BABED6872C69326200482C6F /* ToDoListItemView.swift in Sources */,
+				FCA613342CAA9841005337CE /* Router.swift in Sources */,
 				BABED68F2C69352D00482C6F /* NewItemView.swift in Sources */,
 				BABED67C2C69021700482C6F /* MainView.swift in Sources */,
 				BAEDA6B22C80F7A7004F13B2 /* MyProfileView.swift in Sources */,
@@ -565,6 +583,7 @@
 				BAEDA67E2C7F9106004F13B2 /* YearGroupSelectionView.swift in Sources */,
 				BAEDA6842C7F9134004F13B2 /* GoalSelectionView.swift in Sources */,
 				BAEDA6C02C814968004F13B2 /* SearchBarView.swift in Sources */,
+				FCA613372CAAA16B005337CE /* SignUpModel.swift in Sources */,
 				BAEDA6C22C814F79004F13B2 /* UIFont.swift in Sources */,
 				BAEDA6672C7F848D004F13B2 /* PomodoroView.swift in Sources */,
 				BABED6642C68EFD400482C6F /* ProductivityView.swift in Sources */,
@@ -589,6 +608,7 @@
 				BAEDA6822C7F9122004F13B2 /* OtherSubjectsView.swift in Sources */,
 				BAEDA6652C7F81F9004F13B2 /* TimerView.swift in Sources */,
 				BAEDA69C2C80CF6E004F13B2 /* MultiLineTF.swift in Sources */,
+				FCA613392CAAC334005337CE /* RegisterViewModel.swift in Sources */,
 				BABED6622C68EFCA00482C6F /* ToDoView.swift in Sources */,
 				BAEDA69E2C80CFE1004F13B2 /* NoteModel.swift in Sources */,
 				BABED67A2C68FF6F00482C6F /* Extensions.swift in Sources */,

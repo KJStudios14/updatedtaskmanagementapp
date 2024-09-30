@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct LogInView: View {
+    @EnvironmentObject var router: Router
+
     @StateObject var viewModel = LogInViewModel()
     
-    @State private var isSignedUp = false
-    @State private var isForgotPassword = false
-    @State private var isLogin = false
-    @Binding var path: [String] 
+//    @State private var isSignedUp = false
+//    @State private var isForgotPassword = false
+//    @State private var isLogin = false
+     
     var body: some View {
-        NavigationStack(path:$path) {
+//        NavigationStack {
             VStack{
                 Spacer()
                 Text("Welcome Back!")
@@ -49,7 +51,7 @@ struct LogInView: View {
                 }
                 
                 Button {
-                    isForgotPassword = true
+//                    isForgotPassword = true
                 } label: {
                     Text("Forgot password?")
                         .font(.footnote)
@@ -78,7 +80,7 @@ struct LogInView: View {
                 Divider()
                 
                 Button {
-                    path.append("SignUpView")
+                    router.navigate(to: .CreateAccount)
                 } label: {
                     HStack(spacing: 3) {
                         Text("Don't have a account?")
@@ -91,21 +93,13 @@ struct LogInView: View {
                 }
                 .padding(.vertical, 16)
                 
-            }.navigationDestination(for: String.self) { value in
-                    if value == "BottomNavBarView" {
-                        BottomNavBarView()
-                    }else if value == "ForgotPasswordView"{
-                        
-                    }else if value == "SignUpView"{
-                        SignUpView(path: $path)
-                    }
-                }
-        }
-        .navigationBarBackButtonHidden(true)
+            }.navigationBarBackButtonHidden()
+//        }
+        
             .onAppear {
                 viewModel.onValidated = { isSuccess in
                     if isSuccess{
-                        path.append("BottomNavBarView")
+                        router.navigate(to: .MainView)
                     }
                 }
             }
