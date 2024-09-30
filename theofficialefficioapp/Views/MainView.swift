@@ -10,17 +10,35 @@ import SwiftUI
 struct MainView: View {
     @StateObject var viewModel = MainViewModel()
     
-    
+    @Binding var path: [String] 
     var body: some View {
-        if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
-            //signed in
-            BottomNavBarView()
-        } else{
-            LogInView()
-        } 
+        NavigationStack(path: $path){
+            VStack{
+                
+            }
+            .navigationDestination(for: String.self) { value in
+                if value == "BottomNavBarView" {
+                    BottomNavBarView()
+                }else if value == "LogInView"{
+                    LogInView(path: $path)
+                }
+            }
+        }.background(Color.gray)
+        .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {
+            path.removeLast()
+            viewModel.onValidated = { isSuccess in
+                if isSuccess {
+                    path.append("BottomNavBarView")
+                }else{
+                    path.append("LogInView")
+                }
+            }
+        })
+        
     }
 }
 
-#Preview {
-    MainView()
-}
+//#Preview {
+//    MainView(path: $NavigationPath())
+//}

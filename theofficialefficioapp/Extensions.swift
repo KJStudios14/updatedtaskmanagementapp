@@ -20,3 +20,9 @@ extension Encodable {
         }
     }
 }
+func convertSetToString(_ set: Set<String>) -> String {
+       return set.joined(separator: ",")
+   }
+func convertArrayToString(_ array: [String]) -> String {
+       return array.joined(separator: ",")
+   }

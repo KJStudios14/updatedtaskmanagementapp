@@ -10,8 +10,12 @@ import SwiftUI
 struct LogInView: View {
     @StateObject var viewModel = LogInViewModel()
     
+    @State private var isSignedUp = false
+    @State private var isForgotPassword = false
+    @State private var isLogin = false
+    @Binding var path: [String] 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path:$path) {
             VStack{
                 Spacer()
                 Text("Welcome Back!")
@@ -44,8 +48,8 @@ struct LogInView: View {
                         .padding(.horizontal, 30)
                 }
                 
-                NavigationLink {
-                    Text("Forgot password")
+                Button {
+                    isForgotPassword = true
                 } label: {
                     Text("Forgot password?")
                         .font(.footnote)
@@ -58,7 +62,7 @@ struct LogInView: View {
                 
                 
                 Button {
-                    viewModel.login()  
+                    viewModel.login()
                 } label: {
                     Text("Log In")
                         .font(.subheadline)
@@ -73,9 +77,8 @@ struct LogInView: View {
                 
                 Divider()
                 
-                NavigationLink {
-                    SignUpView()
-                        .navigationBarBackButtonHidden(true)
+                Button {
+                    path.append("SignUpView")
                 } label: {
                     HStack(spacing: 3) {
                         Text("Don't have a account?")
@@ -88,16 +91,31 @@ struct LogInView: View {
                 }
                 .padding(.vertical, 16)
                 
+            }.navigationDestination(for: String.self) { value in
+                    if value == "BottomNavBarView" {
+                        BottomNavBarView()
+                    }else if value == "ForgotPasswordView"{
+                        
+                    }else if value == "SignUpView"{
+                        SignUpView(path: $path)
+                    }
                 }
-            
+        }
+        .navigationBarBackButtonHidden(true)
+            .onAppear {
+                viewModel.onValidated = { isSuccess in
+                    if isSuccess{
+                        path.append("BottomNavBarView")
+                    }
+                }
             }
         }
     }
 
 
-struct LogInView_Previews: PreviewProvider {
-    static var previews: some View {
-        LogInView()
-    }
-}
+//struct LogInView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LogInView()
+//    }
+//}
 

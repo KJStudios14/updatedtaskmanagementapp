@@ -12,14 +12,20 @@ class LogInViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published var errorMessage = ""
-    
+    var onValidated: ((Bool) -> Void)?
     init() {}
     
     func login(){
         guard validate() else{
             return
         }
-        Auth.auth().signIn(withEmail: email, password: password)
+        Auth.auth().signIn(withEmail: email, password: password) { (authResult, err) in
+            if err == nil{
+                self.onValidated?(true)
+            }else{
+                self.errorMessage = err?.localizedDescription ?? "Invalid credentials."
+            }
+        }
     }
     
     private func validate() -> Bool {

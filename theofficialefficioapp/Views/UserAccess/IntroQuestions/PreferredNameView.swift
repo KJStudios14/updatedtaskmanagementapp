@@ -5,10 +5,10 @@ import SwiftUI
 struct PreferredNameView: View {
     @State private var preferredName: String = ""
     @State private var showAlert: Bool = false
-    @State private var navigateToNextView: Bool = false
-
+    @StateObject public var viewModel:SignUpViewModel
+    @Binding var path: [String] 
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             VStack {
                 Spacer()
                 
@@ -54,7 +54,8 @@ struct PreferredNameView: View {
                         if preferredName.isEmpty {
                             showAlert = true
                         } else {
-                            navigateToNextView = true
+                            viewModel.preferedName = preferredName
+                            path.append("YearGroupView")
                         }
                     }) {
                         Text("Next")
@@ -67,22 +68,17 @@ struct PreferredNameView: View {
                     .alert(isPresented: $showAlert) {
                         Alert(title: Text("Error"), message: Text("Please fill in this field."), dismissButton: .default(Text("OK")))
                     }
-                    
-                    NavigationLink(
-                        destination: YearGroupSelectionView()
-                            .navigationBarBackButtonHidden(true),
-                        isActive: $navigateToNextView
-                    ) {
-                        EmptyView()
-                    }
                 }
                 .padding(.vertical, 50)
+            }.navigationDestination(for: String.self) { value in
+                if value == "YearGroupView" {
+                    YearGroupSelectionView(viewModel: viewModel,path:$path)
+                }
             }
-        }
-        .navigationViewStyle(StackNavigationViewStyle()) 
+        }.navigationBarBackButtonHidden()
     }
 }
-
-#Preview {
-    PreferredNameView()
-}
+//
+//#Preview {
+//    PreferredNameView(viewModel: SignUpViewModel())
+//}

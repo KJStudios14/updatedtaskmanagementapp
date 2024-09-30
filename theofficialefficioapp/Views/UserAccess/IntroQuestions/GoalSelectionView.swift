@@ -3,10 +3,10 @@
 import SwiftUI
 
 struct GoalSelectionView: View {
+    @Binding var path: [String] 
     @State private var selectedGoals: [String] = []
     @State private var showAlert: Bool = false
-    @State private var navigateToDailyHours: Bool = false
-    
+    @StateObject public var viewModel:SignUpViewModel
     let goals = [
         "Improve my grades in core subjects",
         "Complete all homework on time",
@@ -16,7 +16,7 @@ struct GoalSelectionView: View {
     ]
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             VStack {
                 Spacer()
                 
@@ -61,7 +61,7 @@ struct GoalSelectionView: View {
                         if selectedGoals.isEmpty {
                             showAlert = true
                         } else {
-                            navigateToDailyHours = true
+                            path.append("DailyHoursView")
                         }
                     }) {
                         Text("Next")
@@ -74,16 +74,8 @@ struct GoalSelectionView: View {
                         Alert(title: Text("Error"), message: Text("Please select at least one goal."), dismissButton: .default(Text("OK")))
                     }
                     
-                    NavigationLink(
-                        destination: DailyHoursView().navigationBarBackButtonHidden(true),
-                        isActive: $navigateToDailyHours
-                    ) {
-                        EmptyView()
-                    }
-                    
-                    NavigationLink {
-                        SubjectSelectionView()
-                            .navigationBarBackButtonHidden(true)
+                    Button {
+                        path.removeLast()
                     } label: {
                         Text("Back")
                             .foregroundColor(.efficioblue)
@@ -101,6 +93,14 @@ struct GoalSelectionView: View {
                 .padding(.vertical, 50) // Ensure there's vertical padding here
             }
         }
+        .navigationDestination(for: String.self) { value in
+            if value == "DailyHoursView" {
+                DailyHoursView(path: $path, viewModel: viewModel)
+                    .onAppear {
+                        viewModel.selectedGoals = selectedGoals
+                    }
+            }
+        }
         .navigationViewStyle(StackNavigationViewStyle()) // Ensures the NavigationView works correctly
     }
     
@@ -113,6 +113,6 @@ struct GoalSelectionView: View {
     }
 }
 
-#Preview {
-    GoalSelectionView()
-}
+//#Preview {
+//    GoalSelectionView(viewModel: SignUpViewModel())
+//}

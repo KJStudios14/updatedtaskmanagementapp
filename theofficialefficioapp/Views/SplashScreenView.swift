@@ -11,42 +11,45 @@ struct SplashScreenView: View {
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.5
-    
+    @State private var path: [String] = []
     var body: some View {
-        if isActive {
-            MainView()
-        } else {
-            ZStack {
-                Color(.efficioblue)
-                    .edgesIgnoringSafeArea(.all)
-                
-                VStack {
+        NavigationStack(path: $path){
+                ZStack {
+                    Color(.efficioblue)
+                        .edgesIgnoringSafeArea(.all)
+                    
                     VStack {
-                        Image("logodark")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 300, height: 300)
-                            .padding(.bottom, 140)
+                        VStack {
+                            Image("logodark")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 300, height: 300)
+                                .padding(.bottom, 140)
+                        }
+                        .scaleEffect(size)
+                        .opacity(opacity)
+                        .onAppear {
+                            withAnimation(.easeIn(duration: 1.2)) {
+                                self.size = 0.9
+                                self.opacity = 1.0
+                            }
+                        }
                     }
-                    .scaleEffect(size)
-                    .opacity(opacity)
                     .onAppear {
-                        withAnimation(.easeIn(duration: 1.2)) {
-                            self.size = 0.9
-                            self.opacity = 1.0
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            withAnimation {
+                                path.append("MainView")
+                            }
+                            
                         }
                     }
-                }
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        withAnimation {
-                            self.isActive = true
-                        }
-                        
+                }.navigationDestination(for: String.self) { value in
+                    if value == "MainView" {
+                        MainView(path: $path)
                     }
                 }
-            }
-        }
+            
+        }.navigationBarBackButtonHidden()
     }
 }
             
