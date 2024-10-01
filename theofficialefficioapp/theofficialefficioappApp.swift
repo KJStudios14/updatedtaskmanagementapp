@@ -45,6 +45,12 @@ struct theofficialefficioappApp: App {
                                             DailyHoursView(dataModel: model)
                                         case .SummaryView(let model):
                                             SummaryView(dataModel: model)
+                                        case .StopWatch:
+                                            StopWatchView()
+                                        case .ChooseTimer:
+                                            ChooseTimerView()
+                                        case .timerView(selectHour: let selectHour, selectMinute: let selectMinute):
+                                            TimerView(hours: selectHour, minutes: selectMinute)
                                         }
                                         
                                     }

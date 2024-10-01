@@ -61,7 +61,7 @@ struct YearGroupSelectionView: View {
                     
                     
                     Button {
-//                        path.removeLast()
+                        router.navigateBack()
                     } label: {
                         Text("Back")
                             .foregroundColor(.efficioblue)

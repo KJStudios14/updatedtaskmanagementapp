@@ -2,7 +2,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject var viewModel = HomeViewModel()
+    @StateObject var viewModel = UserViewModel()
     
     var appVersion: String {
             // Fetch the app version from the Info.plist

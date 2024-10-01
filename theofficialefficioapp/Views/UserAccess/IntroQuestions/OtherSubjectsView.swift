@@ -90,7 +90,7 @@ struct OtherSubjectsView: View {
                 }
                 .mitrFont(.subheadline, weight: .regular)
                 .padding(.vertical, 50)
-            }
+            }.navigationBarBackButtonHidden()
     }
     
     func updateViewModelWithSubjects() {

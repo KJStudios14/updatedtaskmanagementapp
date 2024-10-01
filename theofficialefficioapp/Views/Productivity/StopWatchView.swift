@@ -8,9 +8,8 @@ struct StopWatchView: View {
     @State private var timer: Timer?
     @State private var showingCancelAlert = false
     @State private var showingFinishAlert = false
-
+    @EnvironmentObject var router: Router
     var body: some View {
-        NavigationView{
             ZStack {
                 Color.black
                     .ignoresSafeArea()
@@ -79,8 +78,8 @@ struct StopWatchView: View {
                     .padding(.bottom, 80)
                 }
                 .padding()
-            }
-        }
+            }.navigationBarBackButtonHidden()
+        
     }
     
     // Function to toggle the stopwatch
@@ -110,11 +109,13 @@ struct StopWatchView: View {
     func resetStopwatch() {
         pauseStopwatch()
         timeElapsed = 0
+        router.navigateBack()
     }
 
     // Function to finish the stopwatch session
     func finishStopwatch() {
         pauseStopwatch()
+        router.navigateBack()
         // Additional actions to finalize the session, if needed
     }
     

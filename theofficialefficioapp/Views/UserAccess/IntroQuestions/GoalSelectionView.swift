@@ -91,7 +91,7 @@ struct GoalSelectionView: View {
                 .mitrFont(.subheadline, weight: .regular)
                 .fontWeight(.semibold)
                 .padding(.vertical, 50) // Ensure there's vertical padding here
-            }
+            }.navigationBarBackButtonHidden()
         
         
     }

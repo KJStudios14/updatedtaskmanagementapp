@@ -13,6 +13,7 @@ struct TimerView: View {
     @State private var showingFinishAlert = false
     @State private var showElapsedTime = false
     @State private var completed = false
+    @EnvironmentObject var router: Router
     
     init(hours: Int = 0, minutes: Int = 0) {
         self.hours = hours
@@ -48,16 +49,7 @@ struct TimerView: View {
                             .frame(width: 20, height: 20)
                             .foregroundColor(.white)
                     }
-                    .alert(isPresented: $showingCancelAlert) {
-                        Alert(
-                            title: Text("Cancel Timer"),
-                            message: Text("Are you sure you want to cancel?"),
-                            primaryButton: .destructive(Text("Yes")) {
-                                resetTimer()
-                            },
-                            secondaryButton: .cancel(Text("No"))
-                        )
-                    }
+                    
                     
 
                     // Play/Pause Button
@@ -77,16 +69,7 @@ struct TimerView: View {
                             .frame(width: 20, height: 20)
                             .foregroundColor(.white)
                     }
-                    .alert(isPresented: $showingFinishAlert) {
-                        Alert(
-                            title: Text("Finish Timer"),
-                            message: Text("Are you sure you want to end the timer early?"),
-                            primaryButton: .destructive(Text("Finish")) {
-                                completeTimer()
-                            },
-                            secondaryButton: .cancel()
-                        )
-                    }
+                    
                 }
                 .padding(.bottom, 80)
             }
@@ -101,7 +84,27 @@ struct TimerView: View {
                     }
                 )
             }
-        }
+            .alert(isPresented: $showingFinishAlert) {
+                Alert(
+                    title: Text("Finish Timer"),
+                    message: Text("Are you sure you want to end the timer early?"),
+                    primaryButton: .destructive(Text("Finish")) {
+                        completeTimer()
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
+            .alert(isPresented: $showingCancelAlert) {
+                Alert(
+                    title: Text("Cancel Timer"),
+                    message: Text("Are you sure you want to cancel?"),
+                    primaryButton: .destructive(Text("Yes")) {
+                        resetTimer()
+                    },
+                    secondaryButton: .cancel(Text("No"))
+                )
+            }
+        }.navigationBarBackButtonHidden()
     }
     
     // Function to start the timer if it's not already running
@@ -143,13 +146,13 @@ struct TimerView: View {
     func resetTimer() {
         pauseTimer()
         remainingTime = TimeInterval((hours * 3600) + (minutes * 60))
-        showElapsedTime = false
+        router.navigateBack()
     }
     
     // Function to complete the timer
     func completeTimer() {
         pauseTimer()
-        completed = true
+        router.navigateBack()
     }
     
     // Function to format the time into HH:mm:ss
@@ -177,8 +180,8 @@ struct ToggleButton: View {
         }
     }
 }
-struct TimerView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimerView(hours: 1, minutes: 30) // Provide default values for hours and minutes
-    }
-}
+//struct TimerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TimerView(hours: 1, minutes: 30) // Provide default values for hours and minutes
+//    }
+//}

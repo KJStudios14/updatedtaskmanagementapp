@@ -6,10 +6,10 @@ struct ChooseTimerView: View {
     @State private var selectedHours = 0
     @State private var selectedMinutes = 0
     @State private var navigateToTimerView = false
-   
-
+   @EnvironmentObject var router: Router
+    
     var body: some View {
-        NavigationView {
+        
             VStack(spacing: 10) {
                 
                 Spacer()
@@ -39,9 +39,9 @@ struct ChooseTimerView: View {
                 }
                 .padding(.vertical, -35)
                 
-        
-                NavigationLink(destination: TimerView(hours: selectedHours, minutes: selectedMinutes)
-                                .navigationBarBackButtonHidden(true)) {
+                Button{
+                    router.navigate(to: .timerView(selectHour: selectedHours, selectMinute: selectedMinutes))
+                }label: {
                     Text("Start Timer")
                         .mitrFont(.headline, weight: .medium)
                         .foregroundColor(.white)
@@ -50,15 +50,27 @@ struct ChooseTimerView: View {
                         .background(Color.efficioblue)
                         .cornerRadius(10)
                 }
-                .padding(.top, 50)
+                Button{
+                    router.navigateBack()
+                }label: {
+                    Text("Not Now")
+                        .mitrFont(.headline, weight: .medium)
+                        .foregroundColor(Color.efficioblue)
+                        .padding()
+                        .frame(width: 225, height: 44)
+//                        .background(.white)
+                        .border(Color.efficioblue,width: 1)
+                        .cornerRadius(10)
+                }
+            
                 
                 Spacer()
             }
             .padding()
             .padding(.bottom, 100)
-            
-        }
-        .mitrFont()
+            .mitrFont()
+            .navigationBarBackButtonHidden()
+        
     }
 }
 

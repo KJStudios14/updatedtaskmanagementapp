@@ -12,7 +12,7 @@ struct NotesView: View {
     @State private var showDeleteAlert = false
     @State private var noteToDelete: Note?
     @State private var searchText = ""
-    
+    @EnvironmentObject var router: Router
     var filteredNotes: [Note] {
         if searchText.isEmpty {
             return notes.data

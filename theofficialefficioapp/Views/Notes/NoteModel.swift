@@ -2,6 +2,8 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
+
 
 struct Note : Identifiable {
     var id : String
@@ -18,7 +20,12 @@ class getNotes : ObservableObject {
     init() {
         let db = Firestore.firestore()
         
-        db.collection("notes").order(by: "date", descending: false).addSnapshotListener { (snap, err) in
+        guard let uId = Auth.auth().currentUser?.uid else {
+            return
+        }
+        db.collection("users")
+          .document(uId)
+          .collection("notes").order(by: "date", descending: false).addSnapshotListener { (snap, err) in
             if let err = err {
                 print((err.localizedDescription))
                 self.noData = true

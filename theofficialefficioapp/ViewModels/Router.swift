@@ -21,7 +21,9 @@ final class Router: ObservableObject {
         case GoalSelection(dataModel:SignUpModel)
         case DailyHours(dataModel:SignUpModel)
         case SummaryView(dataModel:SignUpModel)
-        
+        case StopWatch
+        case ChooseTimer
+        case timerView(selectHour:Int,selectMinute:Int)
     }
     
     @Published var navPath = NavigationPath()

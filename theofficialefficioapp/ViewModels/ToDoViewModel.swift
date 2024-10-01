@@ -10,8 +10,8 @@ class ToDoViewModel: ObservableObject {
     @Published var showDeleteConfirmation = false // State for delete confirmation
     @Published var itemToDelete: ToDoListItem? // Item to delete
     @Published var selectedItem: ToDoListItem?
-    
-    private let userId: String
+    @Published var firebaseObj: FirebaseManager = FirebaseManager.shared
+    private var userId: String?
     
     enum SortCriterion {
         case dueDate
@@ -23,11 +23,12 @@ class ToDoViewModel: ObservableObject {
     }
     
     func delete() {
+        guard let userid  = userId else { return }
         guard let item = itemToDelete else { return }
         let db = Firestore.firestore()
         
         db.collection("users")
-            .document(userId)
+            .document(userid)
             .collection("todos")
             .document(item.id)
             .delete { error in
@@ -44,6 +45,7 @@ class ToDoViewModel: ObservableObject {
     }
     
     func toggleIsDone(item: ToDoListItem) {
+        guard let userid  = userId else { return }
         let db = Firestore.firestore()
         
         guard let uid = Auth.auth().currentUser?.uid else {

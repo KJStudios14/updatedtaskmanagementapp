@@ -13,14 +13,19 @@ struct SummaryView: View {
     @State public var dataModel:SignUpModel
     @EnvironmentObject var router: Router
     
-    @State private var isSignedUp = false
+    
     var body: some View {
-                VStack(alignment: .center, content: {
+        VStack(alignment: .leading, content: {
                     Spacer().frame(height: 32)
+                    if !viewModel.errorMessage.isEmpty{
+                        Text(viewModel.errorMessage)
+                            .foregroundColor(Color.red)
+                            .padding(12)
+                    }
                     HStack{
                         Text("Preferd Name:")
                             .foregroundColor(.black)
-                            .mitrFont(.title)
+                            .mitrFont(.title2)
                         Text(dataModel.preferedName)
                             .foregroundColor(.black)
                             .mitrFont(.title2)
@@ -28,7 +33,7 @@ struct SummaryView: View {
                     HStack{
                         Text("Current Year Group:")
                             .foregroundColor(.black)
-                            .mitrFont(.title)
+                            .mitrFont(.title2)
                         Text(String(dataModel.selectedYear))
                             .foregroundColor(.black)
                             .mitrFont(.title2)
@@ -36,7 +41,7 @@ struct SummaryView: View {
                     HStack{
                         Text("Subjects:")
                             .foregroundColor(.black)
-                            .mitrFont(.title)
+                            .mitrFont(.title2)
                         Text(convertSetToString(dataModel.selectedSubjects))
                             .foregroundColor(.black)
                             .mitrFont(.title2)
@@ -44,16 +49,15 @@ struct SummaryView: View {
                     HStack{
                         Text("Goals:")
                             .foregroundColor(.black)
-                            .mitrFont(.title)
+                            .mitrFont(.title2)
                         Text(convertArrayToString(dataModel.selectedGoals))
                             .foregroundColor(.black)
-                            .lineLimit(0)
                             .mitrFont(.title2)
                     }
                     HStack{
                         Text("Daily Hours:")
                             .foregroundColor(.black)
-                            .mitrFont(.title)
+                            .mitrFont(.title2)
                         Text("\(dataModel.selectedHour)Hrs \(dataModel.selectedMinute)Mins")
                             .foregroundColor(.black)
                             .mitrFont(.title2)
@@ -93,15 +97,16 @@ struct SummaryView: View {
                         .padding(.vertical, 50)
                         .onAppear {
                             viewModel.onRegister = { isSuccessfull in
-                                    isSignedUp = isSuccessfull
+                                if isSuccessfull {
+                                    router.navigate(to: .MainView)
+                                }else{
+                                    
+                                }
                             }
             }
-
+            .navigationBarBackButtonHidden()
     }
     
    
 }
-//
-//#Preview {
-//    SummaryView(viewModel: SignUpViewModel())
-//}
+

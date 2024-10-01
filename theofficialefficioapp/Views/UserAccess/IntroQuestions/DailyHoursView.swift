@@ -104,9 +104,7 @@ struct DailyHoursView: View {
                 }
                 .mitrFont(.subheadline, weight: .regular)
                 .padding(.vertical, 50)
-            }
-        
-
+            }.navigationBarBackButtonHidden()
     }
 }
 //

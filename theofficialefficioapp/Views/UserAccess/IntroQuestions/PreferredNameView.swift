@@ -54,7 +54,6 @@ struct PreferredNameView: View {
                             showAlert = true
                         } else {
                             router.navigate(to: .YearGroupSelection(dataModel:dataModel))
-//                            path.append("YearGroupView")
                         }
                     }) {
                         Text("Next")
@@ -69,7 +68,7 @@ struct PreferredNameView: View {
                     }
                 }
                 .padding(.vertical, 50)
-            }
+            }.navigationBarBackButtonHidden()
         
     }
 }

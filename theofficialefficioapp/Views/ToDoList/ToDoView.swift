@@ -7,7 +7,7 @@ import SwiftUI
 struct ToDoView: View {
     @StateObject var viewModel: ToDoViewModel
     @FirestoreQuery var items: [ToDoListItem]
-    
+    @EnvironmentObject var router: Router
     init(userId: String) {
         self._items = FirestoreQuery(
             collectionPath: "users/\(userId)/todos"
@@ -98,6 +98,6 @@ struct ToDoView: View {
     }
 }
 
-#Preview {
-    ToDoView(userId: "afcpUAtW8zT4eiJaQ2xHlR7gWWa2")
-}
+//#Preview {
+//    ToDoView(userId: "afcpUAtW8zT4eiJaQ2xHlR7gWWa2")
+//}

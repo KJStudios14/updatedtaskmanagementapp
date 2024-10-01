@@ -102,7 +102,7 @@ struct SubjectSelectionView: View {
                 .mitrFont(.subheadline, weight: .regular)
                 .fontWeight(.semibold)
                 .padding(.vertical, 50)
-            }
+            }.navigationBarBackButtonHidden()
     }
 }
 

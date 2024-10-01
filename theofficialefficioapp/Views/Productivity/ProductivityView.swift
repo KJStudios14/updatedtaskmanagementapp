@@ -4,7 +4,8 @@ import SwiftUI
 struct ProductivityView: View {
     @State private var showSheet = false
     @State private var selectedView: String? = nil
-
+    @StateObject var viewModel = UserViewModel()
+    @EnvironmentObject var router: Router
     var body: some View {
         NavigationView {
             VStack {
@@ -18,13 +19,13 @@ struct ProductivityView: View {
                     Menu {
                         Button(action: {
                             selectedView = "StopWatch"
-                            showSheet = true
+                            router.navigate(to: .StopWatch)
                         }) {
                             Text("Stopwatch")
                         }
                         Button(action: {
                             selectedView = "ChooseTimer"
-                            showSheet = true
+                            router.navigate(to: .ChooseTimer)
                         }) {
                             Text("Choose Timer")
                         }
@@ -48,7 +49,7 @@ struct ProductivityView: View {
                         VStack {
                             Text("Focus")
                                 .mitrFont(.headline, weight: .medium)
-                            Text("3hr 5m")
+                            Text("\(viewModel.user?.selectedhour ?? 0)hr \(viewModel.user?.selectedminute ?? 0)m")
                                 .mitrFont(.title, weight: .regular)
                         }
                         .padding(.top, 30)
@@ -95,21 +96,13 @@ struct ProductivityView: View {
                     .padding(.bottom, 20)
                     
                     
-                    VStack{
-                        
-                    }
+                    
+                    WeeklyTaskChartView()
                     .frame(width: 350, height: 300)
                     .background(Color(.blue3))
                     .cornerRadius(15)
                     
                     Spacer()
-                }
-            }
-            .sheet(isPresented: $showSheet) {
-                if selectedView == "StopWatch" {
-                    StopWatchView()
-                } else if selectedView == "ChooseTimer" {
-                    ChooseTimerView()
                 }
             }
         }
@@ -121,31 +114,3 @@ struct ProductivityView_Previews: PreviewProvider {
         ProductivityView()
     }
 }
-/*VStack{
- Image(systemName: "clock")
-     .resizable()
-     .frame(width: 50, height: 50)
-     .foregroundColor(.efficioblue)
-     .padding(.vertical, 20)
-    
- HStack{
-     
-     NavigationLink {
-         ChooseTimerView()
-             .navigationBarBackButtonHidden(true)
-     } label: {
-         Text("Timer")
-     }
-     NavigationLink {
-         StopWatchView()
-             .navigationBarBackButtonHidden(true)
-     } label: {
-         Text("Stopwatch")
-     }
- }
- .padding(.top, 10)
-}
-.frame(width: 350, height: 200)
-.background(Color(.blue3))
-.cornerRadius(10)
-.padding(.bottom, 20)*/

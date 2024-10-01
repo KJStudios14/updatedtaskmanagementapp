@@ -2,6 +2,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 struct EditNotesView : View {
     
@@ -36,15 +37,24 @@ struct EditNotesView : View {
     func SaveData(){
         let db = Firestore.firestore()
         
+        guard let uId = Auth.auth().currentUser?.uid else {
+            return
+        }
         if self.docID != ""{
-            db.collection("notes").document(self.docID).updateData(["notes": self.txt]) { err in
+            db.collection("users")
+            .document(uId)
+                .collection("notes")
+                .document(self.docID).updateData(["notes": self.txt]) { err in
                 if let err = err {
                     print((err.localizedDescription))
                     return
                 }
             }
         } else {
-            db.collection("notes").document().setData(["notes": self.txt, "date": Date()]) { err in
+            db.collection("users")
+                .document(uId)
+                .collection("notes")
+                .document().setData(["notes": self.txt, "date": Date()]) { err in
                 if let err = err {
                     print((err.localizedDescription))
                     return
