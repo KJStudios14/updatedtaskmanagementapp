@@ -4,8 +4,9 @@ import SwiftUI
 struct ProductivityView: View {
     @State private var showSheet = false
     @State private var selectedView: String? = nil
-    @StateObject var viewModel = UserViewModel()
+    @StateObject var viewModel:ProductivityViewModel = ProductivityViewModel()
     @EnvironmentObject var router: Router
+    @State var dataModel: ProductivityModel  = ProductivityModel()
     var body: some View {
         NavigationView {
             VStack {
@@ -49,7 +50,7 @@ struct ProductivityView: View {
                         VStack {
                             Text("Focus")
                                 .mitrFont(.headline, weight: .medium)
-                            Text("\(viewModel.user?.selectedhour ?? 0)hr \(viewModel.user?.selectedminute ?? 0)m")
+                            Text("\(dataModel.focusTime.hoursAndMinutes)")
                                 .mitrFont(.title, weight: .regular)
                         }
                         .padding(.top, 30)
@@ -60,7 +61,7 @@ struct ProductivityView: View {
                         HStack {
                             Spacer()
                             VStack {
-                                Text("10")
+                                Text("\(dataModel.sessionCount)")
                                     .mitrFont(.title2, weight: .regular)
                                 Text("Sessions")
                                     .mitrFont(.footnote, weight: .medium)
@@ -70,7 +71,7 @@ struct ProductivityView: View {
                             Spacer()
                             
                             VStack {
-                                Text("4")
+                                Text("\(dataModel.completedTasks)")
                                     .mitrFont(.title2, weight: .regular)
                                 Text("Completed")
                                     .mitrFont(.footnote, weight: .medium)
@@ -80,7 +81,7 @@ struct ProductivityView: View {
                             Spacer()
                             
                             VStack {
-                                Text("4")
+                                Text("\(dataModel.remaingTasks)")
                                     .mitrFont(.title2, weight: .regular)
                                 Text("Remaining")
                                     .mitrFont(.footnote, weight: .medium)
@@ -104,6 +105,8 @@ struct ProductivityView: View {
                     
                     Spacer()
                 }
+            }.onAppear {
+                self.dataModel = viewModel.getTodayModel() ?? ProductivityModel()
             }
         }
     }

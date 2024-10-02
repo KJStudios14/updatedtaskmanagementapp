@@ -8,6 +8,7 @@ struct StopWatchView: View {
     @State private var timer: Timer?
     @State private var showingCancelAlert = false
     @State private var showingFinishAlert = false
+    @StateObject var viewModel:ProductivityViewModel = ProductivityViewModel()
     @EnvironmentObject var router: Router
     var body: some View {
             ZStack {
@@ -114,6 +115,7 @@ struct StopWatchView: View {
 
     // Function to finish the stopwatch session
     func finishStopwatch() {
+        viewModel.addTask(focusTime: Int(timeElapsed),sessionCount: 1)
         pauseStopwatch()
         router.navigateBack()
         // Additional actions to finalize the session, if needed
@@ -128,6 +130,3 @@ struct StopWatchView: View {
     }
 }
 
-#Preview {
-    StopWatchView()
-}

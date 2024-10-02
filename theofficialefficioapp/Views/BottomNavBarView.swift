@@ -17,7 +17,7 @@ struct BottomNavBarView: View {
 //        NavigationStack{
             if let userId = FirebaseManager.shared.getCurrentUserID(){
                 TabView(selection: $selectedTab){
-                    HomeView()
+                    HomeView(userId: userId)
                         .tabItem {
                             Image(systemName: selectedTab == 0 ? "house.fill" : "house")
                                 .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)

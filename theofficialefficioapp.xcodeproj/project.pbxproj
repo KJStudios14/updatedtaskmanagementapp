@@ -78,6 +78,8 @@
 		FC2132A82CABDCBF0056CAB4 /* WeeklyTaskChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2132A72CABDCBD0056CAB4 /* WeeklyTaskChartView.swift */; };
 		FC2132AA2CABDCDA0056CAB4 /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2132A92CABDCD30056CAB4 /* TaskData.swift */; };
 		FC82FADD2CA42207005DD29B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */; };
+		FC85661B2CAD1C07001CF41F /* ProductivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */; };
+		FC85661D2CAD1C44001CF41F /* ProductivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85661C2CAD1C42001CF41F /* ProductivityModel.swift */; };
 		FCA613342CAA9841005337CE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613332CAA9841005337CE /* Router.swift */; };
 		FCA613372CAAA16B005337CE /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613362CAAA16B005337CE /* SignUpModel.swift */; };
 		FCA613392CAAC334005337CE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613382CAAC32B005337CE /* RegisterViewModel.swift */; };
@@ -172,6 +174,8 @@
 		FC2132A72CABDCBD0056CAB4 /* WeeklyTaskChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTaskChartView.swift; sourceTree = "<group>"; };
 		FC2132A92CABDCD30056CAB4 /* TaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskData.swift; sourceTree = "<group>"; };
 		FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityViewModel.swift; sourceTree = "<group>"; };
+		FC85661C2CAD1C42001CF41F /* ProductivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityModel.swift; sourceTree = "<group>"; };
 		FCA613332CAA9841005337CE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FCA613362CAAA16B005337CE /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		FCA613382CAAC32B005337CE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 		BABED6922C693CB700482C6F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */,
 				FC2132A32CABC3A80056CAB4 /* FirebaseManager.swift */,
 				FCA613382CAAC32B005337CE /* RegisterViewModel.swift */,
 				FCA613332CAA9841005337CE /* Router.swift */,
@@ -416,6 +421,7 @@
 		FCA613352CAAA14F005337CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FC85661C2CAD1C42001CF41F /* ProductivityModel.swift */,
 				FC2132A92CABDCD30056CAB4 /* TaskData.swift */,
 				FCA613362CAAA16B005337CE /* SignUpModel.swift */,
 			);
@@ -575,6 +581,7 @@
 				BABED6942C6945C600482C6F /* ToDoListItem.swift in Sources */,
 				FC2132A42CABC3B00056CAB4 /* FirebaseManager.swift in Sources */,
 				FC2132A82CABDCBF0056CAB4 /* WeeklyTaskChartView.swift in Sources */,
+				FC85661D2CAD1C44001CF41F /* ProductivityModel.swift in Sources */,
 				BABED68D2C69333100482C6F /* HomeViewModel.swift in Sources */,
 				BABED6832C69320600482C6F /* ToDoViewModel.swift in Sources */,
 				BAEDA6AE2C80EA53004F13B2 /* MitrFontModifier.swift in Sources */,
@@ -601,6 +608,7 @@
 				BABED6542C67A34C00482C6F /* SplashScreenView.swift in Sources */,
 				BABED67E2C69022C00482C6F /* MainViewModel.swift in Sources */,
 				BABED6602C68EFC400482C6F /* HomeView.swift in Sources */,
+				FC85661B2CAD1C07001CF41F /* ProductivityViewModel.swift in Sources */,
 				BAEDA6A52C80E407004F13B2 /* Mitr.swift in Sources */,
 				BAEDA6CC2C83C866004F13B2 /* TaskCounterViewModel.swift in Sources */,
 				BAEDA68E2C7FFC13004F13B2 /* SettingsView.swift in Sources */,

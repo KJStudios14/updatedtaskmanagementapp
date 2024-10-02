@@ -3,6 +3,7 @@ import SwiftUI
 
 struct NewItemView: View {
     @StateObject var viewModel = NewItemViewModel()
+    @StateObject var prodcutivityModel = ProductivityViewModel()
     @Binding var newItemPresented: Bool
 
     var body: some View {
@@ -43,6 +44,7 @@ struct NewItemView: View {
                         Button {
                             if viewModel.canSave {
                                 viewModel.addTask()
+                                prodcutivityModel.addTask(date: viewModel.dueDate.DateToString(),isAddTask: true)
                                 newItemPresented = false
                             } else {
                                 viewModel.showAlert = true

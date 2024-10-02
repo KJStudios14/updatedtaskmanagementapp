@@ -14,7 +14,7 @@ struct TimerView: View {
     @State private var showElapsedTime = false
     @State private var completed = false
     @EnvironmentObject var router: Router
-    
+    @StateObject var viewModel:ProductivityViewModel = ProductivityViewModel()
     init(hours: Int = 0, minutes: Int = 0) {
         self.hours = hours
         self.minutes = minutes
@@ -151,6 +151,7 @@ struct TimerView: View {
     
     // Function to complete the timer
     func completeTimer() {
+        viewModel.addTask(focusTime: Int(TimeInterval((hours * 3600) + (minutes * 60))),sessionCount: 1)
         pauseTimer()
         router.navigateBack()
     }

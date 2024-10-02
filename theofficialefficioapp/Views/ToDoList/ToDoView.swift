@@ -8,6 +8,7 @@ struct ToDoView: View {
     @StateObject var viewModel: ToDoViewModel
     @FirestoreQuery var items: [ToDoListItem]
     @EnvironmentObject var router: Router
+    
     init(userId: String) {
         self._items = FirestoreQuery(
             collectionPath: "users/\(userId)/todos"

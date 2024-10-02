@@ -1,14 +1,26 @@
 
 
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreCombineSwift
 
 struct HomeView: View {
     @StateObject var viewModel = UserViewModel()
+    @StateObject var dataModel: ToDoViewModel
+    @FirestoreQuery var items: [ToDoListItem]
     @EnvironmentObject var router: Router
     var currentDateString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE d'\(daySuffix(from: Date()))' MMMM"
         return formatter.string(from: Date())
+    }
+    init(userId: String) {
+        self._items = FirestoreQuery(
+            collectionPath: "users/\(userId)/todos"
+        )
+        self._dataModel = StateObject(
+            wrappedValue: ToDoViewModel(userId: userId)
+        )
     }
     var body: some View {
         NavigationView {
@@ -18,7 +30,7 @@ struct HomeView: View {
             Spacer()
 
             if let user = viewModel.user {
-                VStack(alignment: .leading){
+                VStack(alignment: .center){
                     Text("Welcome \(user.preferedname)")
                         .mitrFont(.title2, weight: .regular)
                         .padding(.bottom, -2)
@@ -76,11 +88,23 @@ struct HomeView: View {
                     VStack{
                         Text("Tasks for Today")
                             .mitrFont(.title2, weight: .regular)
+                        Spacer().frame(height: 5)
+                        List(dataModel.sortedTodayItems(items)) { item in
+                            ToDoListItemView(item: item, onItemTapped: { selectedItem in
+                                dataModel.selectedItem = selectedItem
+                            })
+                            .swipeActions {
+                                Button("Delete") {
+                                    dataModel.itemToDelete = item
+                                    dataModel.showDeleteConfirmation = true
+                                }
+                                .tint(.efficioblue)
+                            }
+                        }
+                        .listStyle(PlainListStyle())
                     }
                     
                     Spacer()
-                    
-                    
                 }
                 Spacer()
              }
@@ -108,8 +132,8 @@ struct HomeView: View {
         }
     }
 
-    struct HomeView_Previews: PreviewProvider {
-        static var previews: some View {
-            HomeView()
-        }
-    }
+//    struct HomeView_Previews: PreviewProvider {
+//        static var previews: some View {
+//            HomeView()
+//        }
+//    }

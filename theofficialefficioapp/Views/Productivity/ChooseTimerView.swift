@@ -7,7 +7,7 @@ struct ChooseTimerView: View {
     @State private var selectedMinutes = 0
     @State private var navigateToTimerView = false
    @EnvironmentObject var router: Router
-    
+    @StateObject var viewModel:ProductivityViewModel = ProductivityViewModel()
     var body: some View {
         
             VStack(spacing: 10) {

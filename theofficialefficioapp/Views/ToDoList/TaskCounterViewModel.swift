@@ -21,7 +21,7 @@ class TaskCounterViewModel: ObservableObject {
         }
         
         let today = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .none)
-        let statsRef = db.collection("users").document(uid).collection("dailyStats").document(today)
+        let statsRef = db.collection("users").document(uid).collection("todos").document(today)
         
         statsRef.getDocument { (document, error) in
             if let document = document, document.exists {

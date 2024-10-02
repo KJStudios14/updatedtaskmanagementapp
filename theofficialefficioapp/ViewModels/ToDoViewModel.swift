@@ -78,6 +78,13 @@ class ToDoViewModel: ObservableObject {
             }
         }
     }
+    func sortedTodayItems(_ items: [ToDoListItem]) -> [ToDoListItem] {
+        
+        return items.filter{ item in
+            Date(timeIntervalSince1970: item.dueDate).DateToString() == Date().DateToString()
+        }
+        
+    }
 }
 
 extension ToDoListItem.Priority {

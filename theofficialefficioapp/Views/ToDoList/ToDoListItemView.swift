@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ToDoListItemView: View {
     @StateObject var viewModel = ToDoListItemViewModel()
+    @StateObject var productivityModel = ProductivityViewModel()
     let item: ToDoListItem
     let onItemTapped: (ToDoListItem) -> Void
     @State private var showingDetail = false
@@ -14,6 +15,7 @@ struct ToDoListItemView: View {
             Button {
                 if !item.isDone {
                     viewModel.toggleIsDone(item: item)
+                    productivityModel.addTask(date: Date(timeIntervalSince1970: item.dueDate).DateToString(),isCompletedTask: true)
                     withAnimation {
                         isFading = true
                     }
