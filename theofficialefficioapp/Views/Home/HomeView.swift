@@ -46,28 +46,32 @@ struct HomeView: View {
                                     .formatted(.dateTime.year().month()))
                                 .mitrFont(.caption, weight: .light)
                             }
-                            Spacer()
+                            
                             VStack{
                                 VStack(alignment: .leading){
                                     Text("\(user.preferedname)")
-                                        .mitrFont(.footnote, weight: .light)
+                                        .mitrFont(.callout, weight: .semibold)
                                     Text(user.username)
-                                        .mitrFont(.footnote, weight: .light)
-                                    Text("\(user.selectedyear)")
-                                        .mitrFont(.footnote, weight: .light)
-                                }
-                                VStack(alignment: .trailing){
-                                    NavigationLink{
-                                        MyProfileView()
-                                    } label: {
-                                        Text("Edit Profile")
-                                            .frame(width: 90, height: 20)
-                                            .foregroundColor(.white)
-                                            .background(Color.efficioblue)
-                                            .mitrFont(.caption, weight: .regular)
-                                            .cornerRadius(5)
+                                        .mitrFont(.footnote, weight: .regular)
+                                    Text("Year\(user.selectedyear)")
+                                        .mitrFont(.footnote, weight: .regular)
+                                    HStack{
+                                        Spacer()
+                                        VStack(alignment: .trailing){
+                                            NavigationLink{
+                                                MyProfileView()
+                                            } label: {
+                                                Text("Edit Profile")
+                                                    .frame(width: 90, height: 20)
+                                                    .foregroundColor(.white)
+                                                    .background(Color.efficioblue)
+                                                    .mitrFont(.caption, weight: .regular)
+                                                    .cornerRadius(5)
+                                            }
+                                        }
                                     }
                                 }
+                                
                             }
                             .frame(width: 200, height: 150)
                         }

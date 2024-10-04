@@ -24,6 +24,12 @@ final class Router: ObservableObject {
         case StopWatch
         case ChooseTimer
         case timerView(selectHour:Int,selectMinute:Int)
+        case editProfile(dataModel:SignUpModel)
+        case editYearGoal(dataModel:SignUpModel)
+        case EditSubjectsSelection(dataModel:SignUpModel)
+        case EditOtherSubjectsSelection(dataModel:SignUpModel)
+        case EditGoalSelection(dataModel:SignUpModel)
+        case EditDailyHours(dataModel:SignUpModel)
     }
     
     @Published var navPath = NavigationPath()

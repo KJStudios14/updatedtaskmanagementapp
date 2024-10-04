@@ -51,6 +51,18 @@ struct theofficialefficioappApp: App {
                                             ChooseTimerView()
                                         case .timerView(selectHour: let selectHour, selectMinute: let selectMinute):
                                             TimerView(hours: selectHour, minutes: selectMinute)
+                                        case .editProfile(let model):
+                                            EditProfile(dataModel: model)
+                                        case .editYearGoal(let model):
+                                            EditYearGroupSelectionView(dataModel: model)
+                                        case .EditSubjectsSelection(let dataModel):
+                                            EditSubjectSelectionView(dataModel: dataModel)
+                                        case .EditOtherSubjectsSelection(let dataModel):
+                                            EditOtherSubjectsView(dataModel: dataModel)
+                                        case .EditGoalSelection(let model):
+                                            EditGoalSelectionView(dataModel: model)
+                                        case .EditDailyHours(let model):
+                                            EditDailyHoursView(dataModel: model)
                                         }
                                         
                                     }

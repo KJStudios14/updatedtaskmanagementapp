@@ -52,11 +52,14 @@ struct BottomNavBarView: View {
                             Image(systemName: selectedTab == 4 ? "chart.pie.fill" : "chart.pie")
                                 .environment(\.symbolVariants, selectedTab == 4 ? .fill : .none)
                         }
-                        .onAppear{ selectedTab = 4}
+                        .onAppear{
+                            selectedTab = 4
+                        }
                         .tag(4)
                     
                     
-                }.background(Color.black)
+                }
+                .background(Color.black)
                     .tint(.efficioblue)
                     .navigationBarBackButtonHidden()
             }else{

@@ -80,6 +80,13 @@
 		FC82FADD2CA42207005DD29B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */; };
 		FC85661B2CAD1C07001CF41F /* ProductivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */; };
 		FC85661D2CAD1C44001CF41F /* ProductivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85661C2CAD1C42001CF41F /* ProductivityModel.swift */; };
+		FC8590D02CAEC7040033F777 /* ProfileEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590CF2CAEC6FF0033F777 /* ProfileEditModel.swift */; };
+		FC8590D82CAFB45D0033F777 /* EditYearGroupSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D62CAFB45D0033F777 /* EditYearGroupSelectionView.swift */; };
+		FC8590D92CAFB45D0033F777 /* EditDailyHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D12CAFB45D0033F777 /* EditDailyHoursView.swift */; };
+		FC8590DA2CAFB45D0033F777 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D42CAFB45D0033F777 /* EditProfile.swift */; };
+		FC8590DB2CAFB45D0033F777 /* EditOtherSubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D32CAFB45D0033F777 /* EditOtherSubjectsView.swift */; };
+		FC8590DC2CAFB45D0033F777 /* EditGoalSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D22CAFB45D0033F777 /* EditGoalSelectionView.swift */; };
+		FC8590DD2CAFB45D0033F777 /* EditSubjectSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D52CAFB45D0033F777 /* EditSubjectSelectionView.swift */; };
 		FCA613342CAA9841005337CE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613332CAA9841005337CE /* Router.swift */; };
 		FCA613372CAAA16B005337CE /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613362CAAA16B005337CE /* SignUpModel.swift */; };
 		FCA613392CAAC334005337CE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613382CAAC32B005337CE /* RegisterViewModel.swift */; };
@@ -176,6 +183,13 @@
 		FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityViewModel.swift; sourceTree = "<group>"; };
 		FC85661C2CAD1C42001CF41F /* ProductivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityModel.swift; sourceTree = "<group>"; };
+		FC8590CF2CAEC6FF0033F777 /* ProfileEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditModel.swift; sourceTree = "<group>"; };
+		FC8590D12CAFB45D0033F777 /* EditDailyHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDailyHoursView.swift; sourceTree = "<group>"; };
+		FC8590D22CAFB45D0033F777 /* EditGoalSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalSelectionView.swift; sourceTree = "<group>"; };
+		FC8590D32CAFB45D0033F777 /* EditOtherSubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOtherSubjectsView.swift; sourceTree = "<group>"; };
+		FC8590D42CAFB45D0033F777 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		FC8590D52CAFB45D0033F777 /* EditSubjectSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSubjectSelectionView.swift; sourceTree = "<group>"; };
+		FC8590D62CAFB45D0033F777 /* EditYearGroupSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditYearGroupSelectionView.swift; sourceTree = "<group>"; };
 		FCA613332CAA9841005337CE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FCA613362CAAA16B005337CE /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		FCA613382CAAC32B005337CE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
@@ -279,6 +293,7 @@
 		BABED6922C693CB700482C6F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FC8590CF2CAEC6FF0033F777 /* ProfileEditModel.swift */,
 				FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */,
 				FC2132A32CABC3A80056CAB4 /* FirebaseManager.swift */,
 				FCA613382CAAC32B005337CE /* RegisterViewModel.swift */,
@@ -410,12 +425,26 @@
 		BAEDA6AC2C80E7DB004F13B2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FC8590D72CAFB45D0033F777 /* EditProfiles */,
 				BABED65F2C68EFC400482C6F /* HomeView.swift */,
 				BAEDA68D2C7FFC13004F13B2 /* SettingsView.swift */,
 				BAEDA6B12C80F7A7004F13B2 /* MyProfileView.swift */,
 				BABC2EEA2C87E4B400378867 /* LicenseAndLegalView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		FC8590D72CAFB45D0033F777 /* EditProfiles */ = {
+			isa = PBXGroup;
+			children = (
+				FC8590D12CAFB45D0033F777 /* EditDailyHoursView.swift */,
+				FC8590D22CAFB45D0033F777 /* EditGoalSelectionView.swift */,
+				FC8590D32CAFB45D0033F777 /* EditOtherSubjectsView.swift */,
+				FC8590D42CAFB45D0033F777 /* EditProfile.swift */,
+				FC8590D52CAFB45D0033F777 /* EditSubjectSelectionView.swift */,
+				FC8590D62CAFB45D0033F777 /* EditYearGroupSelectionView.swift */,
+			);
+			path = EditProfiles;
 			sourceTree = "<group>";
 		};
 		FCA613352CAAA14F005337CE /* Models */ = {
@@ -498,7 +527,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					BABED61F2C67A2F000482C6F = {
 						CreatedOnToolsVersion = 15.4;
@@ -606,6 +635,7 @@
 				BABED6912C69357B00482C6F /* NewItemViewModel.swift in Sources */,
 				BAEDA6692C7F8537004F13B2 /* StopWatchView.swift in Sources */,
 				BABED6542C67A34C00482C6F /* SplashScreenView.swift in Sources */,
+				FC8590D02CAEC7040033F777 /* ProfileEditModel.swift in Sources */,
 				BABED67E2C69022C00482C6F /* MainViewModel.swift in Sources */,
 				BABED6602C68EFC400482C6F /* HomeView.swift in Sources */,
 				FC85661B2CAD1C07001CF41F /* ProductivityViewModel.swift in Sources */,
@@ -623,6 +653,12 @@
 				BAEDA6822C7F9122004F13B2 /* OtherSubjectsView.swift in Sources */,
 				BAEDA6652C7F81F9004F13B2 /* TimerView.swift in Sources */,
 				BAEDA69C2C80CF6E004F13B2 /* MultiLineTF.swift in Sources */,
+				FC8590D82CAFB45D0033F777 /* EditYearGroupSelectionView.swift in Sources */,
+				FC8590D92CAFB45D0033F777 /* EditDailyHoursView.swift in Sources */,
+				FC8590DA2CAFB45D0033F777 /* EditProfile.swift in Sources */,
+				FC8590DB2CAFB45D0033F777 /* EditOtherSubjectsView.swift in Sources */,
+				FC8590DC2CAFB45D0033F777 /* EditGoalSelectionView.swift in Sources */,
+				FC8590DD2CAFB45D0033F777 /* EditSubjectSelectionView.swift in Sources */,
 				FCA613392CAAC334005337CE /* RegisterViewModel.swift in Sources */,
 				BABED6622C68EFCA00482C6F /* ToDoView.swift in Sources */,
 				FC2132AA2CABDCDA0056CAB4 /* TaskData.swift in Sources */,
@@ -853,7 +889,6 @@
 		BABED6482C67A2F300482C6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -872,7 +907,6 @@
 		BABED6492C67A2F300482C6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -891,7 +925,6 @@
 		BABED64B2C67A2F300482C6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -908,7 +941,6 @@
 		BABED64C2C67A2F300482C6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

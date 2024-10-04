@@ -50,7 +50,7 @@ struct ProductivityView: View {
                         VStack {
                             Text("Focus")
                                 .mitrFont(.headline, weight: .medium)
-                            Text("\(dataModel.focusTime.hoursAndMinutes)")
+                            Text("\((viewModel.getTodayModel()?.focusTime ?? 0).hoursAndMinutes)")
                                 .mitrFont(.title, weight: .regular)
                         }
                         .padding(.top, 30)
@@ -61,7 +61,7 @@ struct ProductivityView: View {
                         HStack {
                             Spacer()
                             VStack {
-                                Text("\(dataModel.sessionCount)")
+                                Text("\(viewModel.getTodayModel()?.sessionCount ?? 0)")
                                     .mitrFont(.title2, weight: .regular)
                                 Text("Sessions")
                                     .mitrFont(.footnote, weight: .medium)
@@ -71,7 +71,7 @@ struct ProductivityView: View {
                             Spacer()
                             
                             VStack {
-                                Text("\(dataModel.completedTasks)")
+                                Text("\(viewModel.getTodayModel()?.completedTasks ?? 0)")
                                     .mitrFont(.title2, weight: .regular)
                                 Text("Completed")
                                     .mitrFont(.footnote, weight: .medium)
@@ -81,7 +81,7 @@ struct ProductivityView: View {
                             Spacer()
                             
                             VStack {
-                                Text("\(dataModel.remaingTasks)")
+                                Text("\(viewModel.getTodayModel()?.remaingTasks ?? 0)")
                                     .mitrFont(.title2, weight: .regular)
                                 Text("Remaining")
                                     .mitrFont(.footnote, weight: .medium)
@@ -108,6 +108,7 @@ struct ProductivityView: View {
             }.onAppear {
                 self.dataModel = viewModel.getTodayModel() ?? ProductivityModel()
             }
+            
         }
     }
 }
