@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LogInView: View {
+struct ForgotPasswordView: View {
     @EnvironmentObject var router: Router
 
     @StateObject var viewModel = LogInViewModel()
@@ -16,7 +16,7 @@ struct LogInView: View {
 //        NavigationStack {
             VStack{
                 Spacer()
-                Text("Welcome Back!")
+                Text("Forgot Password")
                     .font(.title)
                     .fontWeight(.bold)
                 
@@ -37,32 +37,13 @@ struct LogInView: View {
                         .background(Color(.systemGray6))
                         .cornerRadius(10)
                         .padding(.horizontal, 30)
-                    
-                    SecureField("Enter your password", text: $viewModel.password)
-                        .font(.subheadline)
-                        .padding(12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
-                        .padding(.horizontal, 30)
-                }
-                
-                Button {
-//                    isForgotPassword = true
-                } label: {
-                    Text("Forgot password?")
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                        .padding(.vertical)
-                        .padding(.trailing, 20)
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 
                 
                 Button {
-                    viewModel.login()
+                    viewModel.forgotPassword()
                 } label: {
-                    Text("Log In")
+                    Text("Submit")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
@@ -76,12 +57,10 @@ struct LogInView: View {
                 Divider()
                 
                 Button {
-                    router.navigate(to: .CreateAccount)
+                    router.navigateBack()
                 } label: {
-                    HStack(spacing: 3) {
-                        Text("Don't have a account?")
-                        
-                        Text("Create an Account")
+                    HStack() {
+                        Text("Login")
                             .fontWeight(.semibold)
                     }
                     .foregroundColor(.black)
@@ -90,12 +69,11 @@ struct LogInView: View {
                 .padding(.vertical, 16)
                 
             }.navigationBarBackButtonHidden()
-//        }
         
             .onAppear {
                 viewModel.onValidated = { isSuccess in
                     if isSuccess{
-                        router.navigate(to: .MainView)
+                        router.navigateBack()
                     }
                 }
             }

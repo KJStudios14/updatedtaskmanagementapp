@@ -49,4 +49,15 @@ class UserViewModel: ObservableObject {
         }
         
     }
+    func deleteAccount() {
+        if let user = Auth.auth().currentUser {
+            user.delete { error in
+                if let error = error {
+                    print("Error deleting user: \(error.localizedDescription)")
+                } else {
+                    print("User deleted successfully.")
+                }
+            }
+        }
+    }
 }

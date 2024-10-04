@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBhS_-ag9m3X1gTWX-E5PHYrpDAZz9PQcI</string>
+	<string>AIzaSyCiPUvr-afw1ra2l4OoH3V3kSCIZKrcQWY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>632337840030</string>
+	<string>260834955190</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>KJ-Studios.theofficialefficioapp</string>
 	<key>PROJECT_ID</key>
-	<string>efficio-c87a6</string>
+	<string>effico-4b298</string>
 	<key>STORAGE_BUCKET</key>
-	<string>efficio-c87a6.appspot.com</string>
+	<string>effico-4b298.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:632337840030:ios:34bbba1dec0b0e898dc88f</string>
+	<string>1:260834955190:ios:e7383df756219b839d3b17</string>
 </dict>
 </plist>

@@ -26,7 +26,6 @@
 		BABED66B2C68F79E00482C6F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BABED66A2C68F79E00482C6F /* FirebaseAuth */; };
 		BABED66D2C68F79E00482C6F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BABED66C2C68F79E00482C6F /* FirebaseFirestore */; };
 		BABED66F2C68F79E00482C6F /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BABED66E2C68F79E00482C6F /* FirebaseFirestoreCombine-Community */; };
-		BABED6712C68F8D500482C6F /* GoogleService-Info-live.plist in Resources */ = {isa = PBXBuildFile; fileRef = BABED6702C68F8D500482C6F /* GoogleService-Info-live.plist */; };
 		BABED6762C68FC2500482C6F /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6752C68FC2500482C6F /* SignUpViewModel.swift */; };
 		BABED6782C68FE4800482C6F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6772C68FE4800482C6F /* User.swift */; };
 		BABED67A2C68FF6F00482C6F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABED6792C68FF6F00482C6F /* Extensions.swift */; };
@@ -77,9 +76,20 @@
 		FC2132A42CABC3B00056CAB4 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2132A32CABC3A80056CAB4 /* FirebaseManager.swift */; };
 		FC2132A82CABDCBF0056CAB4 /* WeeklyTaskChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2132A72CABDCBD0056CAB4 /* WeeklyTaskChartView.swift */; };
 		FC2132AA2CABDCDA0056CAB4 /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2132A92CABDCD30056CAB4 /* TaskData.swift */; };
+		FC26963C2CB6A25F0086E681 /* EditFullName.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC26963B2CB6A2520086E681 /* EditFullName.swift */; };
+		FC26963E2CB6A37F0086E681 /* EditPrefername.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC26963D2CB6A37F0086E681 /* EditPrefername.swift */; };
+		FC2696402CB6A3A40086E681 /* EditUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC26963F2CB6A3A40086E681 /* EditUsername.swift */; };
+		FC2696422CB6A57F0086E681 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2696412CB6A57F0086E681 /* ForgotPassword.swift */; };
 		FC82FADD2CA42207005DD29B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */; };
 		FC85661B2CAD1C07001CF41F /* ProductivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */; };
 		FC85661D2CAD1C44001CF41F /* ProductivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85661C2CAD1C42001CF41F /* ProductivityModel.swift */; };
+		FC8590D02CAEC7040033F777 /* ProfileEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590CF2CAEC6FF0033F777 /* ProfileEditModel.swift */; };
+		FC8590D82CAFB45D0033F777 /* EditYearGroupSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D62CAFB45D0033F777 /* EditYearGroupSelectionView.swift */; };
+		FC8590D92CAFB45D0033F777 /* EditDailyHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D12CAFB45D0033F777 /* EditDailyHoursView.swift */; };
+		FC8590DA2CAFB45D0033F777 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D42CAFB45D0033F777 /* EditProfile.swift */; };
+		FC8590DB2CAFB45D0033F777 /* EditOtherSubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D32CAFB45D0033F777 /* EditOtherSubjectsView.swift */; };
+		FC8590DC2CAFB45D0033F777 /* EditGoalSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D22CAFB45D0033F777 /* EditGoalSelectionView.swift */; };
+		FC8590DD2CAFB45D0033F777 /* EditSubjectSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8590D52CAFB45D0033F777 /* EditSubjectSelectionView.swift */; };
 		FCA613342CAA9841005337CE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613332CAA9841005337CE /* Router.swift */; };
 		FCA613372CAAA16B005337CE /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613362CAAA16B005337CE /* SignUpModel.swift */; };
 		FCA613392CAAC334005337CE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA613382CAAC32B005337CE /* RegisterViewModel.swift */; };
@@ -122,7 +132,6 @@
 		BABED6612C68EFCA00482C6F /* ToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoView.swift; sourceTree = "<group>"; };
 		BABED6632C68EFD400482C6F /* ProductivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityView.swift; sourceTree = "<group>"; };
 		BABED6672C68F1ED00482C6F /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
-		BABED6702C68F8D500482C6F /* GoogleService-Info-live.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-live.plist"; sourceTree = "<group>"; };
 		BABED6752C68FC2500482C6F /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		BABED6772C68FE4800482C6F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BABED6792C68FF6F00482C6F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -173,9 +182,20 @@
 		FC2132A32CABC3A80056CAB4 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		FC2132A72CABDCBD0056CAB4 /* WeeklyTaskChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTaskChartView.swift; sourceTree = "<group>"; };
 		FC2132A92CABDCD30056CAB4 /* TaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskData.swift; sourceTree = "<group>"; };
+		FC26963B2CB6A2520086E681 /* EditFullName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFullName.swift; sourceTree = "<group>"; };
+		FC26963D2CB6A37F0086E681 /* EditPrefername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrefername.swift; sourceTree = "<group>"; };
+		FC26963F2CB6A3A40086E681 /* EditUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsername.swift; sourceTree = "<group>"; };
+		FC2696412CB6A57F0086E681 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		FC82FADC2CA42207005DD29B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityViewModel.swift; sourceTree = "<group>"; };
 		FC85661C2CAD1C42001CF41F /* ProductivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductivityModel.swift; sourceTree = "<group>"; };
+		FC8590CF2CAEC6FF0033F777 /* ProfileEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditModel.swift; sourceTree = "<group>"; };
+		FC8590D12CAFB45D0033F777 /* EditDailyHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDailyHoursView.swift; sourceTree = "<group>"; };
+		FC8590D22CAFB45D0033F777 /* EditGoalSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalSelectionView.swift; sourceTree = "<group>"; };
+		FC8590D32CAFB45D0033F777 /* EditOtherSubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOtherSubjectsView.swift; sourceTree = "<group>"; };
+		FC8590D42CAFB45D0033F777 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		FC8590D52CAFB45D0033F777 /* EditSubjectSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSubjectSelectionView.swift; sourceTree = "<group>"; };
+		FC8590D62CAFB45D0033F777 /* EditYearGroupSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditYearGroupSelectionView.swift; sourceTree = "<group>"; };
 		FCA613332CAA9841005337CE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FCA613362CAAA16B005337CE /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		FCA613382CAAC32B005337CE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
@@ -239,7 +259,6 @@
 				BABED6232C67A2F100482C6F /* theofficialefficioappApp.swift */,
 				BAEDA6A32C80E279004F13B2 /* Fonts */,
 				BAEDA6782C7F8BE5004F13B2 /* Info.plist */,
-				BABED6702C68F8D500482C6F /* GoogleService-Info-live.plist */,
 				BABED6792C68FF6F00482C6F /* Extensions.swift */,
 				BABED6772C68FE4800482C6F /* User.swift */,
 				BAEDA66C2C7F8B47004F13B2 /* OFL.txt */,
@@ -279,6 +298,7 @@
 		BABED6922C693CB700482C6F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FC8590CF2CAEC6FF0033F777 /* ProfileEditModel.swift */,
 				FC85661A2CAD1C02001CF41F /* ProductivityViewModel.swift */,
 				FC2132A32CABC3A80056CAB4 /* FirebaseManager.swift */,
 				FCA613382CAAC32B005337CE /* RegisterViewModel.swift */,
@@ -387,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				BABED64D2C67A32F00482C6F /* LogInView.swift */,
+				FC2696412CB6A57F0086E681 /* ForgotPassword.swift */,
 				BABED65B2C68C8EF00482C6F /* SignUpView.swift */,
 				BAEDA6AB2C80E7A9004F13B2 /* IntroQuestions */,
 			);
@@ -410,12 +431,29 @@
 		BAEDA6AC2C80E7DB004F13B2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FC8590D72CAFB45D0033F777 /* EditProfiles */,
 				BABED65F2C68EFC400482C6F /* HomeView.swift */,
 				BAEDA68D2C7FFC13004F13B2 /* SettingsView.swift */,
 				BAEDA6B12C80F7A7004F13B2 /* MyProfileView.swift */,
 				BABC2EEA2C87E4B400378867 /* LicenseAndLegalView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		FC8590D72CAFB45D0033F777 /* EditProfiles */ = {
+			isa = PBXGroup;
+			children = (
+				FC26963B2CB6A2520086E681 /* EditFullName.swift */,
+				FC26963D2CB6A37F0086E681 /* EditPrefername.swift */,
+				FC26963F2CB6A3A40086E681 /* EditUsername.swift */,
+				FC8590D12CAFB45D0033F777 /* EditDailyHoursView.swift */,
+				FC8590D22CAFB45D0033F777 /* EditGoalSelectionView.swift */,
+				FC8590D32CAFB45D0033F777 /* EditOtherSubjectsView.swift */,
+				FC8590D42CAFB45D0033F777 /* EditProfile.swift */,
+				FC8590D52CAFB45D0033F777 /* EditSubjectSelectionView.swift */,
+				FC8590D62CAFB45D0033F777 /* EditYearGroupSelectionView.swift */,
+			);
+			path = EditProfiles;
 			sourceTree = "<group>";
 		};
 		FCA613352CAAA14F005337CE /* Models */ = {
@@ -498,7 +536,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					BABED61F2C67A2F000482C6F = {
 						CreatedOnToolsVersion = 15.4;
@@ -545,7 +583,6 @@
 				BAEDA6742C7F8B48004F13B2 /* Mitr-Light.ttf in Resources */,
 				BAEDA6732C7F8B48004F13B2 /* OFL.txt in Resources */,
 				BABED62B2C67A2F300482C6F /* Preview Assets.xcassets in Resources */,
-				BABED6712C68F8D500482C6F /* GoogleService-Info-live.plist in Resources */,
 				BAEDA6722C7F8B48004F13B2 /* Mitr-SemiBold.ttf in Resources */,
 				BAEDA6752C7F8B48004F13B2 /* Mitr-Medium.ttf in Resources */,
 				BABED6282C67A2F300482C6F /* Assets.xcassets in Resources */,
@@ -578,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAEDA67C2C7F9019004F13B2 /* PreferredNameView.swift in Sources */,
+				FC26963C2CB6A25F0086E681 /* EditFullName.swift in Sources */,
 				BABED6942C6945C600482C6F /* ToDoListItem.swift in Sources */,
 				FC2132A42CABC3B00056CAB4 /* FirebaseManager.swift in Sources */,
 				FC2132A82CABDCBF0056CAB4 /* WeeklyTaskChartView.swift in Sources */,
@@ -589,6 +627,7 @@
 				BAEDA6B02C80F004004F13B2 /* GlobalFontModifier.swift in Sources */,
 				BABED6872C69326200482C6F /* ToDoListItemView.swift in Sources */,
 				FCA613342CAA9841005337CE /* Router.swift in Sources */,
+				FC2696422CB6A57F0086E681 /* ForgotPassword.swift in Sources */,
 				BABED68F2C69352D00482C6F /* NewItemView.swift in Sources */,
 				BAEDA6B22C80F7A7004F13B2 /* MyProfileView.swift in Sources */,
 				BAEDA6962C80CF05004F13B2 /* EditNotesView.swift in Sources */,
@@ -603,15 +642,18 @@
 				BABED6642C68EFD400482C6F /* ProductivityView.swift in Sources */,
 				BA02F3B62CA284E300348ABA /* CalendarView.swift in Sources */,
 				BAEDA6862C7F913C004F13B2 /* DailyHoursView.swift in Sources */,
+				FC26963E2CB6A37F0086E681 /* EditPrefername.swift in Sources */,
 				BABED6912C69357B00482C6F /* NewItemViewModel.swift in Sources */,
 				BAEDA6692C7F8537004F13B2 /* StopWatchView.swift in Sources */,
 				BABED6542C67A34C00482C6F /* SplashScreenView.swift in Sources */,
+				FC8590D02CAEC7040033F777 /* ProfileEditModel.swift in Sources */,
 				BABED67E2C69022C00482C6F /* MainViewModel.swift in Sources */,
 				BABED6602C68EFC400482C6F /* HomeView.swift in Sources */,
 				FC85661B2CAD1C07001CF41F /* ProductivityViewModel.swift in Sources */,
 				BAEDA6A52C80E407004F13B2 /* Mitr.swift in Sources */,
 				BAEDA6CC2C83C866004F13B2 /* TaskCounterViewModel.swift in Sources */,
 				BAEDA68E2C7FFC13004F13B2 /* SettingsView.swift in Sources */,
+				FC2696402CB6A3A40086E681 /* EditUsername.swift in Sources */,
 				BAEDA6A02C80CFFC004F13B2 /* Indicator.swift in Sources */,
 				BAEDA6CA2C83C84B004F13B2 /* TaskCounterView.swift in Sources */,
 				BABED6682C68F1ED00482C6F /* LogInViewModel.swift in Sources */,
@@ -623,6 +665,12 @@
 				BAEDA6822C7F9122004F13B2 /* OtherSubjectsView.swift in Sources */,
 				BAEDA6652C7F81F9004F13B2 /* TimerView.swift in Sources */,
 				BAEDA69C2C80CF6E004F13B2 /* MultiLineTF.swift in Sources */,
+				FC8590D82CAFB45D0033F777 /* EditYearGroupSelectionView.swift in Sources */,
+				FC8590D92CAFB45D0033F777 /* EditDailyHoursView.swift in Sources */,
+				FC8590DA2CAFB45D0033F777 /* EditProfile.swift in Sources */,
+				FC8590DB2CAFB45D0033F777 /* EditOtherSubjectsView.swift in Sources */,
+				FC8590DC2CAFB45D0033F777 /* EditGoalSelectionView.swift in Sources */,
+				FC8590DD2CAFB45D0033F777 /* EditSubjectSelectionView.swift in Sources */,
 				FCA613392CAAC334005337CE /* RegisterViewModel.swift in Sources */,
 				BABED6622C68EFCA00482C6F /* ToDoView.swift in Sources */,
 				FC2132AA2CABDCDA0056CAB4 /* TaskData.swift in Sources */,
@@ -853,7 +901,6 @@
 		BABED6482C67A2F300482C6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -872,7 +919,6 @@
 		BABED6492C67A2F300482C6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -891,7 +937,6 @@
 		BABED64B2C67A2F300482C6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -908,7 +953,6 @@
 		BABED64C2C67A2F300482C6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

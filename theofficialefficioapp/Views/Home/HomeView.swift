@@ -30,10 +30,12 @@ struct HomeView: View {
             Spacer()
 
             if let user = viewModel.user {
-                VStack(alignment: .center){
-                    Text("Welcome \(user.preferedname)")
-                        .mitrFont(.title2, weight: .regular)
-                        .padding(.bottom, -2)
+                VStack{
+                    HStack{
+                        Text("Welcome \(user.preferedname)")
+                            .mitrFont(.title2, weight: .regular)
+                        Spacer()
+                    }.padding(.horizontal,35)
                     
                     VStack{
                         HStack{
@@ -46,44 +48,48 @@ struct HomeView: View {
                                     .formatted(.dateTime.year().month()))
                                 .mitrFont(.caption, weight: .light)
                             }
-                            Spacer()
+                            
                             VStack{
                                 VStack(alignment: .leading){
                                     Text("\(user.preferedname)")
-                                        .mitrFont(.footnote, weight: .light)
+                                        .mitrFont(.callout, weight: .semibold)
                                     Text(user.username)
-                                        .mitrFont(.footnote, weight: .light)
-                                    Text("\(user.selectedyear)")
-                                        .mitrFont(.footnote, weight: .light)
-                                }
-                                VStack(alignment: .trailing){
-                                    NavigationLink{
-                                        MyProfileView()
-                                    } label: {
-                                        Text("Edit Profile")
-                                            .frame(width: 90, height: 20)
-                                            .foregroundColor(.white)
-                                            .background(Color.efficioblue)
-                                            .mitrFont(.caption, weight: .regular)
-                                            .cornerRadius(5)
+                                        .mitrFont(.footnote, weight: .regular)
+                                    Text("Year\(user.selectedyear)")
+                                        .mitrFont(.footnote, weight: .regular)
+                                    HStack{
+                                        Spacer()
+                                        VStack(alignment: .trailing){
+                                            NavigationLink{
+                                                MyProfileView()
+                                            } label: {
+                                                Text("Edit Profile")
+                                                    .frame(width: 90, height: 20)
+                                                    .foregroundColor(.white)
+                                                    .background(Color.efficioblue)
+                                                    .mitrFont(.caption, weight: .regular)
+                                                    .cornerRadius(5)
+                                            }
+                                        }
                                     }
                                 }
+                                
                             }
                             .frame(width: 200, height: 150)
                         }
-                        .padding(.horizontal, 15)
+                        .padding(.horizontal, 5)
                     }
                     .frame(width: 350, height: 150)
                     .cornerRadius(15)
                     .background(Color(.blue3))
                     
-                    VStack{
+                    HStack{
                         Text(currentDateString)
                             .padding(.bottom, -1)
                             .mitrFont(.headline, weight: .regular)
-                    }
-                    .padding(.top, 2)
-                    .padding(.bottom, 7)
+                        Spacer()
+                    }.padding(.horizontal,35)
+                
                     
                     VStack{
                         Text("Tasks for Today")

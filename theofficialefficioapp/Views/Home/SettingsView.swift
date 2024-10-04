@@ -3,7 +3,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject var viewModel = UserViewModel()
-    
+    @EnvironmentObject var router: Router
     var appVersion: String {
             // Fetch the app version from the Info.plist
             if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
@@ -53,6 +53,7 @@ struct SettingsView: View {
                                
                Button {
                    viewModel.logOut()
+                   router.navigateToRoot()
                } label: {
                    Text("Log Out")
                        .mitrFont(.subheadline, weight: .medium)
@@ -62,11 +63,18 @@ struct SettingsView: View {
                        .cornerRadius(15)
                }
                .padding(.bottom, 3)
-                
-                Text("Delete Account")
-                    .mitrFont(.subheadline, weight: .medium)
-                    .foregroundColor(.red)
-                    .padding(.bottom, 8)
+                Button {
+                    viewModel.deleteAccount()
+                    router.navigateToRoot()
+                } label: {
+                    Text("Delete Account")
+                        .mitrFont(.subheadline, weight: .medium)
+                        .foregroundColor(.white)
+                        .frame(width: 200, height: 44)
+                        .background(Color.efficioblue)
+                        .cornerRadius(15)
+                    
+                }.padding(.bottom, 3)
             }
 
         }
@@ -156,7 +164,7 @@ struct FeedbackFormView: View {
 }
 
 
-
-#Preview {
-    SettingsView()
-}
+//
+//#Preview {
+//    SettingsView()
+//}

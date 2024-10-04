@@ -27,6 +27,21 @@ class LogInViewModel: ObservableObject {
             }
         }
     }
+    func forgotPassword(){
+        guard !email.trimmingCharacters(in: .whitespaces).isEmpty else{
+            errorMessage = "Please enter your email and password."
+            self.onValidated?(false)
+            return
+        }
+        Auth.auth().sendPasswordReset(withEmail: email) { (err) in
+            if err == nil{
+                self.onValidated?(true)
+            }else{
+                self.errorMessage = err?.localizedDescription ?? "Invalid credentials."
+                self.onValidated?(false)
+            }
+        }
+    }
     
     private func validate() -> Bool {
         errorMessage = ""

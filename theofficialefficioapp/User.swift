@@ -9,17 +9,17 @@ import Foundation
 
 struct User: Codable {
     
-    let id: String
-    let fullname: String
-    let username: String
-    let email: String
-    let joined: TimeInterval
-    let preferedname:String
-    let selectedhour:Int
-    let selectedminute:Int
-    let selectedyear:Int
-    let selectedgoals:[String]
-    let selectedsubjects:[String]
+    var id: String
+    var fullname: String
+    var username: String
+    var email: String
+    var joined: TimeInterval
+    var preferedname:String
+    var selectedhour:Int
+    var selectedminute:Int
+    var selectedyear:Int
+    var selectedgoals:[String]
+    var selectedsubjects:[String]
 
     
     func asDictionary() -> [String: Any] {
