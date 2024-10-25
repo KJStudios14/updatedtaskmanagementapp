@@ -32,6 +32,8 @@ final class Router: ObservableObject {
         case EditOtherSubjectsSelection(dataModel:SignUpModel)
         case EditGoalSelection(dataModel:SignUpModel)
         case EditDailyHours(dataModel:SignUpModel)
+        case contactUs
+        case suggestion
     }
     
     @Published var navPath = NavigationPath()

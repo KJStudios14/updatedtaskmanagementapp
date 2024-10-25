@@ -89,7 +89,7 @@ struct EditOtherSubjectsView: View {
                     }
                 }
                 .onAppear(perform: {
-                    subjects = dataModel.selectedSubjects.map(\.self)
+                    subjects = dataModel.selectedSubjects.map { $0 }
                     viewModel.onUpdate = { isSuccess in
                         if isSuccess{
                             router.navigateBack()

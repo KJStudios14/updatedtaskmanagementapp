@@ -14,7 +14,7 @@ struct SettingsView: View {
         }
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             VStack{
                 Text("Settings")
                     .mitrFont(.title, weight: .regular)
@@ -23,13 +23,29 @@ struct SettingsView: View {
                 Form {
                     
                     Section(header: Text("Support")) {
-                        NavigationLink(destination: ContactUsView() .navigationBarBackButtonHidden(true)) {
-                            Text("Contact Us")
-                        }
+                        Button {
+                            router.navigate(to: .contactUs)
+                        } label: {
+                            Text("Contact us")
+                                .mitrFont(.subheadline, weight: .medium)
+                                .foregroundColor(.white)
+                                .frame(width: 200, height: 44)
+                                .background(Color.efficioblue)
+                                .cornerRadius(15)
+                            
+                        }.padding(.bottom, 3)
                         
-                        NavigationLink(destination: FeedbackFormView() .navigationBarBackButtonHidden(true)) {
+                        Button {
+                            router.navigate(to: .suggestion)
+                        } label: {
                             Text("Send Suggestion")
-                        }
+                                .mitrFont(.subheadline, weight: .medium)
+                                .foregroundColor(.white)
+                                .frame(width: 200, height: 44)
+                                .background(Color.efficioblue)
+                                .cornerRadius(15)
+                            
+                        }.padding(.bottom, 3)
                     }
                     .mitrFont(.headline, weight: .regular)
                     .padding(.bottom, -20)
@@ -77,13 +93,26 @@ struct SettingsView: View {
                 }.padding(.bottom, 3)
             }
 
-        }
+//        }
     }
 }
 
 struct ContactUsView: View {
+    @EnvironmentObject var router: Router
     var body: some View {
         VStack {
+            HStack {
+                Button(action: {
+                    router.navigateBack()
+                }) {
+                    Image(systemName: "back_button")
+                        .font(.title)
+                }
+                
+                Spacer()
+            }
+            
+            
             Text("We're Here to Help")
                 .mitrFont(.title2, weight: .medium)
             
@@ -107,11 +136,22 @@ struct ContactUsView: View {
 
 
 struct FeedbackFormView: View {
+    @EnvironmentObject var router: Router
     @State private var feedback: String = ""
 
     var body: some View {
         VStack {
             // Message Text
+            HStack {
+                Button(action: {
+                    router.navigateBack()
+                }) {
+                    Image(systemName: "back_button")
+                        .font(.title)
+                }
+                
+                Spacer()
+            }
             Text("We Value Your Suggestions")
                 .mitrFont(.title2, weight: .medium)
                 .padding(.top, 4)
@@ -160,6 +200,7 @@ struct FeedbackFormView: View {
         print("Feedback submitted: \(feedback)")
         // Reset feedback input
         feedback = ""
+        router.navigateBack()
     }
 }
 
