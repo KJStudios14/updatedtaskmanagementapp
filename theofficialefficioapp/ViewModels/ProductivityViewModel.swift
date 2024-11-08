@@ -83,6 +83,7 @@ class ProductivityViewModel: ObservableObject {
             }
     }
     func getTodayModel() -> ProductivityModel? {
+        self.fatchData()
         if dataModel.isEmpty {
             return nil
         }

@@ -67,10 +67,16 @@ struct theofficialefficioappApp: App {
                                             EditEditPrefername(dataModel: dataModel)
                                         case .EditUsername(dataModel: let dataModel):
                                             EditUsername(dataModel: dataModel)
+                                        case .myProfileView:
+                                            MyProfileView()
                                         case .contactUs:
                                             ContactUsView()
+                                        case .settingView:
+                                            SettingsView()
                                         case .suggestion:
                                             FeedbackFormView()
+                                        case .licenseAndLegalView:
+                                            LicenseAndLegalView()
                                         }
                                         
                                     }

@@ -29,7 +29,7 @@ struct ChooseTimerView: View {
                     .frame(width: 150)
 
                     Picker("Minutes", selection: $selectedMinutes) {
-                        ForEach([0, 15, 30, 45], id: \.self) { minute in
+                        ForEach([0,15, 30, 45], id: \.self) { minute in
                             Text("\(minute) minutes")
                                 .mitrFont(.headline, weight: .medium)
                         }
@@ -57,11 +57,15 @@ struct ChooseTimerView: View {
                         .mitrFont(.headline, weight: .medium)
                         .foregroundColor(Color.efficioblue)
                         .padding()
-                        .frame(width: 225, height: 44)
-//                        .background(.white)
-                        .border(Color.efficioblue,width: 1)
-                        .cornerRadius(10)
+                        
                 }
+                .frame(width: 225, height: 44)
+                    .background(.white)
+                    .cornerRadius(10)
+                    .overlay(
+                          RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.efficioblue, lineWidth: 2) // Border color and width
+                     )
             
                 
                 Spacer()

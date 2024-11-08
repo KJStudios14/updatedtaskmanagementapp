@@ -32,8 +32,11 @@ final class Router: ObservableObject {
         case EditOtherSubjectsSelection(dataModel:SignUpModel)
         case EditGoalSelection(dataModel:SignUpModel)
         case EditDailyHours(dataModel:SignUpModel)
+        case myProfileView
+        case settingView
         case contactUs
         case suggestion
+        case licenseAndLegalView
     }
     
     @Published var navPath = NavigationPath()
@@ -47,6 +50,6 @@ final class Router: ObservableObject {
     }
     
     func navigateToRoot() {
-        navPath.removeLast(navPath.count)
+        navPath.removeLast(navPath.count-1)
     }
 }

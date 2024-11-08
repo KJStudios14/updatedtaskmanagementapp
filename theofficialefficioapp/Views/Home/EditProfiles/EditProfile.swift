@@ -15,8 +15,6 @@ struct EditProfile: View {
     var body: some View {
         
                 VStack{
-                    
-                    
                     Text("Edit Profile!")
                         .font(.title)
                         .fontWeight(.bold)

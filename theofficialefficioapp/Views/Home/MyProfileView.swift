@@ -15,8 +15,22 @@ struct MyProfileView: View {
             ZStack {
                 Color(.efficioblue)
                     .frame(height: 150)
-                
+              
                 VStack {
+                    HStack {
+                        Spacer().frame(width: 16)
+                        
+                        Button {
+                            router.navigateBack()
+                        }label: {
+                            Image("back_button")
+                                .font(.title)
+                        }
+                        .frame(width: 16, height: 16)
+                        
+                        Spacer()
+                    }
+                    .offset(y: 70)
                     ZStack {
                         if let image = profileImage {
                             Image(uiImage: image)
@@ -163,25 +177,6 @@ struct MyProfileView: View {
                 }
                 
                 Spacer()
-                
-//                HStack{
-//                    Spacer()
-//                    Button(action: {
-//                    }) {
-//                        Text("Submit")
-//                            .foregroundColor(.white)
-//                            .mitrFont(.headline, weight: .regular)
-//                            .frame(width: 150, height: 15)
-//                            .padding()
-//                            .background(Color.efficioblue)
-//                            .cornerRadius(15)
-//                            .padding(.horizontal)
-//                    }
-//                    .padding(.horizontal)
-//                    .padding(.bottom, 25)
-//
-//                    Spacer()
-//                }
             }
             .padding(.top, 70)
             .padding(.horizontal)
@@ -196,6 +191,7 @@ struct MyProfileView: View {
         .onAppear {
             userModel.fetchUser()
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

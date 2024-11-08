@@ -29,15 +29,17 @@ struct EditFullName: View {
             }.background(.white)
             Spacer()
                 .background(Color.black)
-                .frame(height: 0.5)
+                .frame(height: 16)
             Text("Full Name")
                 .font(.headline)
             TextField("Input your name...", text: $dataModel.fullname)
                 .textFieldStyle(.roundedBorder)
+            Spacer()
         }.onAppear {
             viewModel.onUpdate = { isSuccess in
                 router.navigateBack()
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }

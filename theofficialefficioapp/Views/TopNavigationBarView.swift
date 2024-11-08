@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct TopNavigationBarView: View {
+    @EnvironmentObject var router: Router
     var body: some View {
         HStack {
             Spacer()
 
-            NavigationLink(destination: SettingsView()) {
+            Button(action: {
+                router.navigate(to: .settingView)
+            }) {
                 Image(systemName: "gearshape.fill")
                     .resizable()
                     .scaledToFit()

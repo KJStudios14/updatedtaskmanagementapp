@@ -8,7 +8,7 @@ struct TimerView: View {
     
     @State private var remainingTime: TimeInterval
     @State private var isRunning = false
-    @State private var timer: Timer?
+    @State private var timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State private var showingCancelAlert = false
     @State private var showingFinishAlert = false
     @State private var showElapsedTime = false
@@ -42,16 +42,16 @@ struct TimerView: View {
                 HStack(spacing: 40) {
                     // Cancel Button
                     Button(action: {
-                        showingCancelAlert = true
+                        DispatchQueue.main.async {   
+                            showingCancelAlert = true
+                        }
                     }) {
                         Image(systemName: "xmark")
                             .resizable()
                             .frame(width: 20, height: 20)
                             .foregroundColor(.white)
                     }
-                    
-                    
-
+ 
                     // Play/Pause Button
                     Button(action: toggleTimer) {
                         Image(systemName: isRunning ? "pause.circle.fill" : "play.circle.fill")
@@ -62,7 +62,9 @@ struct TimerView: View {
                     
                     // Finish Button
                     Button(action: {
-                        showingFinishAlert = true
+                        DispatchQueue.main.async {
+                            showingFinishAlert = true
+                        }
                     }) {
                         Image(systemName: "checkmark")
                             .resizable()
@@ -74,77 +76,81 @@ struct TimerView: View {
                 .padding(.bottom, 80)
             }
             .padding()
-            .onAppear(perform: startTimerIfNeeded)
-            .alert(isPresented: $completed) {
-                Alert(
-                    title: Text("Well Done!"),
-                    message: Text("You completed the time!"),
-                    dismissButton: .default(Text("OK")) {
-                        resetTimer()
-                    }
-                )
+            .alert("Well Done!", isPresented: $completed) {
+                Button("OK") {
+                    resetTimer()
+                }
+            } message: {
+                Text("You completed the time!")
             }
-            .alert(isPresented: $showingFinishAlert) {
-                Alert(
-                    title: Text("Finish Timer"),
-                    message: Text("Are you sure you want to end the timer early?"),
-                    primaryButton: .destructive(Text("Finish")) {
-                        completeTimer()
-                    },
-                    secondaryButton: .cancel()
-                )
+            .alert("Finish Timer", isPresented: $showingFinishAlert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Finish") {
+                    completeTimer()
+                }
+            } message: {
+                Text("Are you sure you want to end the timer early?")
             }
-            .alert(isPresented: $showingCancelAlert) {
-                Alert(
-                    title: Text("Cancel Timer"),
-                    message: Text("Are you sure you want to cancel?"),
-                    primaryButton: .destructive(Text("Yes")) {
-                        resetTimer()
-                    },
-                    secondaryButton: .cancel(Text("No"))
-                )
+            .alert("Cancel Timer", isPresented: $showingFinishAlert) {
+                Button("No", role: .cancel) { }
+                Button("Finish") {
+                    resetTimer()
+                }
+            } message: {
+                Text("Are you sure you want to cancel?")
             }
         }.navigationBarBackButtonHidden()
+        .onReceive(self.timer) { _ in
+            if isRunning{
+                if remainingTime > 0 {
+                    remainingTime -= 1
+                } else {
+                    isRunning.toggle()
+                    DispatchQueue.main.async {
+                        completed.toggle()
+                    }
+                }
+            }
+        }
     }
     
     // Function to start the timer if it's not already running
-    func startTimerIfNeeded() {
-        if !isRunning {
-            startTimer()
-        }
-    }
+//    func startTimerIfNeeded() {
+//        if !isRunning {
+//            startTimer()
+//        }
+//    }
     
     // Function to start the timer
-    func startTimer() {
-        isRunning = true
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            if remainingTime > 0 {
-                remainingTime -= 1
-            } else {
-                completed = true
-                pauseTimer()
-            }
-        }
-    }
+//    func startTimer() {
+//        isRunning = true
+//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+//            if remainingTime > 0 {
+//                remainingTime -= 1
+//            } else {
+//                completed = true
+//                pauseTimer()
+//            }
+//        }
+//    }
     
     // Function to pause the timer
-    func pauseTimer() {
-        isRunning = false
-        timer?.invalidate()
-    }
+  
     
     // Function to toggle the timer
     func toggleTimer() {
-        if isRunning {
-            pauseTimer()
-        } else {
-            startTimer()
-        }
+        isRunning.toggle()
+//        if isRunning {
+//            
+//        } else {
+//            startTimer()
+//        }
     }
     
     // Function to reset the timer
     func resetTimer() {
-        pauseTimer()
+//        pauseTimer()
+        viewModel.addTask(focusTime: Int(TimeInterval((hours * 3600) + (minutes * 60))),sessionCount: 1)
         remainingTime = TimeInterval((hours * 3600) + (minutes * 60))
         router.navigateBack()
     }
@@ -152,7 +158,7 @@ struct TimerView: View {
     // Function to complete the timer
     func completeTimer() {
         viewModel.addTask(focusTime: Int(TimeInterval((hours * 3600) + (minutes * 60))),sessionCount: 1)
-        pauseTimer()
+//        pauseTimer()
         router.navigateBack()
     }
     

@@ -5,11 +5,12 @@ import SwiftUI
 struct StopWatchView: View {
     @State private var isRunning = false
     @State private var timeElapsed: TimeInterval = 0
-    @State private var timer: Timer?
+    @State private var timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State private var showingCancelAlert = false
     @State private var showingFinishAlert = false
     @StateObject var viewModel:ProductivityViewModel = ProductivityViewModel()
     @EnvironmentObject var router: Router
+    @Environment(\.scenePhase) var scenePhase
     var body: some View {
             ZStack {
                 Color.black
@@ -78,37 +79,46 @@ struct StopWatchView: View {
                     }
                     .padding(.bottom, 80)
                 }
+                
                 .padding()
-            }.navigationBarBackButtonHidden()
-        
+            }
+            
+            .navigationBarBackButtonHidden()
+            .onReceive(self.timer) { _ in
+                if isRunning{
+                    timeElapsed += 1
+                }
+            }
+           
     }
     
     // Function to toggle the stopwatch
     func toggleStopwatch() {
-        if isRunning {
-            pauseStopwatch()
-        } else {
-            startStopwatch()
-        }
+        isRunning.toggle()
+//        if isRunning {
+//            pauseStopwatch()
+//        } else {
+//            startStopwatch()
+//        }
     }
     
-    // Function to start the stopwatch
-    func startStopwatch() {
-        isRunning = true
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            timeElapsed += 1
-        }
-    }
+//    // Function to start the stopwatch
+//    func startStopwatch() {
+//        isRunning = true
+//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+//            timeElapsed += 1
+//        }
+//    }
     
     // Function to pause the stopwatch
-    func pauseStopwatch() {
-        isRunning = false
-        timer?.invalidate()
-    }
+//    func pauseStopwatch() {
+//        isRunning = false
+//        timer?.invalidate()
+//    }
     
     // Function to reset the stopwatch
     func resetStopwatch() {
-        pauseStopwatch()
+//        pauseStopwatch()
         timeElapsed = 0
         router.navigateBack()
     }
@@ -116,7 +126,7 @@ struct StopWatchView: View {
     // Function to finish the stopwatch session
     func finishStopwatch() {
         viewModel.addTask(focusTime: Int(timeElapsed),sessionCount: 1)
-        pauseStopwatch()
+//        pauseStopwatch()
         router.navigateBack()
         // Additional actions to finalize the session, if needed
     }

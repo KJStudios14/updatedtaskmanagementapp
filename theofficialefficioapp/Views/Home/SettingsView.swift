@@ -2,6 +2,8 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State private var showAlert = false
+    @State private var isLogout = false
     @StateObject var viewModel = UserViewModel()
     @EnvironmentObject var router: Router
     var appVersion: String {
@@ -16,9 +18,26 @@ struct SettingsView: View {
     var body: some View {
 //        NavigationView {
             VStack{
-                Text("Settings")
-                    .mitrFont(.title, weight: .regular)
-                    .padding(.bottom, -5)
+                HStack(alignment: .center, content: {
+                    Spacer().frame(width: 16)
+                    
+                    Button {
+                        router.navigateBack()
+                    }label: {
+                        Image("back_button")
+                            .frame(width: 16, height: 16)
+                    }
+                    
+                    
+                    Spacer().frame(width: 16)
+                    
+                    Text("Settings")
+                        .mitrFont(.title, weight: .regular)
+                        .padding(.bottom, -5)
+                    Spacer()
+                    
+                })
+               
                 
                 Form {
                     
@@ -29,26 +48,26 @@ struct SettingsView: View {
                             Text("Contact us")
                                 .mitrFont(.subheadline, weight: .medium)
                                 .foregroundColor(.white)
-                                .frame(width: 200, height: 44)
+                                .frame(width: 200, height: 34)
                                 .background(Color.efficioblue)
                                 .cornerRadius(15)
                             
-                        }.padding(.bottom, 3)
-                        
+                        }
+                        .frame(width: 200, height: 44)
                         Button {
                             router.navigate(to: .suggestion)
                         } label: {
                             Text("Send Suggestion")
                                 .mitrFont(.subheadline, weight: .medium)
                                 .foregroundColor(.white)
-                                .frame(width: 200, height: 44)
+                                .frame(width: 200, height: 34)
                                 .background(Color.efficioblue)
                                 .cornerRadius(15)
                             
-                        }.padding(.bottom, 3)
+                        }
+                            .frame(width: 200, height: 44)
                     }
                     .mitrFont(.headline, weight: .regular)
-                    .padding(.bottom, -20)
                     
                     Section(header: Text("About")) {
                         HStack {
@@ -57,8 +76,11 @@ struct SettingsView: View {
                             Text(appVersion)
                                 .foregroundColor(.gray)
                         }
-                        NavigationLink(destination: LicenseAndLegalView() .navigationBarBackButtonHidden(true)) {
+                        Button {
+                            router.navigate(to: .licenseAndLegalView)
+                        } label: {
                             Text("License and Legal")
+                                .foregroundColor(.gray)
                         }
                     }
                     .mitrFont(.headline, weight: .regular)
@@ -68,8 +90,7 @@ struct SettingsView: View {
                 Spacer()
                                
                Button {
-                   viewModel.logOut()
-                   router.navigateToRoot()
+                   isLogout.toggle()
                } label: {
                    Text("Log Out")
                        .mitrFont(.subheadline, weight: .medium)
@@ -79,35 +100,65 @@ struct SettingsView: View {
                        .cornerRadius(15)
                }
                .padding(.bottom, 3)
+               .frame(width: 200, height: 44)
+                
                 Button {
-                    viewModel.deleteAccount()
-                    router.navigateToRoot()
+                    showAlert.toggle()
                 } label: {
                     Text("Delete Account")
                         .mitrFont(.subheadline, weight: .medium)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .frame(width: 200, height: 44)
-                        .background(Color.efficioblue)
                         .cornerRadius(15)
-                    
                 }.padding(.bottom, 3)
+                    .frame(width: 200, height: 44)
+            }.alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Are you sure you want to delete your account?"),
+                    primaryButton: .destructive(Text("Delete")) {
+                        viewModel.deleteAccount()
+                    },
+                    secondaryButton: .cancel()
+                )
             }
+            .alert(isPresented: $isLogout) {
+                Alert(
+                    title: Text("Are you sure you want to logout your account?"),
+                    primaryButton: .destructive(Text("Logout")) {
+                        viewModel.logOut()
+                        router.navigateToRoot()
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
+            .onAppear {
+                viewModel.onDeleted = { isSuccess in
+                    if isSuccess{
+                        router.navigateToRoot()
+                    }
+                }
+            }
+            .navigationBarBackButtonHidden(true)
 
 //        }
     }
 }
 
 struct ContactUsView: View {
+    
     @EnvironmentObject var router: Router
     var body: some View {
         VStack {
             HStack {
-                Button(action: {
+                Spacer().frame(width: 16)
+                
+                Button {
                     router.navigateBack()
-                }) {
-                    Image(systemName: "back_button")
+                }label: {
+                    Image("back_button")
                         .font(.title)
                 }
+                .frame(width: 16, height: 16)
                 
                 Spacer()
             }
@@ -129,6 +180,7 @@ struct ContactUsView: View {
             
             Spacer()
         }
+        .navigationBarBackButtonHidden(true)
         .padding()
 
     }
@@ -143,12 +195,15 @@ struct FeedbackFormView: View {
         VStack {
             // Message Text
             HStack {
-                Button(action: {
+                Spacer().frame(width: 16)
+                
+                Button {
                     router.navigateBack()
-                }) {
-                    Image(systemName: "back_button")
+                }label: {
+                    Image("back_button")
                         .font(.title)
                 }
+                .frame(width: 16, height: 16)
                 
                 Spacer()
             }
@@ -192,7 +247,7 @@ struct FeedbackFormView: View {
                     .padding(.bottom, 200)
             }
             Spacer()
-        }
+        }.navigationBarBackButtonHidden(true)
     }
     
     func sendFeedback() {

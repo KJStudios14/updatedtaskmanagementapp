@@ -3,8 +3,23 @@
 import SwiftUI
 
 struct LicenseAndLegalView: View {
+    @EnvironmentObject var router: Router
     var body: some View {
         ScrollView {
+            HStack {
+                
+                Spacer().frame(width: 16)
+                
+                Button {
+                    router.navigateBack()
+                }label: {
+                    Image("back_button")
+                        .font(.title)
+                }
+                .frame(width: 16, height: 16)
+                
+                Spacer()
+            }
             VStack(alignment: .leading, spacing: 15) {
                 Text("License and Legal")
                     .mitrFont(.title2, weight: .bold)
@@ -59,7 +74,7 @@ struct LicenseAndLegalView: View {
                 Spacer()
             }
             .padding()
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

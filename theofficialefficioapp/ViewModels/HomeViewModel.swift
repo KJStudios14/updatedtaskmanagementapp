@@ -6,7 +6,7 @@ import Foundation
 
 
 class UserViewModel: ObservableObject {
-    
+    var onDeleted: ((Bool) -> Void)?
     init() {}
     
     @Published var user: User? = nil
@@ -51,13 +51,31 @@ class UserViewModel: ObservableObject {
     }
     func deleteAccount() {
         if let user = Auth.auth().currentUser {
-            user.delete { error in
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("No user logged in")
+                return
+            }
+            print("Fetching user with ID: \(userId)")
+            
+            let db = Firestore.firestore()
+            db.collection("users").document(userId).delete { error in
                 if let error = error {
-                    print("Error deleting user: \(error.localizedDescription)")
+                    print("Error deleting data: \(error.localizedDescription)")
+                    self.onDeleted?(false)
                 } else {
-                    print("User deleted successfully.")
+                    user.delete { err in
+                        if let error1 = err {
+                            print("Error deleting user: \(error1.localizedDescription)")
+                            self.onDeleted?(false)
+                        }else{
+                            print("User deleted successfully.")
+                            self.onDeleted?(true)
+                        }
+                    }
+                    
                 }
             }
+            
         }
     }
 }

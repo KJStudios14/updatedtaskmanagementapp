@@ -30,15 +30,17 @@ struct EditEditPrefername: View {
             }.background(.white)
             Spacer()
                 .background(Color.black)
-                .frame(height: 0.5)
+                .frame(height:16)
             Text("Prefer name")
                 .font(.headline)
             TextField("Input your name...", text: $dataModel.preferedName)
                 .textFieldStyle(.roundedBorder)
+            Spacer()
         }.onAppear {
             viewModel.onUpdate = { isSuccess in
                 router.navigateBack()
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }

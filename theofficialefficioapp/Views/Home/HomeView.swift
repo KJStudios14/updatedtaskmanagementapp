@@ -23,7 +23,7 @@ struct HomeView: View {
         )
     }
     var body: some View {
-        NavigationView {
+//        NavigationView {
         VStack {
             TopNavigationBarView()
             
@@ -122,7 +122,7 @@ struct HomeView: View {
         .onAppear{
             viewModel.fetchUser()
             }
-        }
+//        }
     }
     
     func daySuffix(from date: Date) -> String {
